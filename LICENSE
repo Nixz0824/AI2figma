@@ -1,0 +1,54 @@
+AI2figma Evaluation License v1.0
+Copyright (c) 2026 Nixz. All rights reserved.
+
+This is NOT an open-source license. Read these terms before using any material,
+build or documentation published in this repository.
+
+1. Purpose. This license lets you evaluate AI2figma free of charge for personal,
+   non-commercial purposes. Any commercial use requires a separate written
+   license from the copyright holder.
+
+2. Grant. Subject to these terms, the copyright holder grants you a personal,
+   non-exclusive, non-transferable, revocable license to:
+   (a) view the documentation and materials published in this repository (the
+       "Materials"); and
+   (b) run official builds of the software, where provided, for personal,
+       non-commercial evaluation, learning and testing.
+
+3. Commercial use. "Commercial use" means any use in or for a business,
+   product, service or activity intended for commercial advantage or monetary
+   compensation, including internal business operations of a company or other
+   organization, consulting work, hosted or SaaS offerings, and producing work
+   delivered to a paying client. Commercial use is NOT granted. To obtain a
+   commercial license, contact the copyright holder through GitHub (open an
+   issue or send a direct message).
+
+4. Restrictions. You may NOT:
+   (a) redistribute, publish, sublicense, sell, rent, lease or otherwise make
+       the software or any build available to any third party;
+   (b) reverse engineer, decompile, or create derivative works or
+       reimplementations for the purpose of developing or distributing a
+       competing or similar product or service;
+   (c) use the software, its Materials or its outputs to train or fine-tune
+       machine-learning models without prior written permission;
+   (d) remove or alter this license or any copyright notice.
+
+5. No source. The source code of the software is private and is not licensed
+   or distributed under this license.
+
+6. Termination. Any breach of these terms terminates this license immediately.
+   On termination you must stop using the software and Materials and delete all
+   copies.
+
+7. No warranty. THE SOFTWARE AND MATERIALS ARE PROVIDED "AS IS", WITHOUT
+   WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+   WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+   NONINFRINGEMENT.
+
+8. No liability. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY
+   CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+   OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE,
+   MATERIALS OR THEIR USE.
+
+9. Reservation. All rights not expressly granted are reserved by the copyright
+   holder.
