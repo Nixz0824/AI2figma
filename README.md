@@ -29,13 +29,14 @@ not a screenshot placed on a canvas.
 
 | Metric | Value |
 |---|---|
-| TypeScript source | **~200,000 lines** across 466 source files |
-| Automated tests | **2,563 test cases / 377 suites**, 0 failures (clean-room verified) |
-| Workspace packages | **12** |
+| TypeScript source | **~202,000 lines** across 478 source files |
+| Automated tests | **2,596 test cases / 383 suites**, 0 failures (clean-room verified) |
+| Workspace packages | **13** |
 | Typed Figma protocol methods | **51** (zod-validated at every boundary) |
 | MCP tools exposed to agent hosts | **31** |
-| Commits | **303** |
+| Commits | **310** |
 | Real-Figma commissioning records | **8** (run IDs, transaction IDs, hashes, rollback probes) |
+| Decision shadow points | **4** (routing / finding triage / risk gate / correction materiality) |
 
 Full breakdown: [METRICS.md](METRICS.md) · Architecture: [ARCHITECTURE.md](ARCHITECTURE.md)
 
@@ -66,11 +67,15 @@ MCP server ── typed zod protocol (51 methods) ──► local bridge (127.0.
   pixel metrics.
 - **Honest limits, documented** — no URL references; assets are supplied manually; chart data series are
   not drawn; the external blind holdout currently fails and its raw results are kept verbatim.
+- **A typed decision layer, shadow-calibrated** — `@fdr/decision` sends typed choice / yes-no / score
+  questions to a System One model (TypeSafe Jev) alongside the deterministic pipeline. Four shadow points
+  record agreement, confidence, latency and cost as evidence, and **nothing in the runtime acts on any
+  answer**: thresholds will be calibrated from collected data before any point is allowed to act.
 
 ## Tech stack
 
 TypeScript · Node ≥ 20 · zod · ws · esbuild · Figma Plugin API · MCP (Model Context Protocol) ·
-in-house PNG codec and pixel-diff tooling
+TypeSafe Jev (System One decisions, shadow-only) · in-house PNG codec and pixel-diff tooling
 
 ## Availability
 

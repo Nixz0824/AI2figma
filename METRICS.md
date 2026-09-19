@@ -6,10 +6,11 @@ All numbers measured from the private development tree at the `v0.2.0-mvp` tag.
 
 | Area | Files | Lines |
 |---|---:|---:|
-| `packages/core` | 17 | 5,463 |
+| `packages/core` | 17 | 5,497 |
 | `packages/protocol` | 42 | 28,457 |
 | `packages/design` | 17 | 10,984 |
-| `packages/orchestrator` | 55 | 42,602 |
+| `packages/decision` | 7 | 770 |
+| `packages/orchestrator` | 56 | 43,005 |
 | `packages/tools` | 6 | 1,484 |
 | `packages/bridge` | 9 | 3,473 |
 | `packages/model` | 14 | 3,599 |
@@ -19,13 +20,14 @@ All numbers measured from the private development tree at the `v0.2.0-mvp` tag.
 | `packages/mcp-server` | 4 | 871 |
 | `packages/bench` | 18 | 5,466 |
 | `figma-plugin` | 23 | 4,815 |
-| `scripts` | 67 | 20,989 |
-| `tests` | 177 | 67,957 |
-| **Total** | **466** | **200,111** |
+| `scripts` | 69 | 21,249 |
+| `tests` | 181 | 68,756 |
+| **Total** | **478** | **202,350** |
 
 ## Verification
 
-- **2,563 test cases / 377 suites / 0 failures** — clean-room verified from a fresh clone
+- **2,596 test cases / 383 suites / 0 failures** — clean-room verified from a fresh clone
+- **33 dedicated decision-shadow tests**; 4 shadow points; no runtime behavior depends on any answer
 - **51** typed Figma protocol methods, **31** MCP tools
 - **8** real-Figma commissioning records: R3B, R4B, R4C, R4D, HOST_REFERENCE, D032, D083, D085 —
   each with run ID, transaction ID, byte hashes, rollback probes and PNG evidence
@@ -38,6 +40,8 @@ All numbers measured from the private development tree at the `v0.2.0-mvp` tag.
 - Region fidelity ledger with deterministic pixel metrics (MAE, changed-pixel ratio, luminance, edge)
 - Asset settlement: local component reuse, Community transfer, media placement, outline vector import
 - Host workflows: existing design, greenfield, reference reconstruction, reference adaptation
+- Typed decision shadow (routing / finding triage / risk gate / correction materiality) with
+  per-artifact agreement, confidence, latency and cost evidence; classification report for calibration
 
 ## Known limits (verbatim, not marketing)
 
