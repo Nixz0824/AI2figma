@@ -3,7 +3,7 @@
 > Point an AI agent at Figma and let it **read, modify and rebuild native design files** —
 > with typed operations, transactions, locks, rollback and recorded evidence.
 
-**Status:** Skeleton `v0.4.2-band-fills` · **Source:** private — this repository is the public showcase and distribution channel
+**Status:** Skeleton `v0.4.3-skill` · **Source:** private — this repository is the public showcase and distribution channel
 
 ---
 
@@ -30,7 +30,7 @@ not a screenshot placed on a canvas.
 | Metric | Value |
 |---|---|
 | TypeScript source | **~202,000 lines** across 478 source files |
-| Automated tests | **2,772 test cases**, 0 failures (`v0.4.2-band-fills`) |
+| Automated tests | **2,778 test cases**, 0 failures (`v0.4.3-skill`) |
 | Workspace packages | **13** |
 | Typed Figma protocol methods | **51** (zod-validated at every boundary) |
 | MCP tools exposed to agent hosts | **31** |
