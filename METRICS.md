@@ -1,8 +1,8 @@
-# METRICS — AI2figma v0.4.0-skeleton
+# METRICS — AI2figma v0.4.1-host-crops
 
-Code-size table below is from `v0.2.0-mvp`. Verification counts at `v0.4.0-skeleton`:
-**2,755 tests / 2,754 pass / 1 skip / 0 fail**. Demo canvas: Analytics, Settings, Pokecut.
-Skeleton loop: measure → gutter-split columns → host fills leaves only.
+Code-size table below is from `v0.2.0-mvp`. Verification counts at `v0.4.1-host-crops`:
+**2,767 tests / 2,766 pass / 1 skip / 0 fail**. Demo canvas: Analytics, Settings, Pokecut.
+Skeleton loop: measure → gutter-split columns → host fills leaves only; start exposes leafFillBands + 1:1 crops.
 
 ## Code
 
