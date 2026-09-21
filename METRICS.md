@@ -1,7 +1,8 @@
-# METRICS — AI2figma v0.3.0-demo
+# METRICS — AI2figma v0.4.0-skeleton
 
-Code-size table below is from `v0.2.0-mvp`. Verification counts at `v0.3.0-demo`:
-**2,703 tests / 2,702 pass / 1 skip / 0 fail**. Demo canvas: Analytics, Settings, Pokecut.
+Code-size table below is from `v0.2.0-mvp`. Verification counts at `v0.4.0-skeleton`:
+**2,755 tests / 2,754 pass / 1 skip / 0 fail**. Demo canvas: Analytics, Settings, Pokecut.
+Skeleton loop: measure → gutter-split columns → host fills leaves only.
 
 ## Code
 
