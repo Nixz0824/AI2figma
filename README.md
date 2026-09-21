@@ -3,7 +3,7 @@
 > Point an AI agent at Figma and let it **read, modify and rebuild native design files** —
 > with typed operations, transactions, locks, rollback and recorded evidence.
 
-**Status:** MVP `v0.2.0-mvp` · **Source:** private — this repository is the public showcase and distribution channel
+**Status:** Demo `v0.3.0-demo` · **Source:** private — this repository is the public showcase and distribution channel
 
 ---
 
@@ -30,7 +30,7 @@ not a screenshot placed on a canvas.
 | Metric | Value |
 |---|---|
 | TypeScript source | **~202,000 lines** across 478 source files |
-| Automated tests | **2,596 test cases / 383 suites**, 0 failures (clean-room verified) |
+| Automated tests | **2,703 test cases / 407 suites**, 0 failures (`v0.3.0-demo`) |
 | Workspace packages | **13** |
 | Typed Figma protocol methods | **51** (zod-validated at every boundary) |
 | MCP tools exposed to agent hosts | **31** |
@@ -66,7 +66,10 @@ MCP server ── typed zod protocol (51 methods) ──► local bridge (127.0.
   manifests, asset settlement (Community transfer / media / vectors) and a region fidelity ledger with
   pixel metrics.
 - **Honest limits, documented** — no URL references; assets are supplied manually; chart data series are
-  not drawn; the external blind holdout currently fails and its raw results are kept verbatim.
+  not drawn; reconstruction is structural (native, editable), not pixel-identical across renderers.
+- **Three-page demo closure (`v0.3.0-demo`)** — Analytics, Settings and Pokecut as native Figma pages;
+  fake icons are refused; missing media/vectors stay on a typed work order; a measured same-PNG
+  decomposition can be rebound onto a new run.
 - **A typed decision layer, shadow-calibrated** — `@fdr/decision` sends typed choice / yes-no / score
   questions to a System One model (TypeSafe Jev) alongside the deterministic pipeline. Four shadow points
   record agreement, confidence, latency and cost as evidence, and **nothing in the runtime acts on any
