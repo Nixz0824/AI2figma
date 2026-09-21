@@ -1,8 +1,8 @@
-# METRICS — AI2figma v0.4.1-host-crops
+# METRICS — AI2figma v0.4.2-band-fills
 
-Code-size table below is from `v0.2.0-mvp`. Verification counts at `v0.4.1-host-crops`:
-**2,767 tests / 2,766 pass / 1 skip / 0 fail**. Demo canvas: Analytics, Settings, Pokecut.
-Skeleton loop: measure → gutter-split columns → host fills leaves only; start exposes leafFillBands + 1:1 crops.
+Code-size table below is from `v0.2.0-mvp`. Verification counts at `v0.4.2-band-fills`:
+**2,772 tests / 2,771 pass / 1 skip / 0 fail**. Demo canvas: Analytics, Settings, Pokecut.
+Skeleton loop: start → leafFillBands + crops → continue `reference_band_fills` → construct.
 
 ## Code
 
