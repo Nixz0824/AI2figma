@@ -30,7 +30,7 @@ not a screenshot placed on a canvas.
 | Metric | Value |
 |---|---|
 | TypeScript source | **~202,000 lines** across 478 source files |
-| Automated tests | **2,794 test cases**, 0 failures (`v0.4.4-host-loop`) |
+| Automated tests | **2,795 test cases**, 0 failures (`v0.4.4-host-loop`) |
 | Workspace packages | **13** |
 | Typed Figma protocol methods | **51** (zod-validated at every boundary) |
 | MCP tools exposed to agent hosts | **31** |
