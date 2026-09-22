@@ -1,9 +1,10 @@
-# METRICS — AI2figma v0.4.3-skill
+# METRICS — AI2figma v0.4.4-host-loop
 
-Code-size table below is from `v0.2.0-mvp`. Verification counts at `v0.4.3-skill`:
-**2,778 tests / 2,777 pass / 1 skip / 0 fail**. Demo canvas: Analytics, Settings, Pokecut.
+Code-size table below is from `v0.2.0-mvp`. Verification counts at `v0.4.4-host-loop`:
+**2,794 tests / 2,793 pass / 1 skip / 0 fail**. Demo canvas: Analytics, Settings, Pokecut.
 Skeleton loop: start → leafFillBands + crops → continue `reference_band_fills` → construct.
-Host skill is test-locked to that path.
+Host skill is test-locked to that path. Host loop: start → skeleton + 3x reading crops → vision fills → text
+calibration → visual review → scoped correction (two rounds proven live); measured families converge to one type token.
 
 ## Code
 
