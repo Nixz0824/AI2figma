@@ -1,40 +1,43 @@
-# METRICS — AI2figma v0.4.4-host-loop
+# METRICS — AI2figma v0.4.5-reference-reliability
 
-Code-size table below is from `v0.2.0-mvp`. Verification counts at `v0.4.4-host-loop`:
-**2,795 tests / 2,794 pass / 1 skip / 0 fail**. Demo canvas: Analytics, Settings, Pokecut.
-Skeleton loop: start → leafFillBands + crops → continue `reference_band_fills` → construct.
-Host skill is test-locked to that path. Host loop: start → skeleton + 3x reading crops → vision fills → text
-calibration → visual review → scoped correction (two rounds proven live); measured families converge to one type token.
+Canonical release tree: `v0.4.5-reference-reliability` (393 source commits). The inventory below counts tracked
+TypeScript files and LF-delimited physical lines across the 13 workspaces under `packages/`, the `figma-plugin`
+workspace, `scripts/`, and `tests/`. It is not a production-only LOC count or a software-quality metric.
+
+Final verification: **3,013 tests / 3,012 pass / 1 skip / 0 fail / 452 suites**. `npm run verify` exited 0;
+guard, TypeScript build and plugin build passed.
 
 ## Code
 
 | Area | Files | Lines |
 |---|---:|---:|
 | `packages/core` | 17 | 5,497 |
-| `packages/protocol` | 42 | 28,457 |
-| `packages/design` | 17 | 10,984 |
+| `packages/protocol` | 51 | 34,863 |
+| `packages/design` | 18 | 12,344 |
 | `packages/decision` | 7 | 770 |
-| `packages/orchestrator` | 56 | 43,005 |
-| `packages/tools` | 6 | 1,484 |
-| `packages/bridge` | 9 | 3,473 |
-| `packages/model` | 14 | 3,599 |
+| `packages/orchestrator` | 63 | 57,365 |
+| `packages/tools` | 6 | 1,502 |
+| `packages/bridge` | 9 | 3,474 |
+| `packages/model` | 14 | 3,601 |
 | `packages/memory` | 4 | 1,083 |
 | `packages/browser` | 7 | 1,388 |
 | `packages/cli` | 4 | 1,453 |
-| `packages/mcp-server` | 4 | 871 |
+| `packages/mcp-server` | 4 | 928 |
 | `packages/bench` | 18 | 5,466 |
-| `figma-plugin` | 23 | 4,815 |
-| `scripts` | 69 | 21,249 |
-| `tests` | 181 | 68,756 |
-| **Total** | **478** | **202,350** |
+| `figma-plugin` | 22 | 4,570 |
+| `scripts` | 71 | 23,815 |
+| `tests` | 216 | 86,569 |
+| **Total** | **531** | **244,688** |
 
 ## Verification
 
-- **2,596 test cases / 383 suites / 0 failures** — clean-room verified from a fresh clone
+- **3,013 test cases / 452 suites / 0 failures** — final `npm run verify`; one provider-gated test skipped
 - **33 dedicated decision-shadow tests**; 4 shadow points; no runtime behavior depends on any answer
-- **51** typed Figma protocol methods, **31** MCP tools
-- **8** real-Figma commissioning records: R3B, R4B, R4C, R4D, HOST_REFERENCE, D032, D083, D085 —
-  each with run ID, transaction ID, byte hashes, rollback probes and PNG evidence
+- **52** typed Figma protocol methods, **31** MCP tools
+- **14** workspaces: 13 under `packages/`, plus `figma-plugin`
+- One live mobile ADAPTATION run reached `ADAPTATION_COMPLETE` under its independent acceptance policy with
+  `strictComplete=false`; the retained strict fidelity ledger is `NOT_COMPARABLE_TARGET`. This is not a strict
+  fidelity PASS.
 - CI runs the full suite on every change
 
 ## Functional scope

@@ -10,7 +10,7 @@
 ┌───────────────────────────────▼─────────────────────────────────┐
 │ MCP server — host state machine, nextAction contracts           │
 ├─────────────────────────────────────────────────────────────────┤
-│ Protocol — 51 zod-validated Figma methods (the single source    │
+│ Protocol — 52 zod-validated Figma methods (the single source    │
 │ of truth for every request and result)                          │
 ├─────────────────────────────────────────────────────────────────┤
 │ Orchestrator — context resolver, intent router, planners,       │

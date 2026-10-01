@@ -3,7 +3,7 @@
 > Point an AI agent at Figma and let it **read, modify and rebuild native design files** —
 > with typed operations, transactions, locks, rollback and recorded evidence.
 
-**Status:** Skeleton `v0.4.4-host-loop` · **Source:** private — this repository is the public showcase and distribution channel
+**Status:** `v0.4.5-reference-reliability` · **Source:** private — this repository is the public showcase and distribution channel
 
 ---
 
@@ -29,13 +29,12 @@ not a screenshot placed on a canvas.
 
 | Metric | Value |
 |---|---|
-| TypeScript source | **~202,000 lines** across 478 source files |
-| Automated tests | **2,795 test cases**, 0 failures (`v0.4.4-host-loop`) |
-| Workspace packages | **13** |
-| Typed Figma protocol methods | **51** (zod-validated at every boundary) |
+| Tracked TypeScript inventory | **531 files / 244,688 LF-delimited physical lines**, including `scripts/` and `tests/` |
+| Automated tests | **3,013 cases: 3,012 passed, 1 skipped, 0 failed** (`npm run verify`; 452 suites) |
+| Workspaces | **14** (13 packages under `packages/` plus `figma-plugin`) |
+| Typed Figma protocol methods | **52** (zod-validated at every boundary) |
 | MCP tools exposed to agent hosts | **31** |
-| Commits | **310** |
-| Real-Figma commissioning records | **8** (run IDs, transaction IDs, hashes, rollback probes) |
+| Canonical source commits | **393** at `v0.4.5-reference-reliability` |
 | Decision shadow points | **4** (routing / finding triage / risk gate / correction materiality) |
 
 Full breakdown: [METRICS.md](METRICS.md) · Architecture: [ARCHITECTURE.md](ARCHITECTURE.md)
@@ -46,7 +45,7 @@ Full breakdown: [METRICS.md](METRICS.md) · Architecture: [ARCHITECTURE.md](ARCH
 Agent Host (owns reasoning: Codex / DSH / Claude / Cursor)
         │  MCP (stdio)
         ▼
-MCP server ── typed zod protocol (51 methods) ──► local bridge (127.0.0.1)
+MCP server ── typed zod protocol (52 methods) ──► local bridge (127.0.0.1)
         │                                             │  WebSocket
         │                                             ▼
         │                                    Figma plugin (real Plugin API)
@@ -57,6 +56,11 @@ MCP server ── typed zod protocol (51 methods) ──► local bridge (127.0.
 
 ## Engineering highlights
 
+- **Reference reliability (`v0.4.5-reference-reliability`)** — opt-in `RELATIONAL_V2` planning, plan review
+  before calibration/construction, capture- and tree-bound visual review, and narrow read-only recovery for a
+  verified packet-pending ADAPTATION checkpoint. `LEGACY_V1` remains the default.
+- **ADAPTATION boundary** — one live adaptation reached policy completion with `strictComplete=false`; the
+  strict fidelity ledger remained `NOT_COMPARABLE_TARGET`. This is not a strict fidelity PASS or pixel-equivalence claim.
 - **Write safety first** — every write is schema-validated before dispatch; writes are never retried
   automatically; transactions keep a shadow snapshot; locks live in node `pluginData`; terminal states
   are backed by write-once artifacts with hashes.
@@ -106,4 +110,8 @@ See [LICENSE](LICENSE). For evaluation or commercial licensing, open an issue or
 AI2figma 是一个把 AI Agent 连到 Figma 桌面版的本地运行时：宿主负责推理，运行时负责安全的原生施工
 （事务 / 锁 / 回滚 / 幂等 / 证据）。三种闭环：改现有页面、从需求建页、从参考图复刻为可编辑原生节点。
 **源码私有**；个人非商业评估免费（按需提供构建），商用需书面授权。
-规模：约 20 万行 TypeScript、2,563 项测试、12 个包、51 个协议方法、31 个 MCP 工具、8 份真机验收记录。
+规模：531 个 TypeScript 文件、244,688 行（统计包含 `scripts/` 与 `tests/`）；14 个 workspace
+（`packages/` 下 13 个加 `figma-plugin`）；52 个类型化 Figma 协议方法、31 个 MCP 工具。
+最新完整验证：3,013 项测试，3,012 通过、1 项跳过、0 项失败，共 452 个测试套件。
+有一个真实移动端 ADAPTATION 样例按独立策略完成；`strictComplete=false`，保留的 fidelity ledger 为
+`NOT_COMPARABLE_TARGET`。这不代表 strict fidelity PASS 或像素等价。
