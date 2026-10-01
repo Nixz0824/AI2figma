@@ -3,7 +3,7 @@
 > Point an AI agent at Figma and let it **read, modify and rebuild native design files** —
 > with typed operations, transactions, locks, rollback and recorded evidence.
 
-**Status:** `v0.4.6-mirror-ci` · **Source:** private — this repository is the public showcase and distribution channel
+**Status:** `v0.4.7` — general generation · **Source:** private — this repository is the public showcase and distribution channel
 
 ---
 
@@ -29,18 +29,18 @@ not a screenshot placed on a canvas.
 
 | Metric | Value |
 |---|---|
-| Tracked TypeScript inventory | **531 files / 244,699 LF-delimited physical lines**, including `scripts/` and `tests/` |
-| Canonical full verification | **3,013 cases: 3,012 passed, 1 skipped, 0 failed** (`npm run verify`; 452 suites) |
-| Scrubbed mirror CI | **3,007 cases: 2,991 passed, 16 skipped, 0 failed** (452 suites) |
+| Tracked TypeScript inventory | **532 files / 247,916 LF-delimited physical lines**, including `scripts/` and `tests/` |
+| Canonical full verification | **3,055 cases: 3,054 passed, 1 skipped, 0 failed** (`npm run verify`; 452 suites) |
+| Scrubbed mirror CI | **3,049 cases: 3,033 passed, 16 skipped, 0 failed** (452 suites; main and tag runs) |
 | Workspaces | **14** (13 packages under `packages/` plus `figma-plugin`) |
 | Typed Figma protocol methods | **52** (zod-validated at every boundary) |
 | MCP tools exposed to agent hosts | **31** |
-| Canonical source commits | **394** at `v0.4.6-mirror-ci` |
+| Canonical source commits | **396** at `v0.4.7` |
 | Decision shadow points | **4** (routing / finding triage / risk gate / correction materiality) |
 
 Full breakdown: [METRICS.md](METRICS.md) · Architecture: [ARCHITECTURE.md](ARCHITECTURE.md)
 
-The mirror's skipped tests include provider-gated checks and checks whose local source inputs are omitted by the
+The v0.4.7 scrubbed mirror's skipped tests include provider-gated checks and checks whose local source inputs are omitted by the
 history scrub; the R6 reference check skips only when one of its exact source-bound image paths is absent.
 
 ## Architecture
@@ -67,6 +67,13 @@ MCP server ── typed zod protocol (52 methods) ──► local bridge (127.0.
   non-`EXTERNAL` reference paths before reading them, skips with the exact missing path in a scrubbed mirror, and
   keeps the existing byte, pixel and `EXACT_RENDERED` checks when the images are available. The canonical and
   scrubbed mirror verification gates both passed.
+- **General generation and typed layout (`v0.4.7`)** — optional `visualTokens` preserve
+  supported model-selected color and typography roles through deterministic token resolution and native construction.
+  The runtime checks exact font family/style availability and applies the selected size, line height, and letter
+  spacing; it reuses loaded fonts and parent nodes. Eligible Host Reference Stage-A candidate reads and PNG exports
+  are batched to reduce round trips in that probe path. Evidence: three compiled-proposal scenes validated native
+  parameters, viewport, relations and containment; measured transport improvement is scoped to eligible candidate
+  reads and exports.
 - **ADAPTATION boundary** — one live adaptation reached policy completion with `strictComplete=false`; the
   strict fidelity ledger remained `NOT_COMPARABLE_TARGET`. This is not a strict fidelity PASS or pixel-equivalence claim.
 - **Write safety first** — every write is schema-validated before dispatch; writes are never retried
@@ -118,10 +125,11 @@ See [LICENSE](LICENSE). For evaluation or commercial licensing, open an issue or
 AI2figma 是一个把 AI Agent 连到 Figma 桌面版的本地运行时：宿主负责推理，运行时负责安全的原生施工
 （事务 / 锁 / 回滚 / 幂等 / 证据）。三种闭环：改现有页面、从需求建页、从参考图复刻为可编辑原生节点。
 **源码私有**；个人非商业评估免费（按需提供构建），商用需书面授权。
-规模：531 个 TypeScript 文件、244,699 行（统计包含 `scripts/` 与 `tests/`）；14 个 workspace
+源码规模：532 个 TypeScript 文件、247,916 行（统计包含 `scripts/` 与 `tests/`）；14 个 workspace
 （`packages/` 下 13 个加 `figma-plugin`）；52 个类型化 Figma 协议方法、31 个 MCP 工具。
-v0.4.6-mirror-ci 的 canonical 完整验证：3,013 项测试，3,012 通过、1 项跳过、0 项失败，共 452 个测试套件。
-历史清理镜像 CI：3,007 项测试，2,991 通过、16 项跳过、0 项失败，共 452 个测试套件；跳过项包含 provider-gated
-检查与镜像中缺失的本地 source inputs，R6 scene-reference 检查只在准确输入路径缺失时跳过。
+v0.4.7 canonical 完整验证：3,055 项测试，3,054 通过、1 项跳过、0 项失败，共 452 个测试套件。
+v0.4.7 清理镜像 CI：3,049 项测试，3,033 通过、16 项跳过、0 项失败，共 452 个测试套件。
+镜像跳过项包含 provider-gated 检查与历史清理中缺失的本地 source inputs；R6 scene-reference 检查只在准确输入路径缺失时跳过。
+通用生成能力：可选 typed `visualTokens` 将受支持的视觉选择从 proposal 传到确定性 token 解析和原生施工；运行时校验精确字体 face，并实际应用字号、行高和字距。符合条件的 Host Reference Stage-A 候选读回与 PNG 导出按批处理，减少该探针路径的往返。三场景 compiled-proposal smoke 验证了原生参数、viewport、关系和 containment；实测传输收益限定在候选读回与导出路径。
 有一个真实移动端 ADAPTATION 样例按独立策略完成；`strictComplete=false`，保留的 fidelity ledger 为
 `NOT_COMPARABLE_TARGET`。这不代表 strict fidelity PASS 或像素等价。
