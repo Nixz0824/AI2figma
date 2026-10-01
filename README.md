@@ -3,7 +3,7 @@
 > Point an AI agent at Figma and let it **read, modify and rebuild native design files** —
 > with typed operations, transactions, locks, rollback and recorded evidence.
 
-**Status:** `v0.4.5-reference-reliability` · **Source:** private — this repository is the public showcase and distribution channel
+**Status:** `v0.4.6-mirror-ci` · **Source:** private — this repository is the public showcase and distribution channel
 
 ---
 
@@ -29,15 +29,19 @@ not a screenshot placed on a canvas.
 
 | Metric | Value |
 |---|---|
-| Tracked TypeScript inventory | **531 files / 244,688 LF-delimited physical lines**, including `scripts/` and `tests/` |
-| Automated tests | **3,013 cases: 3,012 passed, 1 skipped, 0 failed** (`npm run verify`; 452 suites) |
+| Tracked TypeScript inventory | **531 files / 244,699 LF-delimited physical lines**, including `scripts/` and `tests/` |
+| Canonical full verification | **3,013 cases: 3,012 passed, 1 skipped, 0 failed** (`npm run verify`; 452 suites) |
+| Scrubbed mirror CI | **3,007 cases: 2,991 passed, 16 skipped, 0 failed** (452 suites) |
 | Workspaces | **14** (13 packages under `packages/` plus `figma-plugin`) |
 | Typed Figma protocol methods | **52** (zod-validated at every boundary) |
 | MCP tools exposed to agent hosts | **31** |
-| Canonical source commits | **393** at `v0.4.5-reference-reliability` |
+| Canonical source commits | **394** at `v0.4.6-mirror-ci` |
 | Decision shadow points | **4** (routing / finding triage / risk gate / correction materiality) |
 
 Full breakdown: [METRICS.md](METRICS.md) · Architecture: [ARCHITECTURE.md](ARCHITECTURE.md)
+
+The mirror's skipped tests include provider-gated checks and checks whose local source inputs are omitted by the
+history scrub; the R6 reference check skips only when one of its exact source-bound image paths is absent.
 
 ## Architecture
 
@@ -59,6 +63,10 @@ MCP server ── typed zod protocol (52 methods) ──► local bridge (127.0.
 - **Reference reliability (`v0.4.5-reference-reliability`)** — opt-in `RELATIONAL_V2` planning, plan review
   before calibration/construction, capture- and tree-bound visual review, and narrow read-only recovery for a
   verified packet-pending ADAPTATION checkpoint. `LEGACY_V1` remains the default.
+- **Mirror CI fixture handling (`v0.4.6-mirror-ci`)** — the R6 benchmark test checks its four
+  non-`EXTERNAL` reference paths before reading them, skips with the exact missing path in a scrubbed mirror, and
+  keeps the existing byte, pixel and `EXACT_RENDERED` checks when the images are available. The canonical and
+  scrubbed mirror verification gates both passed.
 - **ADAPTATION boundary** — one live adaptation reached policy completion with `strictComplete=false`; the
   strict fidelity ledger remained `NOT_COMPARABLE_TARGET`. This is not a strict fidelity PASS or pixel-equivalence claim.
 - **Write safety first** — every write is schema-validated before dispatch; writes are never retried
@@ -110,8 +118,10 @@ See [LICENSE](LICENSE). For evaluation or commercial licensing, open an issue or
 AI2figma 是一个把 AI Agent 连到 Figma 桌面版的本地运行时：宿主负责推理，运行时负责安全的原生施工
 （事务 / 锁 / 回滚 / 幂等 / 证据）。三种闭环：改现有页面、从需求建页、从参考图复刻为可编辑原生节点。
 **源码私有**；个人非商业评估免费（按需提供构建），商用需书面授权。
-规模：531 个 TypeScript 文件、244,688 行（统计包含 `scripts/` 与 `tests/`）；14 个 workspace
+规模：531 个 TypeScript 文件、244,699 行（统计包含 `scripts/` 与 `tests/`）；14 个 workspace
 （`packages/` 下 13 个加 `figma-plugin`）；52 个类型化 Figma 协议方法、31 个 MCP 工具。
-最新完整验证：3,013 项测试，3,012 通过、1 项跳过、0 项失败，共 452 个测试套件。
+v0.4.6-mirror-ci 的 canonical 完整验证：3,013 项测试，3,012 通过、1 项跳过、0 项失败，共 452 个测试套件。
+历史清理镜像 CI：3,007 项测试，2,991 通过、16 项跳过、0 项失败，共 452 个测试套件；跳过项包含 provider-gated
+检查与镜像中缺失的本地 source inputs，R6 scene-reference 检查只在准确输入路径缺失时跳过。
 有一个真实移动端 ADAPTATION 样例按独立策略完成；`strictComplete=false`，保留的 fidelity ledger 为
 `NOT_COMPARABLE_TARGET`。这不代表 strict fidelity PASS 或像素等价。

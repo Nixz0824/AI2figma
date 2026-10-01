@@ -1,11 +1,12 @@
-# METRICS — AI2figma v0.4.5-reference-reliability
+# METRICS — AI2figma v0.4.6-mirror-ci
 
-Canonical release tree: `v0.4.5-reference-reliability` (393 source commits). The inventory below counts tracked
-TypeScript files and LF-delimited physical lines across the 13 workspaces under `packages/`, the `figma-plugin`
-workspace, `scripts/`, and `tests/`. It is not a production-only LOC count or a software-quality metric.
+Canonical release tree: `v0.4.6-mirror-ci` (394 source commits). This inventory counts 531 tracked TypeScript files
+and 244,699 LF-delimited physical lines across the 13 workspaces under `packages/`, the `figma-plugin` workspace,
+`scripts/`, and `tests/`. It is not a production-only LOC count or a software-quality metric.
 
-Final verification: **3,013 tests / 3,012 pass / 1 skip / 0 fail / 452 suites**. `npm run verify` exited 0;
-guard, TypeScript build and plugin build passed.
+Canonical `npm run verify`: **3,013 tests / 3,012 pass / 1 skip / 0 fail / 452 suites**; exit 0. Guard, TypeScript
+build and plugin build passed. The scrubbed-history mirror CI also passed: **3,007 tests / 2,991 pass / 16 skip /
+0 fail / 452 suites**.
 
 ## Code
 
@@ -26,12 +27,14 @@ guard, TypeScript build and plugin build passed.
 | `packages/bench` | 18 | 5,466 |
 | `figma-plugin` | 22 | 4,570 |
 | `scripts` | 71 | 23,815 |
-| `tests` | 216 | 86,569 |
-| **Total** | **531** | **244,688** |
+| `tests` | 216 | 86,580 |
+| **Total** | **531** | **244,699** |
 
 ## Verification
 
-- **3,013 test cases / 452 suites / 0 failures** — final `npm run verify`; one provider-gated test skipped
+- **Canonical full verify:** 3,013 test cases / 3,012 passed / 1 skipped / 0 failed / 452 suites.
+- **Scrubbed mirror CI:** 3,007 test cases / 2,991 passed / 16 skipped / 0 failed / 452 suites; run `36832313819` completed successfully.
+- The mirror's skipped tests include provider-gated checks and checks whose local source inputs are omitted by history scrub. R6 test 2b now preflights its four non-`EXTERNAL` image paths, skips only when an exact path is absent, and retains the byte, pixel, `EXACT_RENDERED` and `checked=4` assertions whenever those images are present.
 - **33 dedicated decision-shadow tests**; 4 shadow points; no runtime behavior depends on any answer
 - **52** typed Figma protocol methods, **31** MCP tools
 - **14** workspaces: 13 under `packages/`, plus `figma-plugin`
