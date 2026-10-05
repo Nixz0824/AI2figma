@@ -1,11 +1,11 @@
-# METRICS — AI2figma v0.4.8 — general generation data and layout
+# METRICS — AI2figma v0.4.9 — host planning context and offline validation
 
-Canonical release tree: `v0.4.8` (401 canonical commits). This inventory counts 533 tracked TypeScript files
-and 249,930 LF-delimited physical lines across the 13 workspaces under `packages/`, the `figma-plugin` workspace,
+Canonical release tree: `v0.4.9` (402 canonical commits). This inventory counts 537 tracked TypeScript files
+and 250,786 LF-delimited physical lines across the 13 workspaces under `packages/`, the `figma-plugin` workspace,
 `scripts/`, and `tests/`. It is not a production-only LOC count or a software-quality metric.
 
-Canonical v0.4.8 `npm run verify`: **3,079 tests / 3,078 pass / 1 skip / 0 fail / 452 suites**; exit 0.
-Guard, TypeScript build and plugin build passed. Scrubbed-history CI for v0.4.8 passed on both `main` and the release tag.
+Canonical v0.4.9 `npm run verify`: **3,085 tests / 3,084 pass / 1 skip / 0 fail / 453 suites**; exit 0.
+Guard, TypeScript build and plugin build passed. Scrubbed-history CI for v0.4.9 passed on both `main` and the release tag.
 
 ## Code
 
@@ -21,24 +21,26 @@ Guard, TypeScript build and plugin build passed. Scrubbed-history CI for v0.4.8 
 | `packages/model` | 14 | 3,601 |
 | `packages/memory` | 4 | 1,083 |
 | `packages/browser` | 7 | 1,388 |
-| `packages/cli` | 4 | 1,453 |
-| `packages/mcp-server` | 4 | 928 |
+| `packages/cli` | 5 | 1,792 |
+| `packages/mcp-server` | 5 | 986 |
 | `packages/bench` | 18 | 5,466 |
 | `figma-plugin` | 22 | 4,777 |
 | `scripts` | 71 | 23,815 |
-| `tests` | 218 | 90,149 |
-| **Total** | **533** | **249,930** |
+| `tests` | 220 | 90,608 |
+| **Total** | **537** | **250,786** |
 
 ## Verification
 
-- **v0.4.8 canonical full verify:** 3,079 test cases / 3,078 passed / 1 skipped / 0 failed / 452 suites; exit 0. Oct 5 Node test-runner duration 390,027.6074 ms.
-- **v0.4.8 scrubbed mirror CI:** main and release tag each ran 3,073 tests / 3,057 passed / 16 skipped / 0 failed / 452 suites. Main run `37295332019`: Node duration 373,877.570165 ms, Actions job about 411 s. Tag run `37295336675`: Node duration 374,256.20633 ms, Actions job about 412 s. Both passed.
+- **v0.4.9 canonical full verify:** 3,085 test cases / 3,084 passed / 1 skipped / 0 failed / 453 suites; exit 0. Oct 5 Node test-runner duration 392,074.7201 ms. Log SHA-256: `345f45d08d21e8e4a52ef11d6a2fa5f27a2b7db21ab31546c0e1359d1547c59c`.
+- **v0.4.9 scrubbed mirror CI:** main and release tag each ran 3,079 tests / 3,063 passed / 16 skipped / 0 failed / 453 suites. Main run `37313859741`: Node duration 382,873.79346 ms. Tag run `37313862915`: Node duration 379,846.3941 ms. Both passed on scrubbed HEAD `7e7857df949a526fc93a3c648084b6020920fd36`.
+- **v0.4.8 historical canonical full verify:** 3,079 test cases / 3,078 passed / 1 skipped / 0 failed / 452 suites; exit 0. Oct 5 Node test-runner duration 390,027.6074 ms.
+- **v0.4.8 historical scrubbed mirror CI:** main and release tag each ran 3,073 tests / 3,057 passed / 16 skipped / 0 failed / 452 suites. Main run `37295332019`: Node duration 373,877.570165 ms, Actions job about 411 s. Tag run `37295336675`: Node duration 374,256.20633 ms, Actions job about 412 s. Both passed.
 - Historical v0.4.7 canonical full verify: 3,055 test cases / 3,054 passed / 1 skipped / 0 failed / 452 suites; exit 0.
 - Historical v0.4.7 scrubbed mirror CI: 3,049 test cases / 3,033 passed / 16 skipped / 0 failed / 452 suites. Tag run `36902346689` and main run `36902337954` both completed successfully.
 - **v0.4.6 historical scrubbed mirror CI:** 3,007 test cases / 2,991 passed / 16 skipped / 0 failed / 452 suites; run `36832313819` completed successfully.
 - Scrubbed mirror skips include provider-gated checks and checks whose local source inputs are omitted by history scrub. R6 test 2b preflights its four non-`EXTERNAL` image paths, skips only when an exact path is absent, and retains the byte, pixel, `EXACT_RENDERED` and `checked=4` assertions whenever those images are present.
 - **33 dedicated decision-shadow tests**; 4 shadow points; no runtime behavior depends on any answer
-- **52** typed Figma protocol methods, **31** MCP tools
+- **52** typed Figma protocol methods, **32** MCP tools
 - **14** workspaces: 13 under `packages/`, plus `figma-plugin`
 - One live mobile ADAPTATION run reached `ADAPTATION_COMPLETE` under its independent acceptance policy with
   `strictComplete=false`; the retained strict fidelity ledger is `NOT_COMPARABLE_TARGET`. This is not a strict
@@ -60,6 +62,7 @@ Guard, TypeScript build and plugin build passed. Scrubbed-history CI for v0.4.8 
 - Optional typed `visualTokens` carry supported color and typography choices through deterministic token resolution into native construction. The runtime checks exact font faces and applies font size, line height, and letter spacing.
 - Native text construction reuses loaded font promises and resolved parents. Eligible Host Reference Stage-A candidates use batched child reads and PNG exports, reducing transport round trips along that probe path.
 - Evidence: three compiled-proposal scenes validated native parameters, viewport, relations, and containment. Measured transport improvement is scoped to eligible candidate reads and exports.
+- v0.4.9 Host planning: the CLI exposes complete start DTOs, state-guarded continuation, and offline proposal/review/plan validation. MCP initialize plus `tools/list` changed from 41,238 B to 24,585 B (40.4% less default discovery payload). The full reference guide remains available on demand: 20,352 B of text, 20,600 B as a JSON-RPC response. This measures context payload only; it is not a runtime latency or quality result.
 - v0.4.8: explicit chart data, bounded table/activity/mobile layouts, and content/style/geometry-aware component reuse with fail-closed evidence checks. Grouped sections preserve native order and header bounds. Delete guards protect rollback stashes and refuse overlapping parent/descendant targets before writes. Two fixed Native fixtures passed scoped tree/text/viewport audits and exact rollback; they do not establish whole-page design quality or successful component reuse.
 - Host visual closure: the Oct 2 task reached COMPLETE after post-clock final review and fresh capture on Oct 5. Root accepted the bounded result; no elapsed time was measured on that pass. The original timed receipt remains REVIEW_REQUIRED with degraded timing integrity, so no speedup or normal-latency claim is made.
 
