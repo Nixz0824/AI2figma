@@ -3,7 +3,7 @@
 > Point an AI agent at Figma and let it **read, modify and rebuild native design files** —
 > with typed operations, transactions, locks, rollback and recorded evidence.
 
-**Status:** `v0.4.7` — general generation · **Source:** private — this repository is the public showcase and distribution channel
+**Status:** `v0.4.8` — general generation data and layout · **Source:** private — this repository is the public showcase and distribution channel
 
 ---
 
@@ -29,18 +29,18 @@ not a screenshot placed on a canvas.
 
 | Metric | Value |
 |---|---|
-| Tracked TypeScript inventory | **532 files / 247,916 LF-delimited physical lines**, including `scripts/` and `tests/` |
-| Canonical full verification | **3,055 cases: 3,054 passed, 1 skipped, 0 failed** (`npm run verify`; 452 suites) |
-| Scrubbed mirror CI | **3,049 cases: 3,033 passed, 16 skipped, 0 failed** (452 suites; main and tag runs) |
+| Tracked TypeScript inventory | **533 files / 249,930 LF-delimited physical lines**, including `scripts/` and `tests/` |
+| Canonical full verification | **3,079 cases: 3,078 passed, 1 skipped, 0 failed** (`npm run verify`; 452 suites; Oct 5) |
+| Scrubbed mirror CI | **3,073 cases: 3,057 passed, 16 skipped, 0 failed** (452 suites; main and v0.4.8 tag runs) |
 | Workspaces | **14** (13 packages under `packages/` plus `figma-plugin`) |
 | Typed Figma protocol methods | **52** (zod-validated at every boundary) |
 | MCP tools exposed to agent hosts | **31** |
-| Canonical source commits | **396** at `v0.4.7` |
+| Canonical source commits | **401** at `v0.4.8` |
 | Decision shadow points | **4** (routing / finding triage / risk gate / correction materiality) |
 
 Full breakdown: [METRICS.md](METRICS.md) · Architecture: [ARCHITECTURE.md](ARCHITECTURE.md)
 
-The v0.4.7 scrubbed mirror's skipped tests include provider-gated checks and checks whose local source inputs are omitted by the
+The v0.4.8 scrubbed mirror's 16 skipped tests include provider-gated checks and checks whose local source inputs are omitted by the
 history scrub; the R6 reference check skips only when one of its exact source-bound image paths is absent.
 
 ## Architecture
@@ -74,6 +74,16 @@ MCP server ── typed zod protocol (52 methods) ──► local bridge (127.0.
   are batched to reduce round trips in that probe path. Evidence: three compiled-proposal scenes validated native
   parameters, viewport, relations and containment; measured transport improvement is scoped to eligible candidate
   reads and exports.
+- **General generation and typed native layout (`v0.4.8`)** — Greenfield charts use explicit labels,
+  units, and finite numeric points. Missing chartData shows a no-data state; malformed or non-finite input fails
+  schema validation. Zero-valued points in signed data create no bars, while valid all-zero series retain zero-baseline
+  markers. Tables, activity rows, mobile titles, and actions fit bounded section widths through wrapping or stacking.
+  Reuse keeps row content, styles, descendant positions, and component identity, and fails closed when geometry is
+  missing. Grouped sections preserve native order and header bounds. Delete guards protect rollback stash frames named
+  fdr:stash that are both hidden and locked, and refuse overlapping ancestor/descendant targets. Two fixed Native
+  fixtures passed scoped tree, text, viewport, and rollback checks; they do not establish premium design quality or
+  successful component reuse. Chart-axis and grid alignment remains a P2 polish item. The Oct 5 Host closure completed
+  final review of the Oct 2 task after its timing window; it provides no new generation time.
 - **ADAPTATION boundary** — one live adaptation reached policy completion with `strictComplete=false`; the
   strict fidelity ledger remained `NOT_COMPARABLE_TARGET`. This is not a strict fidelity PASS or pixel-equivalence claim.
 - **Write safety first** — every write is schema-validated before dispatch; writes are never retried
@@ -84,8 +94,9 @@ MCP server ── typed zod protocol (52 methods) ──► local bridge (127.0.
 - **Reference reconstruction** — a 115-element support matrix, deterministic measurement, host-authored
   manifests, asset settlement (Community transfer / media / vectors) and a region fidelity ledger with
   pixel metrics.
-- **Honest limits, documented** — no URL references; assets are supplied manually; chart data series are
-  not drawn; reconstruction is structural (native, editable), not pixel-identical across renderers.
+- **Honest limits, documented** — no URL references; assets are supplied manually; chart values require explicit
+  numeric input; reconstruction is structural (native, editable), not pixel-identical across renderers. Axis and grid
+  alignment remains a P2 polish item.
 - **Three-page demo closure (`v0.3.0-demo`)** — Analytics, Settings and Pokecut as native Figma pages;
   fake icons are refused; missing media/vectors stay on a typed work order; a measured same-PNG
   decomposition can be rebound onto a new run.
@@ -125,11 +136,12 @@ See [LICENSE](LICENSE). For evaluation or commercial licensing, open an issue or
 AI2figma 是一个把 AI Agent 连到 Figma 桌面版的本地运行时：宿主负责推理，运行时负责安全的原生施工
 （事务 / 锁 / 回滚 / 幂等 / 证据）。三种闭环：改现有页面、从需求建页、从参考图复刻为可编辑原生节点。
 **源码私有**；个人非商业评估免费（按需提供构建），商用需书面授权。
-源码规模：532 个 TypeScript 文件、247,916 行（统计包含 `scripts/` 与 `tests/`）；14 个 workspace
+源码规模：533 个 TypeScript 文件、249,930 行（统计包含 `scripts/` 与 `tests/`）；14 个 workspace
 （`packages/` 下 13 个加 `figma-plugin`）；52 个类型化 Figma 协议方法、31 个 MCP 工具。
-v0.4.7 canonical 完整验证：3,055 项测试，3,054 通过、1 项跳过、0 项失败，共 452 个测试套件。
-v0.4.7 清理镜像 CI：3,049 项测试，3,033 通过、16 项跳过、0 项失败，共 452 个测试套件。
+v0.4.8 canonical 完整验证：3,079 项测试，3,078 通过、1 项跳过、0 项失败，共 452 个测试套件。
+v0.4.8 清理镜像 CI：3,073 项测试，3,057 通过、16 项跳过、0 项失败，共 452 个测试套件（main 与 release tag 均通过）。
 镜像跳过项包含 provider-gated 检查与历史清理中缺失的本地 source inputs；R6 scene-reference 检查只在准确输入路径缺失时跳过。
-通用生成能力：可选 typed `visualTokens` 将受支持的视觉选择从 proposal 传到确定性 token 解析和原生施工；运行时校验精确字体 face，并实际应用字号、行高和字距。符合条件的 Host Reference Stage-A 候选读回与 PNG 导出按批处理，减少该探针路径的往返。三场景 compiled-proposal smoke 验证了原生参数、viewport、关系和 containment；实测传输收益限定在候选读回与导出路径。
+通用生成能力（v0.4.7）：可选 typed `visualTokens` 将受支持的视觉选择从 proposal 传到确定性 token 解析和原生施工；运行时校验精确字体 face，并实际应用字号、行高和字距。符合条件的 Host Reference Stage-A 候选读回与 PNG 导出按批处理，减少该探针路径的往返。三场景 compiled-proposal smoke 验证了原生参数、viewport、关系和 containment；实测收益限定在候选读回与导出路径。
+v0.4.8 Greenfield 图表消费明确提供的标签、单位和有限数值；未提供 chartData 时显示空数据状态，格式错误或非有限数值由 schema 拒绝。正负数值域中的零点不会生成柱，合法的全零 series 保留零基线标记。表格、活动行、移动端标题和动作遵守 section 可用宽度，需要时换行或纵向堆叠。组件复用保留内容、样式、后代位置和组件身份；缺少几何证据时拒绝复用。分组 section 保持原生顺序，fdr:stash 回滚框架需同时隐藏且锁定才受保护，重叠删除请求在写入前拒绝。Oct 5 Host task 跨过 Oct 2 计时窗口后完成最终复审，没有新的生成计时；限定的 Native 与 Host 证据不代表 premium design 或严格参考图等价。
 有一个真实移动端 ADAPTATION 样例按独立策略完成；`strictComplete=false`，保留的 fidelity ledger 为
 `NOT_COMPARABLE_TARGET`。这不代表 strict fidelity PASS 或像素等价。
