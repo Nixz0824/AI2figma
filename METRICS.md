@@ -1,5 +1,24 @@
 # METRICS — AI2figma v0.4.9 — host planning context and offline validation
 
+## Current main maintenance (post-v0.4.9, Oct 5 2026)
+
+Canonical main is `ccb0bfe63f9e3b992b4db329db4b09ed4aef1fe2` (403 source commits), with 538 tracked TypeScript files
+and 250,921 LF-delimited physical lines across `packages/`, `figma-plugin/`, `scripts/`, and `tests/`. This maintenance
+commit adds a read-only static plugin deployment preflight. The `v0.4.9` release remains unchanged: its canonical tag
+still peels to `4f3f4e4945359f78fb9cbc328ec8d5c45b7539f6`, and its scrubbed mirror tag still peels to
+`7e7857df949a526fc93a3c648084b6020920fd36`.
+
+- **Canonical main `npm run verify`:** 3,091 tests / 3,090 pass / 1 skip / 0 fail / 453 suites; exit 0. Oct 5 Node
+  test-runner duration: 387,027.106 ms. Log SHA-256: `b591902840e22925d9b9c96638700cc6221ca4bd50a0b98bf15ac6a2b34a5624`.
+- **Scrubbed mirror current main CI:** HEAD `dc62d7b5f94969a35bd37dc824d4fc006ea11da7`; 3,085 tests / 3,069 pass /
+  16 skipped / 0 fail / 453 suites. Node test-runner duration: 384,374.701131 ms. [GitHub Actions run 37331231318](https://github.com/Nixz0824/AI2figma-source/actions/runs/37331231318)
+  completed successfully. Captured combined CI log SHA-256: `e0a06ec9d06cebe8bf11acc2b3bdef7483bc75bc3883bb4475850cef76ed2bb6`.
+- The preflight checks the manifest-referenced main bundle's `showUI` HTML, active `BRIDGE_URL`, visible endpoint,
+  external UI endpoint, and `allowedDomains` origin. It makes no plugin runtime change, performs no Figma writes,
+  and supplies no runtime-speed, controlled A/B, design-quality, or E2E result.
+
+## v0.4.9 release metrics (historical)
+
 Canonical release tree: `v0.4.9` (402 canonical commits). This inventory counts 537 tracked TypeScript files
 and 250,786 LF-delimited physical lines across the 13 workspaces under `packages/`, the `figma-plugin` workspace,
 `scripts/`, and `tests/`. It is not a production-only LOC count or a software-quality metric.
