@@ -1,21 +1,33 @@
 # METRICS — AI2figma v0.4.9 — host planning context and offline validation
 
-## Current main maintenance (post-v0.4.9, Oct 5 2026)
+## Current main maintenance (post-v0.4.9, Oct 6 2026)
 
-Canonical main is `ccb0bfe63f9e3b992b4db329db4b09ed4aef1fe2` (403 source commits), with 538 tracked TypeScript files
-and 250,921 LF-delimited physical lines across `packages/`, `figma-plugin/`, `scripts/`, and `tests/`. This maintenance
-commit adds a read-only static plugin deployment preflight. The `v0.4.9` release remains unchanged: its canonical tag
-still peels to `4f3f4e4945359f78fb9cbc328ec8d5c45b7539f6`, and its scrubbed mirror tag still peels to
-`7e7857df949a526fc93a3c648084b6020920fd36`.
+Canonical main is `4fea12d2511dc3f70a828b9322c84ee6993e8076` (413 source commits), with 538 tracked TypeScript files
+and 251,916 LF-delimited physical lines across `packages/`, `figma-plugin/`, `scripts/`, and `tests/`. This remains
+source maintenance after the latest formal release, `v0.4.9`; no new release tag was created. The `v0.4.9` release
+remains unchanged: its canonical tag still peels to `4f3f4e4945359f78fb9cbc328ec8d5c45b7539f6`, and its scrubbed
+mirror tag still peels to `7e7857df949a526fc93a3c648084b6020920fd36`.
 
-- **Canonical main `npm run verify`:** 3,091 tests / 3,090 pass / 1 skip / 0 fail / 453 suites; exit 0. Oct 5 Node
-  test-runner duration: 387,027.106 ms. Log SHA-256: `b591902840e22925d9b9c96638700cc6221ca4bd50a0b98bf15ac6a2b34a5624`.
-- **Scrubbed mirror current main CI:** HEAD `dc62d7b5f94969a35bd37dc824d4fc006ea11da7`; 3,085 tests / 3,069 pass /
-  16 skipped / 0 fail / 453 suites. Node test-runner duration: 384,374.701131 ms. [GitHub Actions run 37331231318](https://github.com/Nixz0824/AI2figma-source/actions/runs/37331231318)
-  completed successfully. Captured combined CI log SHA-256: `e0a06ec9d06cebe8bf11acc2b3bdef7483bc75bc3883bb4475850cef76ed2bb6`.
-- The preflight checks the manifest-referenced main bundle's `showUI` HTML, active `BRIDGE_URL`, visible endpoint,
-  external UI endpoint, and `allowedDomains` origin. It makes no plugin runtime change, performs no Figma writes,
-  and supplies no runtime-speed, controlled A/B, design-quality, or E2E result.
+The current main generation path uses shared renderer helpers, preserves native wrapping for long text within allocated
+tracks, and lays out global header actions across responsive shells. High-severity findings block completion until
+resolved. Greenfield pages with parsed `demo_content` on an item or chart receive one
+deterministic ` · DEMO DATA` suffix in the native page title; the original product type and content records are
+preserved. The read-only plugin deployment preflight remains in place.
+
+- **Canonical main `npm run verify`:** 3,105 tests / 3,104 pass / 1 skip / 0 fail / 453 suites; exit 0. Oct 6 Node
+  test-runner duration: 385,593.2573 ms. Log SHA-256: `bfd9cf383fda234169d9862329ed65d4d692903512414bbb5a26acccb0a8a38e`.
+- **Scrubbed mirror current main CI:** mapped HEAD `09ba7426e12b596f36c8b66d94f4933571fde402`; 3,099 tests / 3,083 pass /
+  16 skipped / 0 fail / 453 suites. Node test-runner duration: 353,581.474016 ms. [GitHub Actions run 37449461427](https://github.com/Nixz0824/AI2figma-source/actions/runs/37449461427)
+  completed successfully.
+- Plugin code, plugin UI, bridge build, and protocol build hashes match the verified d8 baseline; no plugin reimport
+  was needed for this source maintenance.
+- Native validation and timing for `4fea12d` remain pending. A previously exposed route using the original proposal
+  omitted the suffix, while a read-only compile using the same saved tokens and blueprint produced it; the loaded route
+  version was not established, so that route render is not attributed to `4fea12d`. The earlier d8 visual review
+  completed after the 15-minute cap and records no accepted speedup; no end-to-end speedup is claimed for this maintenance.
+- The deployment preflight checks the manifest-referenced main bundle's `showUI` HTML, active `BRIDGE_URL`, visible
+  endpoint, external UI endpoint, and `allowedDomains` origin. It makes no plugin runtime change and performs no Figma
+  writes.
 
 ## v0.4.9 release metrics (historical)
 
@@ -81,6 +93,7 @@ Guard, TypeScript build and plugin build passed. Scrubbed-history CI for v0.4.9 
 - Optional typed `visualTokens` carry supported color and typography choices through deterministic token resolution into native construction. The runtime checks exact font faces and applies font size, line height, and letter spacing.
 - Native text construction reuses loaded font promises and resolved parents. Eligible Host Reference Stage-A candidates use batched child reads and PNG exports, reducing transport round trips along that probe path.
 - Evidence: three compiled-proposal scenes validated native parameters, viewport, relations, and containment. Measured transport improvement is scoped to eligible candidate reads and exports.
+- Greenfield pages derive one page-level `DEMO DATA` title suffix from existing parsed demo-content markers on items or chart data. The source product type and content values stay unchanged; the native title uses its existing wrapping track.
 - v0.4.9 Host planning: the CLI exposes complete start DTOs, state-guarded continuation, and offline proposal/review/plan validation. MCP initialize plus `tools/list` changed from 41,238 B to 24,585 B (40.4% less default discovery payload). The full reference guide remains available on demand: 20,352 B of text, 20,600 B as a JSON-RPC response. This measures context payload only; it is not a runtime latency or quality result.
 - v0.4.8: explicit chart data, bounded table/activity/mobile layouts, and content/style/geometry-aware component reuse with fail-closed evidence checks. Grouped sections preserve native order and header bounds. Delete guards protect rollback stashes and refuse overlapping parent/descendant targets before writes. Two fixed Native fixtures passed scoped tree/text/viewport audits and exact rollback; they do not establish whole-page design quality or successful component reuse.
 - Host visual closure: the Oct 2 task reached COMPLETE after post-clock final review and fresh capture on Oct 5. Root accepted the bounded result; no elapsed time was measured on that pass. The original timed receipt remains REVIEW_REQUIRED with degraded timing integrity, so no speedup or normal-latency claim is made.
