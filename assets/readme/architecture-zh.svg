@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="740" viewBox="0 0 1200 740" role="img" aria-labelledby="title desc" xml:lang="zh-CN">
+  <title id="title">类型化运行时如何连接 Figma</title>
+  <desc id="desc">系统图：Agent Host 通过 MCP 和本地类型化 Bridge 调用 Figma 插件；插件把变更写入可编辑文档，Runtime 与文档状态共同产生写入一次的证据。</desc>
+  <defs><pattern id="inkScreen" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="0.9" fill="#A69E8D"/></pattern></defs>
+  <rect width="1200" height="740" rx="26" fill="#F5F0E5"/>
+  <text x="62" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="19" font-weight="700" fill="#758AA3" letter-spacing="1.8">SYSTEM MAP / 系统连接</text>
+  <text x="62" y="109" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="48" font-weight="740" fill="#201E19" letter-spacing="-0.7">类型化运行时如何连接 Figma</text>
+  <text x="62" y="145" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="23" font-weight="450" fill="#625D53" >宿主负责推理；本地运行时执行类型化操作。</text>
+  <rect x="100" y="164" width="640" height="68" rx="6" fill="#FCF9F0" stroke="#B4AC9E" stroke-width="1.4" />
+      <circle cx="130" cy="198" r="17" fill="url(#inkScreen)" stroke="#B4AC9E" stroke-width="1.2"/>
+      <text x="130" y="205" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" font-weight="700" fill="#625D53" text-anchor="middle">01</text>
+      <text x="164" y="195" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="31" font-weight="700" fill="#201E19" >Agent Host</text><text x="164" y="218" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="19" font-weight="450" fill="#625D53" >宿主负责推理</text>
+<rect x="100" y="256" width="640" height="68" rx="6" fill="#FCF9F0" stroke="#B4AC9E" stroke-width="1.4" />
+      <circle cx="130" cy="290" r="17" fill="url(#inkScreen)" stroke="#B4AC9E" stroke-width="1.2"/>
+      <text x="130" y="297" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" font-weight="700" fill="#625D53" text-anchor="middle">02</text>
+      <text x="164" y="287" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="31" font-weight="700" fill="#201E19" >MCP Server</text><text x="164" y="310" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="19" font-weight="450" fill="#625D53" >工具发现与状态交接</text>
+<rect x="100" y="348" width="640" height="68" rx="6" fill="#FCF9F0" stroke="#758AA3" stroke-width="2" />
+      <circle cx="130" cy="382" r="17" fill="#E9E2D2" stroke="#758AA3" stroke-width="1.2"/>
+      <text x="130" y="389" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" font-weight="700" fill="#758AA3" text-anchor="middle">03</text>
+      <text x="164" y="379" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="31" font-weight="700" fill="#201E19" >类型化本地 Bridge</text><text x="164" y="402" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="19" font-weight="450" fill="#625D53" >Schema 校验请求</text>
+<rect x="100" y="440" width="640" height="68" rx="6" fill="#FCF9F0" stroke="#B4AC9E" stroke-width="1.4" />
+      <circle cx="130" cy="474" r="17" fill="url(#inkScreen)" stroke="#B4AC9E" stroke-width="1.2"/>
+      <text x="130" y="481" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" font-weight="700" fill="#625D53" text-anchor="middle">04</text>
+      <text x="164" y="471" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="31" font-weight="700" fill="#201E19" >Figma 插件</text><text x="164" y="494" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="19" font-weight="450" fill="#625D53" >真实 Plugin API</text>
+<rect x="100" y="532" width="640" height="68" rx="6" fill="#FCF9F0" stroke="#B4AC9E" stroke-width="1.4" />
+      <circle cx="130" cy="566" r="17" fill="url(#inkScreen)" stroke="#B4AC9E" stroke-width="1.2"/>
+      <text x="130" y="573" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" font-weight="700" fill="#625D53" text-anchor="middle">05</text>
+      <text x="164" y="563" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="31" font-weight="700" fill="#201E19" >Figma 文档</text><text x="164" y="586" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="19" font-weight="450" fill="#625D53" >原生可编辑节点</text><path d="M420 234V248 M414 242L420 248L426 242" fill="none" stroke="#758AA3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M420 326V340 M414 334L420 340L426 334" fill="none" stroke="#758AA3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M420 418V432 M414 426L420 432L426 426" fill="none" stroke="#758AA3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M420 510V524 M414 518L420 524L426 518" fill="none" stroke="#758AA3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M740 290H800V365H850" fill="none" stroke="#758AA3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M842 359L850 365L842 371" fill="none" stroke="#758AA3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M740 566H792V498H850" fill="none" stroke="#758AA3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M842 492L850 498L842 504" fill="none" stroke="#758AA3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="786" y="543" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="600" fill="#625D53" >读回</text><rect x="860" y="351" width="286" height="166" rx="4" fill="#FCF9F0" stroke="#B4AC9E" stroke-width="1.5" />
+  <text x="883" y="391" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="27" font-weight="700" fill="#201E19" >写入一次的证据</text><path d="M883 407H1122" fill="none" stroke="#B4AC9E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="883" y="445" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="21" font-weight="500" fill="#625D53" >Runtime 记录读回</text>
+<text x="883" y="476" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="21" font-weight="500" fill="#625D53" >哈希 · 截图 · 保真</text>
+  <rect x="100" y="626" width="640" height="62" rx="6" fill="#E9E2D2" stroke="#C0B69E" stroke-width="1.2" />
+  <text x="122" y="653" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="700" fill="#758AA3" letter-spacing="0.8">RUNTIME SAFEGUARDS</text>
+  <text x="122" y="678" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="21" font-weight="550" fill="#201E19" >Schema 校验 · 事务 · 锁 · 回滚</text>
+  <text x="860" y="652" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="21" font-weight="500" fill="#625D53" >宿主模式 · Runtime 不调用模型</text>
+</svg>

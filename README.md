@@ -1,170 +1,91 @@
-# AI2figma — AI Designer Agent
+# AI2figma
+English | [简体中文](README.zh-CN.md)
 
-> Point an AI agent at Figma and let it **read, modify and rebuild native design files** —
-> with typed operations, transactions, locks, rollback and recorded evidence.
+**An AI agent can build or update a Figma page; AI2figma applies the changes as editable layers and records the result.**
 
-**Status:** v0.4.10 is the latest formal release; one quality-ready native timing sample is recorded · **Source:** private — this repository is the public showcase and distribution channel
+v0.4.10 · Default host mode needs no provider API key.
 
----
+<p align="center">
+  <img src="assets/readme/oil-hero-en-v1.png" width="100%" alt="Conceptual illustration of AI2figma routing an agent plan through typed validation into editable Figma layers">
+</p>
+<p align="center"><em>Conceptual illustration, not a product screenshot.</em></p>
 
-## What it is
+AI2figma is a local runtime for Figma Desktop. It connects an AI host to Figma locally, checks each structured write before applying it, and records the result. The public repository contains product documentation and evaluation information; source code is private.
 
-AI2figma is a local runtime that connects an AI agent host (Codex, DSH, Claude, Cursor, …)
-to **Figma Desktop**. The host owns the reasoning; the runtime owns the deterministic half:
-schema-validated Figma operations, transactions, locks, rollback, idempotent replay,
-screenshot capture, region fidelity and evidence artifacts.
+## One measured native result
 
-Three workflows are implemented end to end:
+<p align="center">
+  <img src="assets/readme/generation-time-en.svg" width="100%" alt="Four October 6 native observations: three ended in timeout or rework, and one reached independent quality acceptance in 12 minutes 40.816 seconds">
+</p>
 
-| Workflow | What it does |
-|---|---|
-| **Existing** | Inspect a page → scoped plan → one transaction → before/after capture → automatic rollback on regression |
-| **Greenfield** | Brief → deterministic tokens/blueprint → native page (desktop / mobile / tablet / landing shells) |
-| **Reference** | Local PNG/JPEG/WebP → deterministic pixel measurement → host-authored decomposition manifest → verified native construction → asset settlement → region fidelity ledger → scoped correction |
+The v0.4.10 sample created a 1440×900 page with 91 native nodes and no image nodes. An independent review accepted five checks: required information, budget focus, readability, table alignment, and editable elements. One non-blocking visual-balance suggestion remains.
 
-Everything produced is **native and editable** — frames, auto layout, text, components, instances —
-not a screenshot placed on a canvas.
+| Native observation | Time (m:s) | Recorded outcome |
+| --- | ---: | --- |
+| Early run · v0.4.8 | `17:30.088` | Review was still required after the 15-minute cap |
+| Intermediate run · candidate 0248 | `12:44.386` | The run finished, but review required rework; timing coverage was incomplete |
+| Canonical d8 run | `16:21.281` | Review was still required after the 15-minute cap; later visual closure did not change the timing record |
+| v0.4.10 production source | `12:40.816` | Independent review accepted; timing record is valid |
 
-## By the numbers
+The first three observations end at their recorded terminal outcomes; the last ends after quality readiness and review. These are not an accepted old/new comparison. We report one accepted timing point, not a speedup or a median.
 
-| Metric | Value |
-|---|---|
-| Tracked TypeScript inventory | **538 files / 251,916 LF-delimited physical lines** on current main, including `scripts/` and `tests/` |
-| v0.4.9 release verification (historical) | **3,085 cases: 3,084 passed, 1 skipped, 0 failed** (453 suites; Oct 5) |
-| v0.4.10 production-source verification | **3,105 cases: 3,104 passed, 1 skipped, 0 failed** (453 suites; full verify at production commit 4fea12d; release production directories are unchanged) |
-| v0.4.9 scrubbed mirror CI (historical) | **3,079 cases: 3,063 passed, 16 skipped, 0 failed** (453 suites; v0.4.9 main and tag runs) |
-| Pre-release 4fea mirror main CI (historical) | **3,099 cases: 3,083 passed, 16 skipped, 0 failed** (453 suites; [run 37449461427](https://github.com/Nixz0824/AI2figma-source/actions/runs/37449461427)) |
-| v0.4.10 scrubbed mirror main CI | **3,099 cases: 3,083 passed, 16 skipped, 0 failed** (453 suites; [run 37460767274](https://github.com/Nixz0824/AI2figma-source/actions/runs/37460767274)) |
-| v0.4.10 scrubbed mirror tag CI | **3,099 cases: 3,083 passed, 16 skipped, 0 failed** (453 suites; [run 37460770403](https://github.com/Nixz0824/AI2figma-source/actions/runs/37460770403)) |
-| Workspaces | **14** (13 packages under `packages/` plus `figma-plugin`) |
-| Typed Figma protocol methods | **52** (zod-validated at every boundary) |
-| MCP tools exposed to agent hosts | **32** |
-| Canonical source commits | **402** at v0.4.9; **414** on v0.4.10/current main |
-| Decision shadow points | **4** (routing / finding triage / risk gate / correction materiality) |
+## Three ways to use it
 
-Full breakdown: [METRICS.md](METRICS.md) · Architecture: [ARCHITECTURE.md](ARCHITECTURE.md)
+| Workflow | Starting point | Result |
+| --- | --- | --- |
+| Update a page | An existing Figma page and a requested change | A scoped edit with before/after evidence and rollback protection |
+| Create a page | A written brief | A native Figma page with resolved layout, text, tables, and charts |
+| Rebuild a reference | A local image or supplied Figma material | A measured plan that reconstructs supported regions as editable layers |
 
-The v0.4.9 scrubbed mirror's 16 skipped tests include provider-gated checks and checks whose local source inputs are omitted by the
-history scrub; the R6 reference check skips only when one of its exact source-bound image paths is absent.
+## How the local runtime works
 
-v0.4.10 is the latest formal release; its annotated canonical tag adds the accepted-sample report to the verified 4fea12d source, with runtime-production directories unchanged. Greenfield pages derive one deterministic DEMO DATA suffix from generic demo provenance while preserving source content. One fresh NATIVE_MCP sample on the clean 4fea12d runtime reached qualityReady and Root ACCEPTED in 12m40.816s (VALID_MONOTONIC): five Root checks passed and the tree has 91 native nodes with 0 IMAGE nodes. Host visual_balance remains a non-blocking SHOULD_FIX item; one information_density enum retry before writes is included in the measured time, and receipt userAcceptance is null. This is one accepted point, not an accepted old/new pair; no speedup or median is claimed. The v0.4.9 release history remains unchanged.
+<p align="center">
+  <img src="assets/readme/oil-process-en-v1.png" width="100%" alt="Conceptual illustration of the local workflow: plan, validate, build native Figma layers, and review">
+</p>
+<p align="center"><em>Conceptual illustration of the workflow, not a product screenshot.</em></p>
 
-## Architecture
+An agent proposes a change. The local runtime checks the structured operations, applies them through the Figma plugin, then reads the document back and records evidence. Typed operations, transaction tracking, locks, rollback support, and readback evidence help control writes; unresolved outcomes fail closed instead of being retried automatically.
 
-```
-Agent Host (owns reasoning: Codex / DSH / Claude / Cursor)
-        │  MCP (stdio)
-        ▼
-MCP server ── typed zod protocol (52 methods) ──► local bridge (127.0.0.1)
-        │                                             │  WebSocket
-        │                                             ▼
-        │                                    Figma plugin (real Plugin API)
-        │                                             │
-        ▼                                             ▼
-   evidence artifacts ◄─────────────────────────  Figma document
-```
+The runtime owns validation and document operations; the AI host owns planning. The default mode uses the AI host for reasoning and needs no provider API key; optional provider modes are configured separately. No model runs arbitrary JavaScript inside Figma.
 
-## Engineering highlights
+A run record connects the requested scope to its operations, final tree, review state, and integrity hashes. Recorded transactions include rollback support; uncertain writes are checked against Figma state and fail closed instead of being retried silently.
 
-- **Reference reliability (`v0.4.5-reference-reliability`)** — opt-in `RELATIONAL_V2` planning, plan review
-  before calibration/construction, capture- and tree-bound visual review, and narrow read-only recovery for a
-  verified packet-pending ADAPTATION checkpoint. `LEGACY_V1` remains the default.
-- **Mirror CI fixture handling (`v0.4.6-mirror-ci`)** — the R6 benchmark test checks its four
-  non-`EXTERNAL` reference paths before reading them, skips with the exact missing path in a scrubbed mirror, and
-  keeps the existing byte, pixel and `EXACT_RENDERED` checks when the images are available. The canonical and
-  scrubbed mirror verification gates both passed.
-- **General generation and typed layout (`v0.4.7`)** — optional `visualTokens` preserve
-  supported model-selected color and typography roles through deterministic token resolution and native construction.
-  The runtime checks exact font family/style availability and applies the selected size, line height, and letter
-  spacing; it reuses loaded fonts and parent nodes. Eligible Host Reference Stage-A candidate reads and PNG exports
-  are batched to reduce round trips in that probe path. Evidence: three compiled-proposal scenes validated native
-  parameters, viewport, relations and containment; measured transport improvement is scoped to eligible candidate
-  reads and exports.
-- **Host planning and offline validation (`v0.4.9`)** — Host CLI start returns the complete start DTO, continue
-  uses the saved run-state guard, and `host validate` checks proposals, reviews, and plans offline. Proposal
-  validation returns its normalized result and deterministic repairs for review. MCP initialize plus `tools/list`
-  shrank from 41,238 to 24,585 bytes (40.4% less default discovery payload); the full reference guide remains on
-  demand at 20,352 text bytes (20,600 bytes in its JSON-RPC response). This is a context-size result, not a runtime
-  speed or design-quality claim.
-- **v0.4.10 formal release** — shared renderer helpers, native long-text wrapping within allocated
-  tracks, responsive global header actions, and a high-severity completion gate improve the generic generation path.
-  Greenfield provenance adds a
-  deterministic page-level `DEMO DATA` suffix without rewriting source content. A read-only static preflight also
-  follows the manifest's `main` entry to the HTML passed to `showUI` and checks the active `BRIDGE_URL`, displayed
-  endpoint, external UI endpoint, and allowed Bridge origin. The static deployment preflight itself is read-only.
-  One bounded native sample reached qualityReady in 12m40.816s; it supports no accepted paired-speedup,
-  whole-product design-quality, or pixel-equivalence claim.
-- **General generation and typed native layout (`v0.4.8`)** — Greenfield charts use explicit labels,
-  units, and finite numeric points. Missing chartData shows a no-data state; malformed or non-finite input fails
-  schema validation. Zero-valued points in signed data create no bars, while valid all-zero series retain zero-baseline
-  markers. Tables, activity rows, mobile titles, and actions fit bounded section widths through wrapping or stacking.
-  Reuse keeps row content, styles, descendant positions, and component identity, and fails closed when geometry is
-  missing. Grouped sections preserve native order and header bounds. Delete guards protect rollback stash frames named
-  fdr:stash that are both hidden and locked, and refuse overlapping ancestor/descendant targets. Two fixed Native
-  fixtures passed scoped tree, text, viewport, and rollback checks; they do not establish premium design quality or
-  successful component reuse. Chart-axis and grid alignment remains a P2 polish item. The Oct 5 Host closure completed
-  final review of the Oct 2 task after its timing window; it provides no new generation time.
-- **ADAPTATION boundary** — one live adaptation reached policy completion with `strictComplete=false`; the
-  strict fidelity ledger remained `NOT_COMPARABLE_TARGET`. This is not a strict fidelity PASS or pixel-equivalence claim.
-- **Write safety first** — every write is schema-validated before dispatch; writes are never retried
-  automatically; transactions keep a shadow snapshot; locks live in node `pluginData`; terminal states
-  are backed by write-once artifacts with hashes.
-- **Evidence over optimism** — independent integrity checks recompute coverage, warnings and operation
-  ownership from the raw ledger; a failing gate stops the run and asks a human instead of claiming success.
-- **Reference reconstruction** — a 115-element support matrix, deterministic measurement, host-authored
-  manifests, asset settlement (Community transfer / media / vectors) and a region fidelity ledger with
-  pixel metrics.
-- **Honest limits, documented** — no URL references; assets are supplied manually; chart values require explicit
-  numeric input; reconstruction is structural (native, editable), not pixel-identical across renderers. Axis and grid
-  alignment remains a P2 polish item.
-- **Three-page demo closure (`v0.3.0-demo`)** — Analytics, Settings and Pokecut as native Figma pages;
-  fake icons are refused; missing media/vectors stay on a typed work order; a measured same-PNG
-  decomposition can be rebound onto a new run.
-- **Measured skeleton (`v0.4.1-host-crops`)** — a new PNG does not need a page generator: measurement
-  grows a shell, empty vertical gutters split columns, the host fills only leaf bands, and Auto Layout
-  owns in-flow geometry (ink calibration is evidence, not a write). `figma_design_start` returns
-  `leafFillBands` with a 1:1 crop of each leaf — no OCR. `figma_design_continue` accepts
-  `reference_band_fills` against that skeleton (same path as the CLI `fill` command).
-- **The measured host loop (`v0.4.4-host-loop`)** — one live run through the whole path: skeleton → 3x reading
-  crops → host fills (48 strings read from the crops) → real Figma text calibration → visual review → two
-  scoped correction rounds. A real library icon (koboyo) imported through the existing `TRACE_VECTOR`
-  bindings (29/29 verified), and real photos settled the `PLACE_MEDIA` avatars. Measured families converge
-  on one type token (7 → 1 drift on replay); fills never place columns closer than the minimum gap and never
-  overwrite a completed skeleton.
-- **A typed decision layer, shadow-calibrated** — `@fdr/decision` sends typed choice / yes-no / score
-  questions to a System One model (TypeSafe Jev) alongside the deterministic pipeline. Four shadow points
-  record agreement, confidence, latency and cost as evidence, and **nothing in the runtime acts on any
-  answer**: thresholds will be calibrated from collected data before any point is allowed to act.
+## v0.4.10 release checks
 
-## Tech stack
+| Check | Result |
+| --- | --- |
+| v0.4.10 source snapshot | 414 source commits; 538 TypeScript/TSX files; 251,916 LF-delimited physical lines (repository size, not a quality measure) |
+| Canonical production-source verification | 3,105 tests; 3,104 passed, 1 skipped, 0 failed across 453 suites |
+| Private mirror main CI | 3,099 tests; 3,083 passed, 16 skipped, 0 failed across 453 suites · [run 37460767274](https://github.com/Nixz0824/AI2figma-source/actions/runs/37460767274) |
+| Private mirror v0.4.10 tag CI | 3,099 tests; 3,083 passed, 16 skipped, 0 failed across 453 suites · [run 37460770403](https://github.com/Nixz0824/AI2figma-source/actions/runs/37460770403) |
 
-TypeScript · Node ≥ 20 · zod · ws · esbuild · Figma Plugin API · MCP (Model Context Protocol) ·
-TypeSafe Jev (System One decisions, shadow-only) · in-house PNG codec and pixel-diff tooling
+The release tag includes the verified 4fea production source plus a documentation record. One non-blocking layout-balance suggestion remains. Independent review is not user sign-off. These checks describe this page and release pipeline; they do not claim pixel equivalence or quality across every design.
 
-## Availability
+## Plan the first evaluation
 
-- **Personal, non-commercial evaluation: free.** Builds / evaluation access are provided on request.
-- **Commercial use requires written permission.**
-- **Source code is private** and not distributed; redistribution and redevelopment are not permitted.
+Once access is provided, start with a small, reviewable task:
 
-See [LICENSE](LICENSE). For evaluation or commercial licensing, open an issue or send a direct message.
+1. State the goal, target viewport, and information that must remain visible.
+2. In Figma, inspect the text, tables, and charts as editable native layers.
+3. Review the resulting page and its evidence before expanding the scope.
 
----
+## Request an evaluation
 
-## 中文概要
+The source is private. Personal, non-commercial evaluation is free; an official build may be provided on request. To start, [open an evaluation issue](https://github.com/Nixz0824/AI2figma/issues/new) with your operating system, Figma Desktop setup, and the workflow you want to evaluate. Do not include credentials or private design files in a public issue.
 
-AI2figma 是一个把 AI Agent 连到 Figma 桌面版的本地运行时：宿主负责推理，运行时负责安全的原生施工
-（事务 / 锁 / 回滚 / 幂等 / 证据）。三种闭环：改现有页面、从需求建页、从参考图复刻为可编辑原生节点。
-**源码私有**；个人非商业评估免费（按需提供构建），商用需书面授权。
-当前 main 源码规模：538 个 TypeScript 文件、251,916 个 LF 分隔物理行（包含 scripts/ 与 tests/），414 个 canonical commits；14 个 workspace
-（`packages/` 下 13 个加 `figma-plugin`）；52 个类型化 Figma 协议方法、32 个 MCP 工具。
-v0.4.9 release 历史验证仍为：3,085 项测试，3,084 通过、1 项跳过、0 项失败，共 453 个测试套件。
-v0.4.10 production source 在 4fea12d 的完整验证为 3,105 项测试、3,104 通过、1 跳过、0 失败、453 套件；v0.4.10 镜像 main 与 tag CI 均为 3,099 项、3,083 通过、16 跳过、0 失败、453 套件（[main run 37460767274](https://github.com/Nixz0824/AI2figma-source/actions/runs/37460767274)，[tag run 37460770403](https://github.com/Nixz0824/AI2figma-source/actions/runs/37460770403)）。
-v0.4.9 清理镜像历史 CI 保持原记录：3,079 项测试，3,063 通过、16 项跳过、0 项失败，共 453 个测试套件（v0.4.9 main 与 release tag）。
-镜像跳过项包含 provider-gated 检查与历史清理中缺失的本地 source inputs；R6 scene-reference 检查只在准确输入路径缺失时跳过。
-v0.4.9 Host planning：CLI 可返回完整 start handoff，按运行状态继续，并离线校验 proposal/review/plan。MCP 默认 initialize + `tools/list` 从 41,238 字节降至 24,585 字节（减少 40.4% 的默认 discovery payload）；完整 reference guide 按需返回，文本为 20,352 字节。这是上下文体积变化，不代表端到端提速或视觉质量提升。
-通用生成能力（v0.4.7）：可选 typed `visualTokens` 将受支持的视觉选择从 proposal 传到确定性 token 解析和原生施工；运行时校验精确字体 face，并实际应用字号、行高和字距。符合条件的 Host Reference Stage-A 候选读回与 PNG 导出按批处理，减少该探针路径的往返。三场景 compiled-proposal smoke 验证了原生参数、viewport、关系和 containment；实测收益限定在候选读回与导出路径。
-v0.4.8 Greenfield 图表消费明确提供的标签、单位和有限数值；未提供 chartData 时显示空数据状态，格式错误或非有限数值由 schema 拒绝。正负数值域中的零点不会生成柱，合法的全零 series 保留零基线标记。表格、活动行、移动端标题和动作遵守 section 可用宽度，需要时换行或纵向堆叠。组件复用保留内容、样式、后代位置和组件身份；缺少几何证据时拒绝复用。分组 section 保持原生顺序，fdr:stash 回滚框架需同时隐藏且锁定才受保护，重叠删除请求在写入前拒绝。Oct 5 Host task 跨过 Oct 2 计时窗口后完成最终复审，没有新的生成计时；限定的 Native 与 Host 证据不代表 premium design 或严格参考图等价。
-v0.4.10 是当前正式版本，production source 与已完整验证的 4fea12d 相同。一个新鲜 NATIVE_MCP 样例以 VALID_MONOTONIC 计时 12m40.816s 后达到 qualityReady，Root 接受五项检查；页面树有 91 个原生节点、0 个 IMAGE。Host 的 visual_balance 建议仍为非阻塞 SHOULD_FIX；一次写入前的信息密度枚举修正已计入总耗时，receipt 的 userAcceptance 为 null。当前只有一个通过验收的计时点，不构成旧/新加速对，不报告 speedup 百分比或 median；v0.4.9 历史记录保持不变。
-有一个真实移动端 ADAPTATION 样例按独立策略完成；`strictComplete=false`，保留的 fidelity ledger 为
-`NOT_COMPARABLE_TARGET`。这不代表 strict fidelity PASS 或像素等价。
+## License and boundaries
+
+Commercial use requires a separate written license. Source code is not distributed, and the license prohibits redistribution and using the materials or outputs to train models. Read the [evaluation license](LICENSE) before requesting a build.
+
+Reference inputs must be local; URL references are not supported. Photos, icons, and external components must be supplied manually. Reference adaptation uses a separate completion policy; completion under that policy does not mean strict fidelity passed.
+
+The timing example uses a bounded synthetic-data task. The page is a single reviewed sample, not a user screenshot, benchmark average, pixel-perfect reconstruction claim, or promise that every design will pass the same checks.
+
+## More detail
+
+- [Metrics, historical runs, and evidence references](METRICS.md)
+- [中文说明](README.zh-CN.md)
+- [Architecture overview (English)](ARCHITECTURE.md)
+- [System map (SVG)](assets/readme/architecture-en.svg)
+- [Workflow diagram (SVG)](assets/readme/workflow-en.svg)
+- [Evaluation license](LICENSE)

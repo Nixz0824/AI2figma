@@ -1,27 +1,43 @@
 # METRICS — AI2figma v0.4.10 — generic native content and layout correctness
+English | [简体中文](METRICS.zh-CN.md)
 
 ## v0.4.10 release (Oct 6 2026)
 
 Canonical v0.4.10 tag points to bfb8b8f2a7da987621d2103a0d69d247b7a9f3dc (414 commits). Compared with v0.4.9, v0.4.10 includes generic demo-provenance disclosure, shared native wrapping, responsive global header actions and the high-severity completion gate. The final tag commit adds only this accepted-sample report to canonical source 4fea12d2511dc3f70a828b9322c84ee6993e8076; the tag runtime-production directories match that already-verified source. The current inventory is 538 tracked TypeScript/TSX files and 251,916 LF-delimited physical lines across packages/, figma-plugin/, scripts/ and tests/. The v0.4.9 release tag remains unchanged.
 
-The generic generation path derives one DEMO DATA page-title suffix from parsed demo-content provenance, preserves source content, wraps long text in allocated tracks, adapts global header actions, and blocks completion while high-severity findings remain.
+The generic generation path derives one DEMO DATA page-title suffix from parsed demo-content provenance, preserves source content, wraps long text in allocated tracks, adapts global header actions, and blocks completion while high-severity findings remain. The default mode uses the AI host for reasoning and needs no provider API key; optional provider modes are configured separately.
 
 - **Canonical production-source verification at 4fea12d:** 3,105 tests / 3,104 passed / 1 skipped / 0 failed / 453 suites. Node test duration: 385,593.2573 ms; command duration: 388,356.2393 ms. Receipt SHA-256: 08ec103218bc0e65ca5efe268b14e6fcd3d5845f6ee5f8aec3a51e840cab7417. The release-tag production directories are identical to this verified source.
 - **v0.4.10 scrubbed mirror main CI:** mapped HEAD 5e932eee62adc07d821c94b1c1042c2c7c95a1b6; [run 37460767274](https://github.com/Nixz0824/AI2figma-source/actions/runs/37460767274) passed 3,099 tests / 3,083 passed / 16 skipped / 0 failed / 453 suites. Node test duration: 378,394.047746 ms. Log SHA-256: BC7BA27A6FA9BA31C6018578332B42E2757665B188C5FBE64F11E71DCD9103CF.
 - **v0.4.10 scrubbed mirror tag CI:** the same mapped HEAD; [run 37460770403](https://github.com/Nixz0824/AI2figma-source/actions/runs/37460770403) passed 3,099 tests / 3,083 passed / 16 skipped / 0 failed / 453 suites. Node test duration: 383,879.596894 ms. Log SHA-256: D8E9050E5ED6B7743752CC1E892D3C5149F5D9A2B1A9BF28A13A6772B6895EF2.
 - The canonical v0.4.10 tag maps to scrubbed mirror tag ref 90205406b29f87dcf8c6b725e83c270d7d90667b, peeled to mirror HEAD 5e932eee62adc07d821c94b1c1042c2c7c95a1b6. The pre-release source-maintenance main CI remains historical: [run 37449461427](https://github.com/Nixz0824/AI2figma-source/actions/runs/37449461427).
 
-## Accepted native timing sample
+## Native timing and review results
 
-One fresh NATIVE_MCP session, e2e-lunamax-4fea-native-2026-10-06-01, ran on clean runtime commit 4fea12d. It reached qualityReady=true and Root ACCEPTED with VALID_MONOTONIC timing in 760,815.878 ms (12m40.816s). The Host state was COMPLETE with overall 84.52 and no mustFix; visual_balance remained a non-blocking shouldFix, with a MAJOR equal-visual-weight overdesign diagnostic. Root accepted the five checks for required information, budget focus, readability, table alignment and editable native elements. The final 1440×900 root 253:1518 had 91 native nodes and 0 IMAGE nodes. Receipt userAcceptance is null.
+| Observation | Elapsed | Endpoint | Outcome | Integrity | Receipt SHA-256 |
+| --- | ---: | --- | --- | --- | --- |
+| A · v0.4.8 | 17m30.088s | Recorded terminal state | Review required after the 15-minute cap; not quality-ready | VALID_MONOTONIC | 1151683F6F08A9DE7476BBC013AB96CA8F706AE6D07C59111F773BA4AF553111 |
+| 0248B · candidate 0248 | 12m44.386s | Recorded terminal state | Machine complete, then independent rework required; Host timing span missing | DEGRADED | F5DF30A741C4270584D8E014D141F9BDD74E46021D0FB8F523BD5FC7159BF058 |
+| d8B2 · canonical d8 | 16m21.281s | Recorded terminal state | Review required after the 15-minute cap; later visual closure did not rewrite the receipt | VALID_MONOTONIC | 657E3445A050BD4203F712AF51C7D4D8C879D3EF8FD4228558D39A86D2338C11 |
+| 4fea · v0.4.10 source | 12m40.816s | Quality-ready after independent review | Host complete; review accepted; one accepted quality-ready timing point | VALID_MONOTONIC | 5E2FE92709D5522D56D7C8096BA94AFE475D42A96F4575EE0C4C8F202B9B9453 |
 
-The benchmark receipt SHA-256 is 5E2FE92709D5522D56D7C8096BA94AFE475D42A96F4575EE0C4C8F202B9B9453. Root review PNG hash: 220919c0fed104aafdc2d66e51be7598e39b23a02a33cd756b669610516ac425. Tree proof hash: a09242a4dd8aa929268595a847ae1c0795b81a5eb34687dd6e8666f91e09ee0b.
+The first three elapsed times end at their recorded terminal states. A and d8B2 actually ran longer than the 15-minute cap; the table preserves those observations rather than substituting the cap value. The 4fea clock ends only after Host COMPLETE and independent review acceptance. The first three are failed or degraded observations, so there is no accepted old/new pair, speedup percentage, or median.
 
-Manual Host and Root span union covers 53.9% of the continuous clock; 46.1% remains unclassified. Stage clocks are not additive; Host waiting includes reasoning or idle, not pure inference. The unclassified remainder is not assigned a single cause. One information_density enum proposal was rejected before writes, corrected to compact, and remains included in total elapsed time.
+The accepted session was e2e-lunamax-4fea-native-2026-10-06-01 on clean runtime commit 4fea12d2511dc3f70a828b9322c84ee6993e8076. It started at 2026-10-06T11:27:00.652Z and reached qualityReady at 2026-10-06T11:39:41.470Z: 760,815.878 ms total. Host state was COMPLETE, overall 84.52, with no must-fix item. visual_balance remained a non-blocking should-fix item; an overdesign diagnostic also marked equal visual weight between two sibling sections as MAJOR. An information-density enum choice was rejected before Figma writes, corrected to compact, and counted in the elapsed time. The receipt userAcceptance field is null.
 
-The runtime commit was 4fea12d and clean. The loaded Figma plugin manifest came from the original candidate-0248 perf-oct6 deployment; its bundle bytes were verified equivalent to the d8 and 4fea builds. The recorded plugin.sourceCommit value of 4fea12d is a canonical-equivalence annotation, not evidence of a plugin rebuild or reload at 4fea12d.
+Independent review accepted five checks: required information, budget focus, readability, table alignment, and native editable elements. The final frame was 1440×900, root 253:1518, with 91 unique native nodes, 0 IMAGE nodes, and no child-count gaps. The accepted review PNG SHA-256 is 220919c0fed104aafdc2d66e51be7598e39b23a02a33cd756b669610516ac425; the tree-proof SHA-256 is a09242a4dd8aa929268595a847ae1c0795b81a5eb34687dd6e8666f91e09ee0b.
 
-This is one accepted quality-ready timing point. The prior A, 0248B and d8B2 samples remain failed or degraded observations; no accepted old/new pair, speedup percentage or median is claimed. Root acceptance is bounded to this page and checklist, not user sign-off, whole-product design quality or pixel equivalence.
+The continuous clock is request-to-qualityReady. The four manually bracketed Host spans total 194,887.494 ms; Root review spans total 226,607.797 ms; runtime active is 4,837.979 ms; Host waiting is 555,796 ms; user wait is 0 ms. Manual Host/Root span union covers 53.9% of the full clock; 46.1% remains unclassified. These clocks have different scopes and are not additive. Host waiting includes reasoning or idle time and is not pure inference. No single cause is assigned to the unclassified remainder.
+
+The Host runtime commit was clean 4fea12d. The loaded plugin manifest came from the original candidate-0248 perf-oct6 deployment; its bundle bytes were verified equivalent to the d8 and 4fea builds. The session plugin.sourceCommit value of 4fea12d is a canonical-equivalence annotation, not evidence that the plugin was rebuilt or reloaded at 4fea12d. Bundle SHA-256: a0afccd2cb438bf280d26d79ad3d06275456f6de1e5f955fd093fdf585feb25e.
+
+## Separate untimed disclosure check
+
+A separate untimed run, host_0muwk42jg1gn1bek, used the original B proposal bytes (SHA-256 581177dd3571030bc7c8a10aa936ec19927f151c784ca9e2647722ead8e596c3) and rendered the title “AI API 用量与费用控制台 · DEMO DATA”. The independent reviewer accepted five checks; the tree had 104 nodes, 0 IMAGE nodes, and no child-count gaps. Host strictComplete was true, while deliverableReady remained false. This is quality evidence for one page and is not a timing sample.
+
+The user fully restarted Codex; Figma and the plugin/Bridge stayed running. Earlier MCP processes had exited, and the only new MCP process, PID 23140, started at 18:45:06 +08:00 from the clean frozen 4fea build. Its generated title matched a fresh local 4fea compile. This process evidence applies to that bounded untimed run.
+
+The acceptance-evidence-with-tree.json SHA-256 is e39ba721462014fbf523b4e90b665009a2eac1a810d97380b6a943c1fc18409b; full-native-tree.json is 9eb4f09ae7eb4a1e3d205d0e9b9f9ec2056abf61f44909305f3f86248c5898dd; greenfield.png is a0472a867fbf94b6c86da7aafe1d6a495764482032c0f022ea87f5fa1c136bae. No screenshot is embedded in the public documentation.
 
 ## v0.4.9 release metrics (historical)
 
@@ -32,7 +48,7 @@ and 250,786 LF-delimited physical lines across the 13 workspaces under `packages
 Canonical v0.4.9 `npm run verify`: **3,085 tests / 3,084 pass / 1 skip / 0 fail / 453 suites**; exit 0.
 Guard, TypeScript build and plugin build passed. Scrubbed-history CI for v0.4.9 passed on both `main` and the release tag.
 
-## Code
+## v0.4.9 file inventory (historical)
 
 | Area | Files | Lines |
 |---|---:|---:|
@@ -110,3 +126,10 @@ The Oct 2 timed observer receipt ended REVIEW_REQUIRED at TIME_CAP_15_MIN with t
 - The external blind holdout currently fails; raw results are preserved in the private tree
 - Vision scoring is a model judgment with observed ±7.5 noise on identical images
 - Activity and table content wraps within bounded section widths; narrow mobile activity rows stack. Current Native fixtures cover fixed dashboard and signed-boundary cases only. Chart-axis and grid alignment remains a P2 polish item.
+
+## Related documentation
+
+- [English homepage](README.md)
+- [中文主页](README.zh-CN.md)
+- [Architecture overview (English)](ARCHITECTURE.md)
+- [Evaluation license](LICENSE)

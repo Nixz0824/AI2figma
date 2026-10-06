@@ -1,0 +1,151 @@
+{
+  "schemaVersion": "1.0.0",
+  "sourceReceiptSha256": "5e2fe92709d5522d56d7c8096ba94afe475d42a96f4575ee0c4c8f202b9b9453",
+  "sourceReceiptFingerprint": "8dd0605a21b49d57a950a2ed72de99807f6f196475418754b477a87ced149662",
+  "chart": {
+    "axis": {
+      "zeroBased": true,
+      "minMinutes": 0,
+      "maxMinutes": 20,
+      "capMinutes": 15
+    },
+    "rows": [
+      {
+        "id": "A / v0.4.8",
+        "elapsedMs": 1050088.011,
+        "display": "17:30.088",
+        "status": "not_accepted",
+        "integrity": "VALID_MONOTONIC",
+        "boundary": "actual_terminal",
+        "overCapMs": 150088.011
+      },
+      {
+        "id": "0248B",
+        "elapsedMs": 764385.845,
+        "display": "12:44.386",
+        "status": "not_accepted",
+        "integrity": "DEGRADED",
+        "boundary": "actual_terminal",
+        "overCapMs": 0
+      },
+      {
+        "id": "d8B2",
+        "elapsedMs": 981280.661,
+        "display": "16:21.281",
+        "status": "not_accepted",
+        "integrity": "VALID_MONOTONIC",
+        "boundary": "actual_terminal",
+        "overCapMs": 81280.661
+      },
+      {
+        "id": "4fea / v0.4.10",
+        "elapsedMs": 760815.878,
+        "display": "12:40.816",
+        "status": "accepted",
+        "integrity": "VALID_MONOTONIC",
+        "boundary": "quality_ready",
+        "overCapMs": 0
+      }
+    ],
+    "notes": [
+      "First three rows measure request to actual terminal; 4fea measures request to quality-ready with independent review acceptance.",
+      "A and d8B2 exceeded the 15-minute cap; actual terminal times are shown without backdating.",
+      "4fea runtimeActiveMs is a separate ledger clock and is not generation latency.",
+      "Independent review accepted all five checks; receipt userAcceptance is null.",
+      "One accepted point only; no speedup percentage, trendline, or median is claimed."
+    ],
+    "runtimeActiveMs4fea": 4837.979
+  },
+  "assets": [
+    {
+      "file": "architecture-en.svg",
+      "type": "svg",
+      "language": "en",
+      "width": 1200.0,
+      "height": 740.0,
+      "sha256": "5e70fcbcbcb3463ac33f253930cfd006895863800ae828775cd0c1c9c35a9b24",
+      "outputMode": "deterministic"
+    },
+    {
+      "file": "architecture-zh.svg",
+      "type": "svg",
+      "language": "zh-CN",
+      "width": 1200.0,
+      "height": 740.0,
+      "sha256": "7b9545ee1748e11cefb3b81f53dbeadc2f449610e4137fe779730374294a4195",
+      "outputMode": "deterministic"
+    },
+    {
+      "file": "generation-time-en.svg",
+      "type": "svg",
+      "language": "en",
+      "width": 1200.0,
+      "height": 690.0,
+      "sha256": "ca5691bcd47824dbcf2ed772acbbff0eae1e27a12c28387e8311e15c00be3ac8",
+      "outputMode": "deterministic"
+    },
+    {
+      "file": "generation-time-zh.svg",
+      "type": "svg",
+      "language": "zh-CN",
+      "width": 1200.0,
+      "height": 690.0,
+      "sha256": "cff8fb86279072b5d2459694743a2163026fa63957abbea4ab2a9b91360195d4",
+      "outputMode": "deterministic"
+    },
+    {
+      "file": "oil-hero-en-v1.png",
+      "type": "png",
+      "language": "en",
+      "width": 2120,
+      "height": 742,
+      "sha256": "c6d5a1e5aa22375abb62937a2649d1bf7f24f546fcfafebcb8fe7a878c28d3c9",
+      "outputMode": "A"
+    },
+    {
+      "file": "oil-hero-zh-v2.png",
+      "type": "png",
+      "language": "zh-CN",
+      "width": 2119,
+      "height": 742,
+      "sha256": "5449aabbd14a1fc54d06d4716dd408108b6a231f57f1ba60005e9c441c062e5c",
+      "outputMode": "A"
+    },
+    {
+      "file": "oil-process-en-v1.png",
+      "type": "png",
+      "language": "en",
+      "width": 2119,
+      "height": 742,
+      "sha256": "881bb298270fe4323d6c081cd73b5fd06dd55b21b0345f4d33862b4a1c9bf149",
+      "outputMode": "A"
+    },
+    {
+      "file": "oil-process-zh-v1.png",
+      "type": "png",
+      "language": "zh-CN",
+      "width": 2118,
+      "height": 742,
+      "sha256": "7ba3933c71a951b4a0e7cbd110dd246a81c2dfd5610f73b28d20b21a99bbb998",
+      "outputMode": "A"
+    },
+    {
+      "file": "workflow-en.svg",
+      "type": "svg",
+      "language": "en",
+      "width": 1200.0,
+      "height": 720.0,
+      "sha256": "9783e112f7492440ac9b0cad243da49502214211f3235f48fb89e2ac0b7e7c41",
+      "outputMode": "deterministic"
+    },
+    {
+      "file": "workflow-zh.svg",
+      "type": "svg",
+      "language": "zh-CN",
+      "width": 1200.0,
+      "height": 720.0,
+      "sha256": "d9a5728a94ed350a9784774d592d4777b7271c4185f4cd76da995a6d55bd3c14",
+      "outputMode": "deterministic"
+    }
+  ]
+}
