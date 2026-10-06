@@ -1,33 +1,27 @@
-# METRICS — AI2figma v0.4.9 — host planning context and offline validation
+# METRICS — AI2figma v0.4.10 — generic native content and layout correctness
 
-## Current main maintenance (post-v0.4.9, Oct 6 2026)
+## v0.4.10 release (Oct 6 2026)
 
-Canonical main is `4fea12d2511dc3f70a828b9322c84ee6993e8076` (413 source commits), with 538 tracked TypeScript files
-and 251,916 LF-delimited physical lines across `packages/`, `figma-plugin/`, `scripts/`, and `tests/`. This remains
-source maintenance after the latest formal release, `v0.4.9`; no new release tag was created. The `v0.4.9` release
-remains unchanged: its canonical tag still peels to `4f3f4e4945359f78fb9cbc328ec8d5c45b7539f6`, and its scrubbed
-mirror tag still peels to `7e7857df949a526fc93a3c648084b6020920fd36`.
+Canonical v0.4.10 tag points to bfb8b8f2a7da987621d2103a0d69d247b7a9f3dc (414 commits). Its runtime-production directories match verified source commit 4fea12d2511dc3f70a828b9322c84ee6993e8076; the release adds documentation only. The current inventory is 538 tracked TypeScript/TSX files and 251,916 LF-delimited physical lines across packages/, figma-plugin/, scripts/ and tests/. The v0.4.9 release tag remains unchanged.
 
-The current main generation path uses shared renderer helpers, preserves native wrapping for long text within allocated
-tracks, and lays out global header actions across responsive shells. High-severity findings block completion until
-resolved. Greenfield pages with parsed `demo_content` on an item or chart receive one
-deterministic ` · DEMO DATA` suffix in the native page title; the original product type and content records are
-preserved. The read-only plugin deployment preflight remains in place.
+The generic generation path derives one DEMO DATA page-title suffix from parsed demo-content provenance, preserves source content, wraps long text in allocated tracks, adapts global header actions, and blocks completion while high-severity findings remain.
 
-- **Canonical main `npm run verify`:** 3,105 tests / 3,104 pass / 1 skip / 0 fail / 453 suites; exit 0. Oct 6 Node
-  test-runner duration: 385,593.2573 ms. Log SHA-256: `bfd9cf383fda234169d9862329ed65d4d692903512414bbb5a26acccb0a8a38e`.
-- **Scrubbed mirror current main CI:** mapped HEAD `09ba7426e12b596f36c8b66d94f4933571fde402`; 3,099 tests / 3,083 pass /
-  16 skipped / 0 fail / 453 suites. Node test-runner duration: 353,581.474016 ms. [GitHub Actions run 37449461427](https://github.com/Nixz0824/AI2figma-source/actions/runs/37449461427)
-  completed successfully.
-- Plugin code, plugin UI, bridge build, and protocol build hashes match the verified d8 baseline; no plugin reimport
-  was needed for this source maintenance.
-- Native validation and timing for `4fea12d` remain pending. A previously exposed route using the original proposal
-  omitted the suffix, while a read-only compile using the same saved tokens and blueprint produced it; the loaded route
-  version was not established, so that route render is not attributed to `4fea12d`. The earlier d8 visual review
-  completed after the 15-minute cap and records no accepted speedup; no end-to-end speedup is claimed for this maintenance.
-- The deployment preflight checks the manifest-referenced main bundle's `showUI` HTML, active `BRIDGE_URL`, visible
-  endpoint, external UI endpoint, and `allowedDomains` origin. It makes no plugin runtime change and performs no Figma
-  writes.
+- **Canonical production-source verification at 4fea12d:** 3,105 tests / 3,104 passed / 1 skipped / 0 failed / 453 suites. Node test duration: 385,593.2573 ms; command duration: 388,356.2393 ms. Receipt SHA-256: 08ec103218bc0e65ca5efe268b14e6fcd3d5845f6ee5f8aec3a51e840cab7417. The release-tag production directories are identical to this verified source.
+- **v0.4.10 scrubbed mirror main CI:** mapped HEAD 5e932eee62adc07d821c94b1c1042c2c7c95a1b6; [run 37460767274](https://github.com/Nixz0824/AI2figma-source/actions/runs/37460767274) passed 3,099 tests / 3,083 passed / 16 skipped / 0 failed / 453 suites. Node test duration: 378,394.047746 ms. Log SHA-256: BC7BA27A6FA9BA31C6018578332B42E2757665B188C5FBE64F11E71DCD9103CF.
+- **v0.4.10 scrubbed mirror tag CI:** the same mapped HEAD; [run 37460770403](https://github.com/Nixz0824/AI2figma-source/actions/runs/37460770403) passed 3,099 tests / 3,083 passed / 16 skipped / 0 failed / 453 suites. Node test duration: 383,879.596894 ms. Log SHA-256: D8E9050E5ED6B7743752CC1E892D3C5149F5D9A2B1A9BF28A13A6772B6895EF2.
+- The canonical v0.4.10 tag maps to scrubbed mirror tag ref 90205406b29f87dcf8c6b725e83c270d7d90667b, peeled to mirror HEAD 5e932eee62adc07d821c94b1c1042c2c7c95a1b6. The pre-release source-maintenance main CI remains historical: [run 37449461427](https://github.com/Nixz0824/AI2figma-source/actions/runs/37449461427).
+
+## Accepted native timing sample
+
+One fresh NATIVE_MCP session, e2e-lunamax-4fea-native-2026-10-06-01, ran on clean runtime commit 4fea12d. It reached qualityReady=true and Root ACCEPTED with VALID_MONOTONIC timing in 760,815.878 ms (12m40.816s). The Host state was COMPLETE with overall 84.52 and no mustFix; visual_balance remained a non-blocking shouldFix, with a MAJOR equal-visual-weight overdesign diagnostic. Root accepted the five checks for required information, budget focus, readability, table alignment and editable native elements. The final 1440×900 root 253:1518 had 91 native nodes and 0 IMAGE nodes. Receipt userAcceptance is null.
+
+The benchmark receipt SHA-256 is 5E2FE92709D5522D56D7C8096BA94AFE475D42A96F4575EE0C4C8F202B9B9453. Root review PNG hash: 220919c0fed104aafdc2d66e51be7598e39b23a02a33cd756b669610516ac425. Tree proof hash: a09242a4dd8aa929268595a847ae1c0795b81a5eb34687dd6e8666f91e09ee0b.
+
+Manual Host and Root span union covers 53.9% of the continuous clock; 46.1% remains unclassified. Stage clocks are not additive; Host waiting includes reasoning or idle, not pure inference. The unclassified remainder is not assigned a single cause. One information_density enum proposal was rejected before writes, corrected to compact, and remains included in total elapsed time.
+
+The runtime commit was 4fea12d and clean. The loaded Figma plugin manifest came from the original candidate-0248 perf-oct6 deployment; its bundle bytes were verified equivalent to the d8 and 4fea builds. The recorded plugin.sourceCommit value of 4fea12d is a canonical-equivalence annotation, not evidence of a plugin rebuild or reload at 4fea12d.
+
+This is one accepted quality-ready timing point. The prior A, 0248B and d8B2 samples remain failed or degraded observations; no accepted old/new pair, speedup percentage or median is claimed. Root acceptance is bounded to this page and checklist, not user sign-off, whole-product design quality or pixel equivalence.
 
 ## v0.4.9 release metrics (historical)
 

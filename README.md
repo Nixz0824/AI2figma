@@ -3,7 +3,7 @@
 > Point an AI agent at Figma and let it **read, modify and rebuild native design files** —
 > with typed operations, transactions, locks, rollback and recorded evidence.
 
-**Status:** `v0.4.9` is the latest formal release; current main includes source maintenance · **Source:** private — this repository is the public showcase and distribution channel
+**Status:** v0.4.10 is the latest formal release; one quality-ready native timing sample is recorded · **Source:** private — this repository is the public showcase and distribution channel
 
 ---
 
@@ -31,13 +31,15 @@ not a screenshot placed on a canvas.
 |---|---|
 | Tracked TypeScript inventory | **538 files / 251,916 LF-delimited physical lines** on current main, including `scripts/` and `tests/` |
 | v0.4.9 release verification (historical) | **3,085 cases: 3,084 passed, 1 skipped, 0 failed** (453 suites; Oct 5) |
-| Current main maintenance verification | **3,105 cases: 3,104 passed, 1 skipped, 0 failed** (`npm run verify`; 453 suites; Oct 6) |
+| v0.4.10 production-source verification | **3,105 cases: 3,104 passed, 1 skipped, 0 failed** (453 suites; full verify at production commit 4fea12d; release production directories are unchanged) |
 | v0.4.9 scrubbed mirror CI (historical) | **3,079 cases: 3,063 passed, 16 skipped, 0 failed** (453 suites; v0.4.9 main and tag runs) |
-| Current scrubbed mirror main CI | **3,099 cases: 3,083 passed, 16 skipped, 0 failed** (453 suites; [run 37449461427](https://github.com/Nixz0824/AI2figma-source/actions/runs/37449461427)) |
+| Pre-release 4fea mirror main CI (historical) | **3,099 cases: 3,083 passed, 16 skipped, 0 failed** (453 suites; [run 37449461427](https://github.com/Nixz0824/AI2figma-source/actions/runs/37449461427)) |
+| v0.4.10 scrubbed mirror main CI | **3,099 cases: 3,083 passed, 16 skipped, 0 failed** (453 suites; [run 37460767274](https://github.com/Nixz0824/AI2figma-source/actions/runs/37460767274)) |
+| v0.4.10 scrubbed mirror tag CI | **3,099 cases: 3,083 passed, 16 skipped, 0 failed** (453 suites; [run 37460770403](https://github.com/Nixz0824/AI2figma-source/actions/runs/37460770403)) |
 | Workspaces | **14** (13 packages under `packages/` plus `figma-plugin`) |
 | Typed Figma protocol methods | **52** (zod-validated at every boundary) |
 | MCP tools exposed to agent hosts | **32** |
-| Canonical source commits | **402** at `v0.4.9`; **413** on current main |
+| Canonical source commits | **402** at v0.4.9; **414** on v0.4.10/current main |
 | Decision shadow points | **4** (routing / finding triage / risk gate / correction materiality) |
 
 Full breakdown: [METRICS.md](METRICS.md) · Architecture: [ARCHITECTURE.md](ARCHITECTURE.md)
@@ -45,7 +47,7 @@ Full breakdown: [METRICS.md](METRICS.md) · Architecture: [ARCHITECTURE.md](ARCH
 The v0.4.9 scrubbed mirror's 16 skipped tests include provider-gated checks and checks whose local source inputs are omitted by the
 history scrub; the R6 reference check skips only when one of its exact source-bound image paths is absent.
 
-Current main keeps the `v0.4.9` release tag unchanged; `4fea12d` is source maintenance, not a new formal release. Shared renderer helpers use native wrapping for long text in allocated tracks and fit global header actions across responsive shells; high-severity findings block completion until resolved. Greenfield pages add one deterministic ` · DEMO DATA` suffix when parsed item or chart provenance marks demo content, while preserving source content and product type. The static plugin deployment preflight remains. Plugin code/UI and bridge/protocol build hashes match the d8 baseline, so no plugin reimport was needed. Native validation and timing for `4fea12d` are pending: a prior exposed route omitted the suffix for the original proposal, while a read-only compile from the same saved tokens and blueprint produced it. The loaded route version was not established, so that render is not attributed to `4fea12d`. The earlier d8 visual review closed after the time cap and supports no speedup claim.
+v0.4.10 is the latest formal release; its annotated canonical tag adds the accepted-sample report to the verified 4fea12d source, with runtime-production directories unchanged. Greenfield pages derive one deterministic DEMO DATA suffix from generic demo provenance while preserving source content. One fresh NATIVE_MCP sample on the clean 4fea12d runtime reached qualityReady and Root ACCEPTED in 12m40.816s (VALID_MONOTONIC): five Root checks passed and the tree has 91 native nodes with 0 IMAGE nodes. Host visual_balance remains a non-blocking SHOULD_FIX item; one information_density enum retry before writes is included in the measured time, and receipt userAcceptance is null. This is one accepted point, not an accepted old/new pair; no speedup or median is claimed. The v0.4.9 release history remains unchanged.
 
 ## Architecture
 
@@ -84,7 +86,7 @@ MCP server ── typed zod protocol (52 methods) ──► local bridge (127.0.
   shrank from 41,238 to 24,585 bytes (40.4% less default discovery payload); the full reference guide remains on
   demand at 20,352 text bytes (20,600 bytes in its JSON-RPC response). This is a context-size result, not a runtime
   speed or design-quality claim.
-- **Current main maintenance (post-v0.4.9)** — shared renderer helpers, native long-text wrapping within allocated
+- **v0.4.10 formal release** — shared renderer helpers, native long-text wrapping within allocated
   tracks, responsive global header actions, and a high-severity completion gate improve the generic generation path.
   Greenfield provenance adds a
   deterministic page-level `DEMO DATA` suffix without rewriting source content. A read-only static preflight also
@@ -153,15 +155,15 @@ See [LICENSE](LICENSE). For evaluation or commercial licensing, open an issue or
 AI2figma 是一个把 AI Agent 连到 Figma 桌面版的本地运行时：宿主负责推理，运行时负责安全的原生施工
 （事务 / 锁 / 回滚 / 幂等 / 证据）。三种闭环：改现有页面、从需求建页、从参考图复刻为可编辑原生节点。
 **源码私有**；个人非商业评估免费（按需提供构建），商用需书面授权。
-当前 main 源码规模：538 个 TypeScript 文件、251,916 行（统计包含 `scripts/` 与 `tests/`），413 个 canonical commits；14 个 workspace
+当前 main 源码规模：538 个 TypeScript 文件、251,916 个 LF 分隔物理行（包含 scripts/ 与 tests/），414 个 canonical commits；14 个 workspace
 （`packages/` 下 13 个加 `figma-plugin`）；52 个类型化 Figma 协议方法、32 个 MCP 工具。
 v0.4.9 release 历史验证仍为：3,085 项测试，3,084 通过、1 项跳过、0 项失败，共 453 个测试套件。
-当前 main 维护验证：3,105 项测试，3,104 通过、1 项跳过、0 项失败，共 453 个测试套件；清理镜像 main CI 为 3,099 项测试、3,083 通过、16 项跳过、0 项失败、453 个套件（[run 37449461427](https://github.com/Nixz0824/AI2figma-source/actions/runs/37449461427)）。
+v0.4.10 production source 在 4fea12d 的完整验证为 3,105 项测试、3,104 通过、1 跳过、0 失败、453 套件；v0.4.10 镜像 main 与 tag CI 均为 3,099 项、3,083 通过、16 跳过、0 失败、453 套件（[main run 37460767274](https://github.com/Nixz0824/AI2figma-source/actions/runs/37460767274)，[tag run 37460770403](https://github.com/Nixz0824/AI2figma-source/actions/runs/37460770403)）。
 v0.4.9 清理镜像历史 CI 保持原记录：3,079 项测试，3,063 通过、16 项跳过、0 项失败，共 453 个测试套件（v0.4.9 main 与 release tag）。
 镜像跳过项包含 provider-gated 检查与历史清理中缺失的本地 source inputs；R6 scene-reference 检查只在准确输入路径缺失时跳过。
 v0.4.9 Host planning：CLI 可返回完整 start handoff，按运行状态继续，并离线校验 proposal/review/plan。MCP 默认 initialize + `tools/list` 从 41,238 字节降至 24,585 字节（减少 40.4% 的默认 discovery payload）；完整 reference guide 按需返回，文本为 20,352 字节。这是上下文体积变化，不代表端到端提速或视觉质量提升。
 通用生成能力（v0.4.7）：可选 typed `visualTokens` 将受支持的视觉选择从 proposal 传到确定性 token 解析和原生施工；运行时校验精确字体 face，并实际应用字号、行高和字距。符合条件的 Host Reference Stage-A 候选读回与 PNG 导出按批处理，减少该探针路径的往返。三场景 compiled-proposal smoke 验证了原生参数、viewport、关系和 containment；实测收益限定在候选读回与导出路径。
 v0.4.8 Greenfield 图表消费明确提供的标签、单位和有限数值；未提供 chartData 时显示空数据状态，格式错误或非有限数值由 schema 拒绝。正负数值域中的零点不会生成柱，合法的全零 series 保留零基线标记。表格、活动行、移动端标题和动作遵守 section 可用宽度，需要时换行或纵向堆叠。组件复用保留内容、样式、后代位置和组件身份；缺少几何证据时拒绝复用。分组 section 保持原生顺序，fdr:stash 回滚框架需同时隐藏且锁定才受保护，重叠删除请求在写入前拒绝。Oct 5 Host task 跨过 Oct 2 计时窗口后完成最终复审，没有新的生成计时；限定的 Native 与 Host 证据不代表 premium design 或严格参考图等价。
-当前 main 的通用生成路径复用 renderer helpers，长文本按分配的文本轨道原生换行，全局 header actions 适配响应式页面；高严重度问题未解决时禁止完成。Greenfield content item 或 chart data 标记为 demo 时，页面标题确定性增加一次 ` · DEMO DATA`，不改写 product type 或内容字段。插件静态部署预检继续核对 manifest 指向的 main 内嵌 UI、外部 UI 地址和允许的 Bridge origin；这次不是新正式 release。`4fea12d` 的 Native 验收和 timing 仍待完成：此前一个 exposed route 未显示 suffix，而使用相同已保存 tokens 和 blueprint 的只读 compile 显示了 suffix；实际载入的 route 版本尚未确认，因此该渲染结果不归属于 `4fea12d`。此前 d8 的视觉复审在计时上限后关闭，不构成 speedup 证据。
+v0.4.10 是当前正式版本，production source 与已完整验证的 4fea12d 相同。一个新鲜 NATIVE_MCP 样例以 VALID_MONOTONIC 计时 12m40.816s 后达到 qualityReady，Root 接受五项检查；页面树有 91 个原生节点、0 个 IMAGE。Host 的 visual_balance 建议仍为非阻塞 SHOULD_FIX；一次写入前的信息密度枚举修正已计入总耗时，receipt 的 userAcceptance 为 null。当前只有一个通过验收的计时点，不构成旧/新加速对，不报告 speedup 百分比或 median；v0.4.9 历史记录保持不变。
 有一个真实移动端 ADAPTATION 样例按独立策略完成；`strictComplete=false`，保留的 fidelity ledger 为
 `NOT_COMPARABLE_TARGET`。这不代表 strict fidelity PASS 或像素等价。
