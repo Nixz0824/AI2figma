@@ -91,8 +91,9 @@ MCP server ── typed zod protocol (52 methods) ──► local bridge (127.0.
   Greenfield provenance adds a
   deterministic page-level `DEMO DATA` suffix without rewriting source content. A read-only static preflight also
   follows the manifest's `main` entry to the HTML passed to `showUI` and checks the active `BRIDGE_URL`, displayed
-  endpoint, external UI endpoint, and allowed Bridge origin. This is source maintenance, not a new formal release or
-  an end-to-end speed, design-quality, controlled A/B, or Figma E2E result.
+  endpoint, external UI endpoint, and allowed Bridge origin. The static deployment preflight itself is read-only.
+  One bounded native sample reached qualityReady in 12m40.816s; it supports no accepted paired-speedup,
+  whole-product design-quality, or pixel-equivalence claim.
 - **General generation and typed native layout (`v0.4.8`)** — Greenfield charts use explicit labels,
   units, and finite numeric points. Missing chartData shows a no-data state; malformed or non-finite input fails
   schema validation. Zero-valued points in signed data create no bars, while valid all-zero series retain zero-baseline
