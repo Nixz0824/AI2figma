@@ -37,9 +37,9 @@ canonical v0.4.10 标签指向提交 bfb8b8f2a7da987621d2103a0d69d247b7a9f3dc（
 Host runtime commit 为干净的 4fea12d。加载的 Figma 插件 manifest 来自原始 candidate-0248 perf-oct6 部署；bundle 字节经核验与 d8、4fea 构建等价。会话记录的 plugin.sourceCommit=4fea12d 是 canonical 等价源码标注，不证明插件曾在 4fea12d 上重新构建或加载。Bundle SHA-256：a0afccd2cb438bf280d26d79ad3d06275456f6de1e5f955fd093fdf585feb25e。
 
 <a id="current-main-metric-focus-oct-7"></a>
-## 当前 main 主指标与完整树读回（2026-10-07）
+## 较早的 main 快照：主指标与完整树读回（2026-10-07）
 
-当前 main 增加了显式主指标选择器和有界完整树读回。这是一次独立的合成数据 fixture 范围内原生复核，不是 v0.4.10 计时样例的新版对照。
+代码快照 `06da0c4` 的 main 增加了显式主指标选择器和有界完整树读回。这是一次独立的合成数据 fixture 范围内原生复核，不是 v0.4.10 计时样例的新版对照。
 
 | 证据 | 结果 |
 | --- | --- |
@@ -50,6 +50,24 @@ Host runtime commit 为干净的 4fea12d。加载的 Figma 插件 manifest 来�
 | 计时与后续项 | 没有新的端到端计时样例。需将图表零刻度与零基线对齐，并将表格数值列右对齐。 |
 
 fixture 全部使用合成内容。本公开报告不包含 Figma 截图或源码。[canonical 详细报告](https://github.com/Nixz0824/AI2figma-source/blob/03ed440c86853d9b0e099de568250d2ac09d4b3e/docs/PRIMARY_METRIC_NATIVE_READBACK_2026-10-07.md)位于私有源码仓库，需要有权访问该仓库才能查看。
+
+<a id="current-main-mobile-existing-oct-7"></a>
+## 当前 main 移动端与 Existing 工作流复核（2026-10-07）
+
+本更新描述干净的 canonical 源码 `f4414ef`、最初的移动端/Existing fixture 施工，以及另一次全新 scoped-placement smoke。首轮原生捕获使用 `41faa4a` HEAD、scoped-placement 源码 WIP 和编译运行时 manifest SHA-256 `93d300e3490bbc7c00f316e8ae8496d1f065f90412da6f2ba21cf19d3866e99c`；它不能证明任一提交对应的精确编译运行行为。新 smoke 的 runtime manifest SHA-256 为 `ce54d58dceebf439e361c3dc8fe2318965d23ccbb0aa5c8f413e0ca371b8dc7b`。这些都是有界 fixture 复核，不是新增的端到端计时运行。本页不包含原生截图或源码。
+
+| 证据 | 结果 |
+| --- | --- |
+| 工作流 smoke | `PASS_READ_ONLY_SMOKE` 分别记录：Greenfield `PROPOSAL_REQUIRED`；Existing 对 root `253:1518` 返回 `REVIEW_REQUIRED`、phase `BEFORE`。两次 Figma 写入均为 0，页面和旧 root 保持不变；旧 `AUTO` 路由不变。 |
+| Existing 目标筛选 | Existing start 只忽略精确的回滚 stash 组合：直接子节点 `type=FRAME`、`name=fdr:stash`、`visible=false`、`locked=true`。不会一概排除所有 frame 或所有隐藏/锁定节点。 |
+| 移动端适配行为 | 绘图区预算至少 64 px，溢出时 fail closed；移动端按钮至少 44 px 高。保护逻辑不会缩小文字或丢弃数据，并保留 `gap` 等显式布局意图。这些是通用源码规则；原生复核只覆盖一个 fixture。 |
+| 移动端 fixture | 在 390 × 844 画布上，root `275:778` 含 76 个节点、0 个图片节点；两条活动记录及 helper 均可见，CTA 为 90 × 44 px。Root 对内容/适配给出有限通过，并指出单独成行的 `DATA` 标题仍需打磨。 |
+| Existing 修改 | 一次 `update_typography` 将节点 `275:847` 从 `20 分钟 · 07:35 · 合成训练记录` 改为 `25 分钟 · 07:35 · 合成训练记录`。完整 76 节点 raw readback 只发现该 `characters` 差异；重连后锁数为 0、无活动事务。Receipt SHA-256：`95b2cb45f13f31e8d34a43a74033edad2f8b75f3d61ffb4e7d6025ec65b98417`。 |
+| 复核状态 | Root 看过 AFTER 图片后接受了有限的单字段修改。Host 状态为 `COMPLETE`、`strictComplete=true`，但 `deliverableReady=false`；`typography` 与 `professional_polish` 仍为 should-fix。Host 的 59 节点树摘要受深度限制且不含文字；单字段结论来自另一份完整 raw readback。AFTER PNG SHA-256：`ef24a5efa7746fa017607a7a203ac5cb0ac4915a37f612286a027d79770add3d`。 |
+| 受保护页面与放置 | `movableNodeIds` 限定自动 frame 移动范围；Host 只传新 root ID。此前按名称排序曾将旧 root `253` 从 x=0 移到 x=550；经批准用两次类型化位置修改恢复。完整 112 节点旧 root 读回无差异；投影 SHA-256 为 `188905c49142c730e0c6ea17a891b1437d02c4f32853d8afc03bd618111438d1`，受保护 PNG SHA-256 为 `bc5fb66ae13cbcf7126f9d51de793ec24775afe574c6ece151399450b388c6c8`。这种手动恢复不等于自动放置通过。 |
+| 新 scoped-placement smoke | 新 root `281:854` 自动放在 x=2700、y=0，与已修改 root `275:778` 相距 160 px。76 节点新页面保留两条活动 helper、五个图表柱及日期标签，CTA 为 90 × 44 px。旧 root `253` 和已修改 root `275` 的完整读回 raw diff 均为 `[]`，PNG 与基线一致。Root 有限认可适配与放置；完成 visual review 后，Host 为 `COMPLETE`、`strictComplete=true`、`deliverableReady=false`、overall 84.25，`typography` 与 `professional_polish` 仍为 should-fix，`userAcceptance=false`。自然名称顺序将新 `pkic` 排在 `8d2e` 之后，所以没有复现此前 lex-before 排序。Receipt SHA-256：`30f5d0d5b6b86bb24531f792b0bf5bfac5f4921f866f562d25e165550cea7c04`；scale-one PNG SHA-256：`6172f97b4f67da9d313b2467baa3c5fbe3e8354b61b6db542886013f7c7d64a1`。 |
+| 本地验证 | 干净源码 `f4414ef` 上 `npm run verify` 在 454 个测试套件中完成 3,178 项：3,177 项通过、1 项跳过、0 项失败。 |
+| 清理与计时 | 清理 receipt 记录一次原子 delete，仅删除本次拥有的 root `281:854` 和 `275:778`（`stashed=true`），随后以零操作 transaction retirement。最终页面只剩受保护的 root `253:1518`；其完整 112 节点投影和 PNG 与基线哈希一致。Bridge 无活动事务或锁。清理 receipt SHA-256：`a09cc3bd3d6b95b6abec7465df8984b45536934e836a87ec85ff33b435b06a80`。没有新的合格端到端计时样例或用户签收；4fea 的 12:40.816 仍是唯一已验收计时点，不支持提速结论。 |
 
 ## 另一次未计时的披露验证
 

@@ -37,9 +37,9 @@ The continuous clock is request-to-qualityReady. The four manually bracketed Hos
 The Host runtime commit was clean 4fea12d. The loaded plugin manifest came from the original candidate-0248 perf-oct6 deployment; its bundle bytes were verified equivalent to the d8 and 4fea builds. The session plugin.sourceCommit value of 4fea12d is a canonical-equivalence annotation, not evidence that the plugin was rebuilt or reloaded at 4fea12d. Bundle SHA-256: a0afccd2cb438bf280d26d79ad3d06275456f6de1e5f955fd093fdf585feb25e.
 
 <a id="current-main-metric-focus-oct-7"></a>
-## Current-main metric focus and complete readback (Oct 7, 2026)
+## Earlier main snapshot: metric focus and complete readback (Oct 7, 2026)
 
-Current main adds an explicit primary metric selector and bounded complete-tree readback. This separate synthetic-data fixture is a scoped native review, not a timed successor to the v0.4.10 sample.
+At code snapshot `06da0c4`, main added an explicit primary-metric selector and bounded complete-tree readback. This separate synthetic-data fixture is a scoped native review, not a timed successor to the v0.4.10 sample.
 
 | Evidence | Result |
 | --- | --- |
@@ -50,6 +50,24 @@ Current main adds an explicit primary metric selector and bounded complete-tree 
 | Timing and follow-up | No new end-to-end timing sample. Align the chart zero tick with its zero baseline and right-align numeric table columns. |
 
 All fixture content was synthetic. No Figma screenshot or source code is included in this public report. The [detailed canonical report](https://github.com/Nixz0824/AI2figma-source/blob/03ed440c86853d9b0e099de568250d2ac09d4b3e/docs/PRIMARY_METRIC_NATIVE_READBACK_2026-10-07.md) requires access to the private source repository.
+
+<a id="current-main-mobile-existing-oct-7"></a>
+## Current-main mobile and Existing workflow review (Oct 7, 2026)
+
+This update describes clean canonical source `f4414ef`, an initial mobile/Existing fixture exercise, and a separate fresh scoped-placement smoke. The initial native capture used `41faa4a` HEAD plus scoped-placement source WIP and compiled runtime manifest SHA-256 `93d300e3490bbc7c00f316e8ae8496d1f065f90412da6f2ba21cf19d3866e99c`; it does not prove exact compiled behavior for either commit. The fresh smoke used runtime manifest SHA-256 `ce54d58dceebf439e361c3dc8fe2318965d23ccbb0aa5c8f413e0ca371b8dc7b`. These are bounded fixture reviews, not a new timed end-to-end run. No native screenshot or source code is included here.
+
+| Evidence | Result |
+| --- | --- |
+| Workflow smoke | `PASS_READ_ONLY_SMOKE` records separate results: Greenfield `PROPOSAL_REQUIRED`; Existing `REVIEW_REQUIRED` at phase `BEFORE` for root `253:1518`. Both made 0 Figma writes; the page and old root stayed unchanged. Legacy `AUTO` routing remains unchanged. |
+| Existing target filter | Existing start omits only the exact rollback-stash tuple: a direct child with `type=FRAME`, `name=fdr:stash`, `visible=false`, and `locked=true`. It does not blanket-exclude all frames or all hidden/locked nodes. |
+| Mobile fit behavior | Mobile plot budget is at least 64 px and overflow fails closed; mobile buttons are at least 44 px high. The guards do not shrink text or discard data, and preserve explicit layout intent such as `gap`. These are general source rules; native review covered one fixture. |
+| Mobile fixture | At 390 × 844, root `275:778` contains 76 nodes and 0 image nodes; both activity records and helper text are visible, and the CTA is 90 × 44 px. Root gave a limited content/fit pass and flagged the isolated `DATA` heading as a polish item. |
+| Existing edit | One `update_typography` operation changed node `275:847` from `20 分钟 · 07:35 · 合成训练记录` to `25 分钟 · 07:35 · 合成训练记录`. A complete 76-node raw readback found only that `characters` diff; reconnect showed 0 locks and no active transaction. Receipt SHA-256: `95b2cb45f13f31e8d34a43a74033edad2f8b75f3d61ffb4e7d6025ec65b98417`. |
+| Review state | Root accepted the limited single-field edit after reviewing the AFTER image. Host reports `COMPLETE` and `strictComplete=true`, with `deliverableReady=false`; `typography` and `professional_polish` remain should-fix. The Host's 59-node tree digest is depth-limited and omits text; the one-field result comes from the separate complete raw readback. AFTER PNG SHA-256: `ef24a5efa7746fa017607a7a203ac5cb0ac4915a37f612286a027d79770add3d`. |
+| Protected page and placement | `movableNodeIds` scopes automatic frame movement; Host supplies only the new root ID. A prior name-sort regression moved old root `253` from x=0 to x=550; recovery used two authorized typed position edits. The complete 112-node old-root readback had no differences; its projection SHA-256 is `188905c49142c730e0c6ea17a891b1437d02c4f32853d8afc03bd618111438d1` and protected PNG SHA-256 is `bc5fb66ae13cbcf7126f9d51de793ec24775afe574c6ece151399450b388c6c8`. This manual recovery is not a passing automatic-placement result. |
+| Fresh scoped-placement smoke | Root `281:854` was placed at x=2700, y=0 with a 160 px gap after edited root `275:778`. The 76-node new frame retained both activity helpers, five bars/date labels, and its 90 × 44 px CTA. Complete readbacks for old root `253` and edited root `275` both had raw diff `[]` and PNGs matching their baselines. Root accepted limited fit/placement. After visual review, Host reported `COMPLETE`, `strictComplete=true`, `deliverableReady=false`, overall 84.25, with `typography` and `professional_polish` still should-fix and `userAcceptance=false`. The natural name order placed new `pkic` after `8d2e`, so this did not reproduce the earlier lex-before ordering. Receipt SHA-256: `30f5d0d5b6b86bb24531f792b0bf5bfac5f4921f866f562d25e165550cea7c04`; scale-one PNG SHA-256: `6172f97b4f67da9d313b2467baa3c5fbe3e8354b61b6db542886013f7c7d64a1`. |
+| Local verification | On clean source `f4414ef`, `npm run verify` completed 3,178 tests across 454 suites: 3,177 passed, 1 skipped, 0 failed. |
+| Cleanup and timing | The cleanup receipt records one atomic delete of only owned roots `281:854` and `275:778` (`stashed=true`), followed by a zero-operation retirement transaction. The final page contains only protected root `253:1518`; its complete 112-node projection and PNG match their baseline hashes above. The bridge has no transaction or locks. Cleanup receipt SHA-256: `a09cc3bd3d6b95b6abec7465df8984b45536934e836a87ec85ff33b435b06a80`. No new qualified end-to-end timing sample or user sign-off exists; 4fea at 12:40.816 remains the only accepted timing point. No speedup claim is supported. |
 
 ## Separate untimed disclosure check
 

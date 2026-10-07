@@ -63,9 +63,9 @@ AI 智能体提出改动，本地运行时校验结构化操作，再通过 Figm
 
 正式标签包含已验证的 4fea 生产源码和一份文档记录。页面仍有一项非阻塞的视觉平衡建议；独立复核不等同用户签收。这些结果仅描述本页和本次发布流水线，不代表像素等价，也不保证所有设计都能通过相同检查。
 
-当前 main 增加了显式主指标选择与完整树读回。一次未计时的合成数据 fixture 在完整 117 节点树中将剩余预算 `$715.33` 作为主指标，范围内复核记录为 `SCOPED_NATIVE_PASS`；Host 运行仍为 `REVIEW_REQUIRED`，Host 视觉复核未提交，也没有用户签收。
+当前 main 支持显式选择 Greenfield/Existing、限定新画框的放置范围以保护已有画框，并保障移动端首屏适配：44 px 按钮、受保护的图表布局和完整活动 helper。它还包含[主指标选择与完整树读回](METRICS.zh-CN.md#current-main-metric-focus-oct-7)。
 
-canonical main 本地验证覆盖 3,155 项：3,154 项通过、1 项跳过、0 项失败，共 454 个测试套件。没有测得新的端到端计时，不据此声称提速。详见[当前 main 主指标与树读回](METRICS.zh-CN.md#current-main-metric-focus-oct-7)。
+`f4414ef` 上本地验证通过 3,178 项（3,177 通过、1 跳过、0 失败）。Root 对单个 fixture 的移动端适配、scoped-placement 和一处 Existing 文字修改给出有限验收；owned-root 清理已核验。没有新的端到端计时、提速或用户签收结论；详见[复核报告](METRICS.zh-CN.md#current-main-mobile-existing-oct-7)。
 
 ## 规划首次评估
 

@@ -63,9 +63,9 @@ A run record connects the requested scope to its operations, final tree, review 
 
 The release tag includes the verified 4fea production source plus a documentation record. One non-blocking layout-balance suggestion remains. Independent review is not user sign-off. These checks describe this page and release pipeline; they do not claim pixel equivalence or quality across every design.
 
-Current main adds explicit primary-metric selection and complete-tree readback. An untimed synthetic fixture recorded a scoped `SCOPED_NATIVE_PASS` for the `$715.33` Remaining metric in a complete 117-node tree; the Host run remained `REVIEW_REQUIRED`, with no Host visual review submitted and no user acceptance.
+Current main offers explicit Greenfield/Existing selection, scoped placement that keeps existing frames fixed, and mobile first-screen fit with 44 px buttons, guarded charts, and complete activity helpers. It also includes [primary-metric selection and full-tree readback](METRICS.md#current-main-metric-focus-oct-7).
 
-Local canonical-main verification checked 3,155 tests: 3,154 passed, 1 skipped, 0 failed across 454 suites. No new end-to-end timing sample was measured, so this adds no speedup claim. See the [current-main metric focus and readback](METRICS.md#current-main-metric-focus-oct-7).
+Local verification at `f4414ef` passed 3,178 tests (3,177 passed, 1 skipped, 0 failed). Root gave limited fixture acceptance for mobile fit, scoped placement, and one Existing text edit; owned-root cleanup is verified. No new end-to-end timing sample, speedup, or user sign-off is claimed; see the [detailed review](METRICS.md#current-main-mobile-existing-oct-7).
 
 ## Plan the first evaluation
 
