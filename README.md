@@ -48,6 +48,8 @@ An agent proposes a change. The local runtime checks the structured operations, 
 
 The runtime owns validation and document operations; the AI host owns planning. The default mode uses the AI host for reasoning and needs no provider API key; optional provider modes are configured separately. No model runs arbitrary JavaScript inside Figma.
 
+On current source main, the standard stdio MCP server starts or reuses the local Bridge when the first runtime-backed tool is called. MCP initialization, tool discovery, and static workflow guides do not start it. In Figma Desktop, import and run the plugin through the normal Development plugin flow; Bridge health does not mean the plugin is connected. The host does not open the plugin or switch files, and it closes only the Bridge instance it created.
+
 A run record connects the requested scope to its operations, final tree, review state, and integrity hashes. Recorded transactions include rollback support; uncertain writes are checked against Figma state and fail closed instead of being retried silently.
 
 ## v0.4.10 release checks
@@ -60,6 +62,8 @@ A run record connects the requested scope to its operations, final tree, review 
 | Private mirror v0.4.10 tag CI | 3,099 tests; 3,083 passed, 16 skipped, 0 failed across 453 suites · [run 37460770403](https://github.com/Nixz0824/AI2figma-source/actions/runs/37460770403) |
 
 The release tag includes the verified 4fea production source plus a documentation record. One non-blocking layout-balance suggestion remains. Independent review is not user sign-off. These checks describe this page and release pipeline; they do not claim pixel equivalence or quality across every design.
+
+The v0.4.10 tag and its checks above remain unchanged. The current-main startup path has no new native Figma visual acceptance or end-to-end timing result, so it does not add a speedup claim.
 
 ## Plan the first evaluation
 
