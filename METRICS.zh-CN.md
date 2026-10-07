@@ -36,6 +36,21 @@ canonical v0.4.10 标签指向提交 bfb8b8f2a7da987621d2103a0d69d247b7a9f3dc（
 
 Host runtime commit 为干净的 4fea12d。加载的 Figma 插件 manifest 来自原始 candidate-0248 perf-oct6 部署；bundle 字节经核验与 d8、4fea 构建等价。会话记录的 plugin.sourceCommit=4fea12d 是 canonical 等价源码标注，不证明插件曾在 4fea12d 上重新构建或加载。Bundle SHA-256：a0afccd2cb438bf280d26d79ad3d06275456f6de1e5f955fd093fdf585feb25e。
 
+<a id="current-main-metric-focus-oct-7"></a>
+## 当前 main 主指标与完整树读回（2026-10-07）
+
+当前 main 增加了显式主指标选择器和有界完整树读回。这是一次独立的合成数据 fixture 范围内原生复核，不是 v0.4.10 计时样例的新版对照。
+
+| 证据 | 结果 |
+| --- | --- |
+| 主指标焦点 | `budget-today.primary_item_id=budget-remaining` 将“剩余预算” `$715.33` 设为主指标（Inter Bold 30 px）；“本月已用” `$1,284.67` 和“今日调用” `1,248 次` 保持次级（Inter Semi Bold 16 px）。 |
+| 完整原生树 | 117 个唯一节点；读回完整；子节点计数缺口 0、图片节点 0。6 次补读补回 21 个节点。 |
+| 复核状态 | 范围内独立复核：`SCOPED_NATIVE_PASS`。Host 运行仍处于 `REVIEW_REQUIRED` 的 `visual_review` 阶段，且未提交 Host 视觉复核。这不代表用户签收或整体最佳结论。 |
+| canonical 验证 | 代码快照 `06da0c4` 上的本地 `npm run verify`：3,155 项测试，3,154 项通过、1 项跳过、0 项失败，共 454 个套件。 |
+| 计时与后续项 | 没有新的端到端计时样例。需将图表零刻度与零基线对齐，并将表格数值列右对齐。 |
+
+fixture 全部使用合成内容。本公开报告不包含 Figma 截图或源码。[canonical 详细报告](https://github.com/Nixz0824/AI2figma-source/blob/03ed440c86853d9b0e099de568250d2ac09d4b3e/docs/PRIMARY_METRIC_NATIVE_READBACK_2026-10-07.md)位于私有源码仓库，需要有权访问该仓库才能查看。
+
 ## 另一次未计时的披露验证
 
 另一次未计时运行 host_0muwk42jg1gn1bek 使用与原 B 提案字节一致的输入（SHA-256 581177dd3571030bc7c8a10aa936ec19927f151c784ca9e2647722ead8e596c3），生成页面标题“AI API 用量与费用控制台 · DEMO DATA”。独立审查接受五项检查；树有 104 个节点、0 个 IMAGE、无子节点数缺口。Host 的 strictComplete 为 true，但 deliverableReady 仍为 false。这是单页质量证据，不是计时样例。

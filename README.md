@@ -63,7 +63,9 @@ A run record connects the requested scope to its operations, final tree, review 
 
 The release tag includes the verified 4fea production source plus a documentation record. One non-blocking layout-balance suggestion remains. Independent review is not user sign-off. These checks describe this page and release pipeline; they do not claim pixel equivalence or quality across every design.
 
-The v0.4.10 tag and its checks above remain unchanged. The current-main startup path has no new native Figma visual acceptance or end-to-end timing result, so it does not add a speedup claim.
+Current main adds explicit primary-metric selection and complete-tree readback. An untimed synthetic fixture recorded a scoped `SCOPED_NATIVE_PASS` for the `$715.33` Remaining metric in a complete 117-node tree; the Host run remained `REVIEW_REQUIRED`, with no Host visual review submitted and no user acceptance.
+
+Local canonical-main verification checked 3,155 tests: 3,154 passed, 1 skipped, 0 failed across 454 suites. No new end-to-end timing sample was measured, so this adds no speedup claim. See the [current-main metric focus and readback](METRICS.md#current-main-metric-focus-oct-7).
 
 ## Plan the first evaluation
 

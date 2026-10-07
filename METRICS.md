@@ -36,6 +36,21 @@ The continuous clock is request-to-qualityReady. The four manually bracketed Hos
 
 The Host runtime commit was clean 4fea12d. The loaded plugin manifest came from the original candidate-0248 perf-oct6 deployment; its bundle bytes were verified equivalent to the d8 and 4fea builds. The session plugin.sourceCommit value of 4fea12d is a canonical-equivalence annotation, not evidence that the plugin was rebuilt or reloaded at 4fea12d. Bundle SHA-256: a0afccd2cb438bf280d26d79ad3d06275456f6de1e5f955fd093fdf585feb25e.
 
+<a id="current-main-metric-focus-oct-7"></a>
+## Current-main metric focus and complete readback (Oct 7, 2026)
+
+Current main adds an explicit primary metric selector and bounded complete-tree readback. This separate synthetic-data fixture is a scoped native review, not a timed successor to the v0.4.10 sample.
+
+| Evidence | Result |
+| --- | --- |
+| Metric focus | `budget-today.primary_item_id=budget-remaining` selected Remaining `$715.33` as primary (Inter Bold 30 px); Used `$1,284.67` and Calls `1,248` remained secondary (Inter Semi Bold 16 px). |
+| Complete native tree | 117 unique nodes; complete readback; 0 child-count gaps and 0 image nodes. Six supplemental reads supplied 21 nodes. |
+| Review state | Scoped independent review: `SCOPED_NATIVE_PASS`. The Host run remained `REVIEW_REQUIRED` at `visual_review`, with no Host visual review submitted. This is not user acceptance or an overall-best claim. |
+| Canonical verification | Local `npm run verify` at code snapshot `06da0c4`: 3,155 tests; 3,154 passed, 1 skipped, 0 failed across 454 suites. |
+| Timing and follow-up | No new end-to-end timing sample. Align the chart zero tick with its zero baseline and right-align numeric table columns. |
+
+All fixture content was synthetic. No Figma screenshot or source code is included in this public report. The [detailed canonical report](https://github.com/Nixz0824/AI2figma-source/blob/03ed440c86853d9b0e099de568250d2ac09d4b3e/docs/PRIMARY_METRIC_NATIVE_READBACK_2026-10-07.md) requires access to the private source repository.
+
 ## Separate untimed disclosure check
 
 A separate untimed run, host_0muwk42jg1gn1bek, used the original B proposal bytes (SHA-256 581177dd3571030bc7c8a10aa936ec19927f151c784ca9e2647722ead8e596c3) and rendered the title “AI API 用量与费用控制台 · DEMO DATA”. The independent reviewer accepted five checks; the tree had 104 nodes, 0 IMAGE nodes, and no child-count gaps. Host strictComplete was true, while deliverableReady remained false. This is quality evidence for one page and is not a timing sample.
