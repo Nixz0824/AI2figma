@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 1120 360">
+  <title id="title">Scoped Inter font-query payload</title>
+  <desc id="desc">Two horizontal bars compare compact UTF-8 JSON response sizes on one zero-based linear scale: 30,784 bytes with all 2,053 family labels and 749 bytes with one matching label. All 18 Inter faces are preserved. Offline payload measurement, not generation time.</desc>
+  <defs>
+    <pattern id="scoped-hatch" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#1B5A4D" />
+      <path d="M-1 1L1 -1M0 6L6 0M5 7L7 5" stroke="#F4EFE5" stroke-width="1" opacity="0.72" />
+    </pattern>
+  </defs>
+  <rect width="1120" height="360" fill="#F4EFE5" />
+  <g font-family="Inter, Segoe UI, Arial, sans-serif" fill="#26352F">
+    <text x="40" y="45" font-size="27" font-weight="650">Scoped Inter font query</text>
+    <text x="40" y="74" font-size="17" fill="#56635D">Same 18 faces · family labels: 2,053 → 1</text>
+    <text x="340" y="108" font-size="15" fill="#56635D">Compact UTF-8 JSON bytes</text>
+
+    <text x="40" y="160" font-size="16">Before · all 2,053 labels</text>
+    <rect x="340" y="141" width="560" height="28" rx="3" fill="#9B7A37" />
+    <text x="912" y="160" font-size="16" font-weight="650">30,784 bytes</text>
+
+    <text x="40" y="222" font-size="16">After · 1 matching label</text>
+    <rect x="340" y="203" width="13.62525987526" height="28" rx="3" fill="url(#scoped-hatch)" />
+    <text x="366" y="222" font-size="16" font-weight="650">749 bytes</text>
+
+    <path d="M340 250H900" fill="none" stroke="#738078" stroke-width="1.5" />
+    <path d="M340 246V256M620 246V256M900 246V256" fill="none" stroke="#738078" stroke-width="1.5" />
+    <text x="340" y="276" font-size="14" text-anchor="middle" fill="#56635D">0</text>
+    <text x="620" y="276" font-size="14" text-anchor="middle" fill="#56635D">15,392</text>
+    <text x="900" y="276" font-size="14" text-anchor="middle" fill="#56635D">30,784</text>
+
+    <path d="M40 297H1080" fill="none" stroke="#D7D1C5" stroke-width="1" />
+    <text x="40" y="329" font-size="15" fill="#56635D">Compact UTF-8 JSON · 18 Inter faces preserved · offline payload measurement, not generation time.</text>
+  </g>
+</svg>

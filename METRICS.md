@@ -1,6 +1,34 @@
 # METRICS — AI2figma v0.4.10 — generic native content and layout correctness
 English | [简体中文](METRICS.zh-CN.md)
 
+<a id="current-main-font-payload-oct-7"></a>
+## Current main: scoped font-query payload (Oct 7)
+
+The current-main font-query fix keeps the unscoped inventory unchanged and returns only labels matching a requested family. The focused Figma plugin READ suite passed 26/26; font assertions are included in it. Offline serialization of the 18 Inter face records and their labels reduced compact UTF-8 JSON from 30,784 to 749 bytes (97.57%); pretty JSON fell from 41,532 to 1,237 bytes (97.02%). All 18 Inter faces remain in the response.
+
+<p align="center">
+  <img src="assets/readme/font-payload-en.svg" width="100%" alt="Compact Inter font-query response: 30,784 bytes before and 749 bytes after scoping labels, with all 18 Inter faces preserved">
+</p>
+
+Bars share a zero-based linear byte scale. Common-scale length supports accurate comparison (Cleveland & McGill, 1984), and the zero baseline keeps bar lengths honest (Cairo, 2019). The local sealed metadata input has SHA-256 `947ad6037d97d84447aad0f7941304db91b2bde6b4750bcc60b16aee32ca6c72`.
+
+An Oct 7 E2E timing attempt that predates this fix was rejected by automatic review before Host (`PRE_HOST_REQUEST_BLOCKED`). No design or accepted timing resulted; its 115,803 ms pre-Host window is an incomplete observation and is not counted as generation timing. The existing v0.4.10 `12:40.816` accepted sample remains unchanged.
+
+<a id="current-main-existing-integrity-oct-7"></a>
+## Current main: Existing integrity and undo guard (Oct 7)
+
+Source commit `6576101` adds this guard and includes the earlier `c5f700e` font-query fix.
+
+| Source surface | Current behavior | Limit or status |
+| --- | --- | --- |
+| Existing edits | Checks content, style, and geometry using separate agent-lock snapshots; keeps BEFORE/AFTER/rollback captures coherent; checks before lock and before undo; fails closed when the baseline is missing or incomplete. | Adds no model context. The snapshots do not make exclusion of concurrent user edits fully atomic. |
+| Existing undo | The existing `undo_last_agent_batch` method accepts optional `expectedTransactionId`. Existing supplies its captured ID; inside the plugin handler, it is checked before rollback, preventing this flow from undoing a later foreign transaction. | The method count remains 52. Legacy `{}` callers that omit the ID keep their behavior. |
+| Focused checks | The focused build passed and the focused suite passed 117/117. Coverage includes Existing text/style/fill/bounds/native-lock drift, deep leaves, bounded baseline-read refusal, BEFORE/AFTER brackets, correction and owned-KEEP rollback, unrelated locks and mixed node IDs, expected-undo mismatch without rollback, adapter forwarding, and selected-reference cases. | Focused results do not replace the full release gate. |
+| Final source gate | At production HEAD `657610181b1d1587fe7556c989c6b42d1a2a4a55`, `npm run verify` passed 3,190 tests across 454 suites: 3,189 passed, 1 skipped, 0 failed. Guard, TypeScript build, and plugin build passed. Log SHA-256: `674118d66562997f94c4a89a93635e7c0d8a5b5485b9d4ee53c2c19f1f19b8ab`. | The earlier 3,178-test result at `f4414ef` belongs to the bounded mobile/Existing review and is not the current gate total. |
+| Deployment | No new native acceptance or accepted timing followed the earlier pre-Host blocked attempt. Both the font-response change and this guard need an updated plugin bundle. | The connected deployment remains the Oct 6 bundle; it has not exercised this source wave. |
+
+These are source-level behavior claims. The current connected plugin has not exercised this source wave.
+
 ## v0.4.10 release (Oct 6 2026)
 
 Canonical v0.4.10 tag points to bfb8b8f2a7da987621d2103a0d69d247b7a9f3dc (414 commits). Compared with v0.4.9, v0.4.10 includes generic demo-provenance disclosure, shared native wrapping, responsive global header actions and the high-severity completion gate. The final tag commit adds only this accepted-sample report to canonical source 4fea12d2511dc3f70a828b9322c84ee6993e8076; the tag runtime-production directories match that already-verified source. The current inventory is 538 tracked TypeScript/TSX files and 251,916 LF-delimited physical lines across packages/, figma-plugin/, scripts/ and tests/. The v0.4.9 release tag remains unchanged.

@@ -65,7 +65,17 @@ The release tag includes the verified 4fea production source plus a documentatio
 
 Current main offers explicit Greenfield/Existing selection, scoped placement that keeps existing frames fixed, and mobile first-screen fit with 44 px buttons, guarded charts, and complete activity helpers. It also includes [primary-metric selection and full-tree readback](METRICS.md#current-main-metric-focus-oct-7).
 
-Local verification at `f4414ef` passed 3,178 tests (3,177 passed, 1 skipped, 0 failed). Root gave limited fixture acceptance for mobile fit, scoped placement, and one Existing text edit; owned-root cleanup is verified. No new end-to-end timing sample, speedup, or user sign-off is claimed; see the [detailed review](METRICS.md#current-main-mobile-existing-oct-7).
+The earlier bounded mobile/Existing review at `f4414ef` had a local verification result of 3,178 tests (3,177 passed, 1 skipped, 0 failed). Root gave limited fixture acceptance for mobile fit, scoped placement, and one Existing text edit; owned-root cleanup is verified. This is historical scoped evidence, not the current gate total; see the [detailed review](METRICS.md#current-main-mobile-existing-oct-7).
+
+The current-main font-query fix preserves all 18 Inter faces while reducing the offline compact UTF-8 response from 30,784 to 749 bytes (97.57%); see the [measurement details](METRICS.md#current-main-font-payload-oct-7).
+
+<p align="center">
+  <img src="assets/readme/font-payload-en.svg" width="100%" alt="Compact Inter font-query response: 30,784 bytes before and 749 bytes after scoping labels, with all 18 Inter faces preserved">
+</p>
+
+An Oct 7 E2E timing attempt that predates this fix was rejected by automatic review before Host (`PRE_HOST_REQUEST_BLOCKED`), producing no design or accepted timing. Its 115,803 ms pre-Host window is an incomplete observation and is not counted as generation timing.
+
+Source commit `6576101` checks content, style, and geometry around Existing edits, and binds its undo to the expected transaction ID. At production HEAD `657610181b1d1587fe7556c989c6b42d1a2a4a55`, `npm run verify` passed 3,190 tests across 454 suites (3,189 passed, 1 skipped, 0 failed); guard, TypeScript build, and plugin build passed. The captures do not exclude user edits atomically. The connected plugin still uses the Oct 6 bundle, so this source wave has no native acceptance yet; an updated bundle is required. See [current source and deployment limits](METRICS.md#current-main-existing-integrity-oct-7).
 
 ## Plan the first evaluation
 

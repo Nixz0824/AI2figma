@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 1120 360">
+  <title id="title">限定 Inter 字体查询载荷</title>
+  <desc id="desc">两条水平柱形条使用同一条从零开始的线性刻度比较 compact UTF-8 JSON 响应：保留全部 2,053 个家族标签时为 30,784 字节，仅返回一个匹配标签时为 749 字节。18 个 Inter 字体样式均保留。这是离线载荷测量，不是生成耗时。</desc>
+  <defs>
+    <pattern id="scoped-hatch" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#1B5A4D" />
+      <path d="M-1 1L1 -1M0 6L6 0M5 7L7 5" stroke="#F4EFE5" stroke-width="1" opacity="0.72" />
+    </pattern>
+  </defs>
+  <rect width="1120" height="360" fill="#F4EFE5" />
+  <g font-family="Microsoft YaHei, Segoe UI, Arial, sans-serif" fill="#26352F">
+    <text x="40" y="45" font-size="27" font-weight="650">限定 Inter 字体查询载荷</text>
+    <text x="40" y="74" font-size="17" fill="#56635D">保留 18 个样式 · 字体家族标签：2,053 → 1</text>
+    <text x="340" y="108" font-size="15" fill="#56635D">Compact UTF-8 JSON 字节数</text>
+
+    <text x="40" y="160" font-size="16">限定前 · 全局 2,053 个标签</text>
+    <rect x="340" y="141" width="560" height="28" rx="3" fill="#9B7A37" />
+    <text x="912" y="160" font-size="16" font-weight="650">30,784 字节</text>
+
+    <text x="40" y="222" font-size="16">限定后 · 匹配的 1 个标签</text>
+    <rect x="340" y="203" width="13.62525987526" height="28" rx="3" fill="url(#scoped-hatch)" />
+    <text x="366" y="222" font-size="16" font-weight="650">749 字节</text>
+
+    <path d="M340 250H900" fill="none" stroke="#738078" stroke-width="1.5" />
+    <path d="M340 246V256M620 246V256M900 246V256" fill="none" stroke="#738078" stroke-width="1.5" />
+    <text x="340" y="276" font-size="14" text-anchor="middle" fill="#56635D">0</text>
+    <text x="620" y="276" font-size="14" text-anchor="middle" fill="#56635D">15,392</text>
+    <text x="900" y="276" font-size="14" text-anchor="middle" fill="#56635D">30,784</text>
+
+    <path d="M40 297H1080" fill="none" stroke="#D7D1C5" stroke-width="1" />
+    <text x="40" y="329" font-size="15" fill="#56635D">Compact UTF-8 JSON · 保留 18 个 Inter 样式 · 离线载荷测量，不是生成耗时。</text>
+  </g>
+</svg>

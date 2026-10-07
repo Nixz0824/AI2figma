@@ -1,6 +1,34 @@
 # AI2figma v0.4.10 指标与历史记录
 中文 | [English](METRICS.md)
 
+<a id="current-main-font-payload-oct-7"></a>
+## 当前 main：限定字体查询载荷（10 月 7 日）
+
+当前 main 的字体查询修复保持未限定查询的全局清单不变，并在请求某一字体家族时只返回匹配的标签。Figma 插件 READ 专项套件 26/26 通过，其中包含字体断言。对包含 18 个 Inter 字体样式及家族标签的响应进行离线序列化后，compact UTF-8 JSON 从 30,784 字节降至 749 字节（97.57%）；pretty JSON 从 41,532 字节降至 1,237 字节（97.02%）。18 个 Inter 字体样式全部保留。
+
+<p align="center">
+  <img src="assets/readme/font-payload-zh.svg" width="100%" alt="Inter 字体查询 compact JSON：限定家族标签后，载荷从 30,784 字节降至 749 字节，18 个字体样式均保留">
+</p>
+
+两条柱形条共用从零开始的线性 UTF-8 字节刻度；共同尺度上的长度便于准确比较（Cleveland 与 McGill，1984），零基线可避免柱长产生误导（Cairo，2019）。本地封存元数据输入的 SHA-256 为 `947ad6037d97d84447aad0f7941304db91b2bde6b4750bcc60b16aee32ca6c72`。
+
+10 月 7 日另一次 E2E 计时尝试发生在此修复提交前，并在到达 Host 前被自动复核拒绝（`PRE_HOST_REQUEST_BLOCKED`）；没有生成设计或已验收计时。115,803 ms 仅是未完成的 pre-Host 观测，不计入生成耗时。v0.4.10 的 `12:40.816` 已验收样例保持不变。
+
+<a id="current-main-existing-integrity-oct-7"></a>
+## 当前 main：Existing 完整性与撤销 guard（10 月 7 日）
+
+源码提交 `6576101` 增加了这项 guard，并包含此前 `c5f700e` 的字体查询修复。
+
+| 源码范围 | 当前行为 | 边界或状态 |
+| --- | --- | --- |
+| Existing 修改 | 使用独立的 agent-lock 快照检查内容、样式与几何；保持 BEFORE/AFTER/rollback 捕获一致；在加锁前和撤销前检查；基线缺失或不完整时 fail closed。 | 不扩展 model context。这些快照不构成完全原子的并发用户修改排除机制。 |
+| Existing 撤销 | 现有 `undo_last_agent_batch` 方法接受可选的 `expectedTransactionId`。Existing 传入自己记录的 ID；插件 handler 内部在 rollback 前核对，防止此流程撤销后来出现的其他事务。 | 方法数仍为 52。省略该 ID 的旧 `{}` 调用保持原有行为。 |
+| 专项检查 | 专项 build 通过，专项套件 117/117 通过，覆盖 Existing 文本/样式/填充/边界/native-lock 漂移、深层叶节点、缺失或不可读基线下的 32-read 上限拒绝、BEFORE/AFTER 边界、纠正与 owned-KEEP rollback、无关锁和混合节点 ID、expected-undo 不匹配时不回滚、adapter 转发及选定的 reference 用例。 | 专项结果不替代完整发布门禁。 |
+| 当前源码完整门禁 | production HEAD `657610181b1d1587fe7556c989c6b42d1a2a4a55` 上 `npm run verify` 通过 3,190 项测试、共 454 个套件：3,189 通过、1 跳过、0 失败。Guard、TypeScript build 和 plugin build 均通过。日志 SHA-256：`674118d66562997f94c4a89a93635e7c0d8a5b5485b9d4ee53c2c19f1f19b8ab`。 | `f4414ef` 上早先的 3,178 项结果属于有界移动端/Existing 复核，不是当前门禁总数。 |
+| 部署状态 | 此前被拦截的 pre-Host 尝试之后，没有新的原生验收或已验收计时。字体响应和该 guard 都需要更新插件包。 | 当前连接的部署仍是 10 月 6 日插件包，尚未运行这一轮源码。 |
+
+以上是源码行为描述；当前连接的插件尚未运行这一轮源码。
+
 ## v0.4.10 发布（2026-10-06）
 
 canonical v0.4.10 标签指向提交 bfb8b8f2a7da987621d2103a0d69d247b7a9f3dc（414 个提交）。相较 v0.4.9，v0.4.10 包含通用演示内容披露、原生文本换行、响应式全局操作区和高严重度问题完成门禁。标签提交只增加本次验收记录；其生产目录与已验证的 4fea12d2511dc3f70a828b9322c84ee6993e8076 源码一致。当前统计为 538 个受版本控制的 TypeScript/TSX 文件、251,916 个 LF 分隔物理行，范围为 packages/、figma-plugin/、scripts/ 和 tests/。v0.4.9 正式标签保持不变。

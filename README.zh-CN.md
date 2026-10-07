@@ -65,7 +65,17 @@ AI 智能体提出改动，本地运行时校验结构化操作，再通过 Figm
 
 当前 main 支持显式选择 Greenfield/Existing、限定新画框的放置范围以保护已有画框，并保障移动端首屏适配：44 px 按钮、受保护的图表布局和完整活动 helper。它还包含[主指标选择与完整树读回](METRICS.zh-CN.md#current-main-metric-focus-oct-7)。
 
-`f4414ef` 上本地验证通过 3,178 项（3,177 通过、1 跳过、0 失败）。Root 对单个 fixture 的移动端适配、scoped-placement 和一处 Existing 文字修改给出有限验收；owned-root 清理已核验。没有新的端到端计时、提速或用户签收结论；详见[复核报告](METRICS.zh-CN.md#current-main-mobile-existing-oct-7)。
+此前有界移动端/Existing 复核使用 `f4414ef`，当时本地验证通过 3,178 项（3,177 通过、1 跳过、0 失败）。Root 对单个 fixture 的移动端适配、scoped-placement 和一处 Existing 文字修改给出有限验收；owned-root 清理已核验。这是历史范围内的证据，不是当前门禁总数；详见[复核报告](METRICS.zh-CN.md#current-main-mobile-existing-oct-7)。
+
+当前 main 的字体查询修复保留了 18 个 Inter 字体样式，并将 compact UTF-8 响应的离线测量值从 30,784 字节降至 749 字节（97.57%）；详见[测量记录](METRICS.zh-CN.md#current-main-font-payload-oct-7)。
+
+<p align="center">
+  <img src="assets/readme/font-payload-zh.svg" width="100%" alt="Inter 字体查询 compact JSON：限定家族标签后，载荷从 30,784 字节降至 749 字节，18 个字体样式均保留">
+</p>
+
+10 月 7 日另一次 E2E 计时尝试发生在此修复提交前，并在到达 Host 前被自动复核拒绝（`PRE_HOST_REQUEST_BLOCKED`）；没有生成设计或已验收计时。115,803 ms 仅是未完成的 pre-Host 观测，不计入生成耗时。
+
+源码提交 `6576101` 会检查 Existing 修改的内容、样式和几何基线，并将撤销绑定到预期事务 ID。production HEAD `657610181b1d1587fe7556c989c6b42d1a2a4a55` 上 `npm run verify` 通过 3,190 项、共 454 个套件（3,189 通过、1 跳过、0 失败）；Guard、TypeScript build 和 plugin build 均通过。这些捕获不构成完全原子的用户编辑排除机制。目前连接的插件仍运行 10 月 6 日部署包，因此这轮源码尚无原生验收，需要更新插件包后再验证。详见[源码行为与部署边界](METRICS.zh-CN.md#current-main-existing-integrity-oct-7)。
 
 ## 规划首次评估
 
