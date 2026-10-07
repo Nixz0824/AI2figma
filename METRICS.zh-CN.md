@@ -25,7 +25,12 @@ canonical v0.4.10 标签指向提交 bfb8b8f2a7da987621d2103a0d69d247b7a9f3dc（
 
 已验收样例来自会话 e2e-lunamax-4fea-native-2026-10-06-01，运行在干净的 4fea12d2511dc3f70a828b9322c84ee6993e8076 源码上。会话于 2026-10-06T11:27:00.652Z 开始，在 2026-10-06T11:39:41.470Z 达到 qualityReady；连续总时长为 760,815.878 ms。Host 终态 COMPLETE，overall 为 84.52，没有 must-fix 项。visual_balance 仍有一项非阻塞 should-fix；另有 MAJOR 级诊断指出两个同级区块的视觉权重相同。一次 information_density 枚举选择在 Figma 写入前被拒绝，改为 compact；这段拒绝与修正时间保留在总时长内。计时回执中的 userAcceptance 为 null。
 
-独立审查接受五项：必要信息、预算重点、可读性、表格对齐和原生图层可编辑。最终画面为 1440×900，根节点 253:1518，共 91 个唯一原生节点、0 个 IMAGE 节点、无子节点数缺口。独立审查 PNG SHA-256：220919c0fed104aafdc2d66e51be7598e39b23a02a33cd756b669610516ac425；树证据 SHA-256：a09242a4dd8aa929268595a847ae1c0795b81a5eb34687dd6e8666f91e09ee0b。
+独立审查接受五项：必要信息、预算重点、可读性、表格对齐和原生图层可编辑。v0.4.10 当时的报告记录了 91 个原生节点和 0 个 IMAGE 节点，但其读回受到深度限制，详见下方更正。独立审查 PNG SHA-256：220919c0fed104aafdc2d66e51be7598e39b23a02a33cd756b669610516ac425；原树证据 SHA-256 仍为 a09242a4dd8aa929268595a847ae1c0795b81a5eb34687dd6e8666f91e09ee0b。
+
+<a id="native-readback-correction-2026-10-07"></a>
+## 原生树读回更正（2026-10-07）
+
+91 是深度受限快照的返回数，不是既有 1440×900 画框 253:1518 的完整节点总数。10 月 7 日完整读回得到 112 个唯一节点、0 个图片节点、无截断。三个截断父节点下共有 21 个既有后代未返回：ChartScale（3 个）、ChartCanvas（11 个）和 ChartCategories（7 个）。探测为只读；这些节点不是本次新写入。历史视觉验收、12:40.816 计时、原复核 PNG 和上文树证明哈希均保持不变。完整树 SHA-256 为 188905c49142c730e0c6ea17a891b1437d02c4f32853d8afc03bd618111438d1；刷新后的 scale-one 截图 SHA-256 为 bc5fb66ae13cbcf7126f9d51de793ec24775afe574c6ece151399450b388c6c8。
 
 连续时钟覆盖从请求到质量就绪。四段手动记录的 Host spans 共 194,887.494 ms；独立审查 spans 共 226,607.797 ms；runtime active 为 4,837.979 ms；Host waiting 为 555,796 ms；user wait 为 0 ms。手动 Host 与审查时段的并集覆盖连续总时长的 53.9%，其余 46.1% 未分类。这些时钟范围不同，不可相加；Host waiting 包含 reasoning 或 idle，不等于纯推理时间。没有把未分类时段归因于单一原因。
 

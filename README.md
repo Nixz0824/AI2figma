@@ -18,7 +18,7 @@ AI2figma is a local runtime for Figma Desktop. It connects an AI host to Figma l
   <img src="assets/readme/generation-time-en.svg" width="100%" alt="Four October 6 native observations: three ended in timeout or rework, and one reached independent quality acceptance in 12 minutes 40.816 seconds">
 </p>
 
-The v0.4.10 sample created a 1440×900 page with 91 native nodes and no image nodes. An independent review accepted five checks: required information, budget focus, readability, table alignment, and editable elements. One non-blocking visual-balance suggestion remains.
+The v0.4.10 sample was a 1440×900 page with no image nodes. Its contemporaneous readback returned 91 native nodes, but was depth-limited; a complete Oct 7 readback found 112 nodes, including 21 existing descendants omitted below three cutoff parents. See the [readback correction](METRICS.md#native-readback-correction-oct-7). The independent review accepted five checks: required information, budget focus, readability, table alignment, and editable elements. One non-blocking visual-balance suggestion remains.
 
 | Native observation | Time (m:s) | Recorded outcome |
 | --- | ---: | --- |
