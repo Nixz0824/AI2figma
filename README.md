@@ -19,8 +19,17 @@ No-reference `workflow="greenfield"` development is paused after this stage clos
 | Checkpoint | Local verification | Native fixture status |
 | --- | --- | --- |
 | `08ef304` | Official plain `npm run verify`: 3,201 tests, 3,197 passed, 4 skipped, 0 failed, 454 suites; guard, TypeScript build, and plugin build passed. | Root returned `SCOPED_NATIVE_PASS`; the Host run remains `REVIEW_REQUIRED`, not complete. The fixture has no timing result. |
+| First reference-led batch · `8eb298a5bc7e517d277f0da280225439c6e1b0a2` | Official plain local `npm run verify` (2026-10-08): 3,222 tests, 3,218 passed, 4 skipped, 0 failed, 456 suites; 404,787.1937 ms. | Native remains `DECOMPOSITION_REQUIRED`; no Figma drawing, Native PASS, or new timing is claimed. |
 
-This is local evidence, not a GitHub CI result. The passive-preload diagnostic ran tests only and is not equivalent to the full plain gate. The official plain run used no preload or `NODE_OPTIONS`. The formal version remains v0.4.10.
+These are local verification records, not GitHub CI results. The passive-preload diagnostic ran tests only and is not equivalent to the full plain gate. The official plain runs used no preload or `NODE_OPTIONS`. The formal version remains v0.4.10; this is a main-branch maintenance batch, not a new release.
+
+The reference CLI entry is `fdr host start "<request>" --references-file <json>`. This batch makes three scoped changes:
+
+- On one controlled Existing fixture with the same call and query, Bridge RPCs fell from 9 to 6. This is a call-count result, not an end-to-end speed measurement.
+- Dense-text row placement is more reliable; unmatched or multiline text keeps its original geometry.
+- For screenshot input, the host agent selects a complete viewport and preserves the original while recording any crop. The new helper is a PNG preprocessing step; Host retains its existing support for other image formats. A clear, complete artboard needs no user-made clean export; whole-image no-op preserves the PNG bytes, exact replay adds zero writes, and ambiguous or clipped candidates remain unresolved rather than guessed.
+
+See the [scoped batch details](METRICS.md#first-reference-batch-oct-8).
 
 ## Historical v0.4.10 native timing
 

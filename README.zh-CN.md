@@ -19,8 +19,17 @@ AI2figma 是面向 Figma Desktop 的本地运行时。它在本机连接 AI 宿�
 | 检查点 | 本地验证 | 原生 fixture 状态 |
 | --- | --- | --- |
 | `08ef304` | 官方 plain `npm run verify`：3,201 项测试、3,197 通过、4 跳过、0 失败，共 454 个套件；guard、TypeScript build 和 plugin build 均通过。 | Root 给出 `SCOPED_NATIVE_PASS`；对应 Host 运行仍为 `REVIEW_REQUIRED`，尚未完成。该 fixture 没有计时结果。 |
+| 首批有参考优化 · `8eb298a5bc7e517d277f0da280225439c6e1b0a2` | 2026-10-08 官方 plain 本地 `npm run verify`：3,222 项测试、3,218 通过、4 跳过、0 失败，共 456 个套件；耗时 404,787.1937 ms。 | 原生状态仍为 `DECOMPOSITION_REQUIRED`；没有在 Figma 绘制，没有 Native PASS 或新计时。 |
 
-这是本地证据，不是 GitHub CI 结果。passive-preload 诊断只运行了测试，不等同全量 plain gate。官方 plain run 未使用 preload 或 `NODE_OPTIONS`。正式版本仍是 v0.4.10。
+以上均为本地验证记录，不是 GitHub CI 结果。passive-preload 诊断只运行了测试，不等同全量 plain gate。官方 plain run 均未使用 preload 或 `NODE_OPTIONS`。正式版本仍是 v0.4.10；这是 main 分支维护批次，不是新版本发布。
+
+参考输入的 CLI 入口为 `fdr host start "<request>" --references-file <json>`。本批有三项有界改进：
+
+- 在调用与查询相同的一个受控 Existing fixture 中，Bridge RPC 数从 9 次降至 6 次。这是调用数结果，不是端到端提速测量。
+- 密集文字行定位更稳；未匹配和多行文字保留原有几何。
+- 对截图输入，host agent 会选择完整 viewport，保留原图并记录裁切。新增 helper 是 PNG 预处理步骤；Host 对其他图片格式仍保留原有支持。画板完整且清楚时，用户无需另做干净导出；整图 no-op 保留 PNG 字节，相同输入重跑新增写入为 0；候选不明确或被截断时不会猜测。
+
+详见[范围内批次说明](METRICS.zh-CN.md#first-reference-batch-oct-8)。
 
 ## v0.4.10 历史原生计时
 

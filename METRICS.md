@@ -14,6 +14,20 @@ The scoped native fixture received `SCOPED_NATIVE_PASS`, while its Host run rema
 - [Scoped native handoff (Oct 8)](docs/GREENFIELD_NATIVE_HANDOFF_2026-10-08.md)
 - [Greenfield pause and stage archive (Oct 8)](docs/GREENFIELD_PAUSE_2026-10-08.md)
 
+<a id="first-reference-batch-oct-8"></a>
+## First reference-led optimization batch (Oct 8)
+
+This main-branch maintenance batch focuses source work on actual references; it does not change the formal v0.4.10 release. The integrated source at HEAD `8eb298a5bc7e517d277f0da280225439c6e1b0a2` passed the official plain local `npm run verify` on 2026-10-08: 3,222 tests, 3,218 passed, 4 skipped, 0 failed across 456 suites; elapsed time was 404,787.1937 ms. This is a local result, not remote GitHub CI.
+
+| Area | Scoped result | Boundary |
+| --- | --- | --- |
+| CLI entry | Reference input uses `fdr host start "<request>" --references-file <json>`. | One documented entry; local image paths remain local inputs. |
+| Dense text placement | Caller-opt-in `rowPitchAware` placement uses at least three stable measured baseline rows and two or more similar compact row pitches. The scoped checks cover 1×/2× inputs. | Unmatched or multiline text retains original bounds, font, and content. This is not a claim of scale independence or coverage of every reference. |
+| Existing fixture RPC count | Under the same controlled call and query, Bridge RPC count fell from 9 to 6. | A scoped transport count, not an end-to-end time result or benchmark average. |
+| Screenshot viewport | The host agent inspects the supplied image and selects an explicit viewport. A clear, complete artboard does not require a user-created clean export. Preparation preserves `original.png` and writes `reference.png`, `references.json`, and `lineage.json` with the source hash, dimensions, `SOURCE_PIXEL` rectangle, derived hash, and exact pixel correspondence. | A whole-image selection is a byte-preserving no-op; exact replay adds zero writes. Ambiguous or clipped candidates remain unresolved instead of being guessed. The crop preserves screenshot pixels and does not claim a native 1× export. |
+
+The native workflow remains `DECOMPOSITION_REQUIRED`; this batch has not drawn to Figma and has no Native PASS or accepted timing result. The latest `continue` request (the third, at 2026-10-08T15:33:17Z) was blocked before execution by the automatic approval usage/resource limit; this was not a safety rejection. The no-reference Greenfield pause remains in force. This public report includes no user screenshot, source icon, or application source code.
+
 <a id="current-main-font-payload-oct-7"></a>
 ## Current main: scoped font-query payload (Oct 7)
 

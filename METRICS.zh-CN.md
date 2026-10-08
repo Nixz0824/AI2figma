@@ -14,6 +14,20 @@
 - [范围内原生交接（10 月 8 日）](docs/GREENFIELD_NATIVE_HANDOFF_2026-10-08.md)
 - [Greenfield 暂停与阶段归档（10 月 8 日）](docs/GREENFIELD_PAUSE_2026-10-08.md)
 
+<a id="first-reference-batch-oct-8"></a>
+## 首批有参考优化（10 月 8 日）
+
+这是 main 分支维护批次，聚焦真实参考输入，不改变正式 v0.4.10 版本。集成源码 HEAD `8eb298a5bc7e517d277f0da280225439c6e1b0a2` 于 2026-10-08 通过官方 plain 本地 `npm run verify`：3,222 项测试、3,218 通过、4 跳过、0 失败，共 456 个套件；耗时 404,787.1937 ms。这是本地验证结果，不是 GitHub CI。
+
+| 范围 | 有界结果 | 边界 |
+| --- | --- | --- |
+| CLI 入口 | 参考输入使用 `fdr host start "<request>" --references-file <json>`。 | 公开文档统一使用这一入口；本地图片仍为本地输入。 |
+| 密集文字定位 | 调用方选择启用 `rowPitchAware` 后，至少需要 3 条稳定测量 baseline 行及至少 2 个相似紧凑行距。本案例检查了 1×/2× 输入。 | 未匹配或多行文字保留原有边界、字体和内容；这不代表全面缩放独立性或覆盖所有参考图。 |
+| Existing fixture RPC 数 | 在调用与查询相同的受控样例中，Bridge RPC 数从 9 次降到 6 次。 | 这是范围内的传输调用计数，不是端到端耗时结果或 benchmark 平均值。 |
+| 截图 viewport | Host agent 检查用户提供的图片，并明确选择 viewport。画板完整且清楚时，用户无需另做干净导出。准备过程保留 `original.png`，并生成 `reference.png`、`references.json`、`lineage.json`；lineage 记录原图哈希和尺寸、`SOURCE_PIXEL` 矩形、派生图哈希及精确像素对应关系。 | 选择整图时按字节保留原图；完全相同的重跑新增写入为 0。候选不明确或被截断时保持未决，不猜测边界。裁图保留截图像素，不声称是原生 1× 导出。 |
+
+原生工作流仍处于 `DECOMPOSITION_REQUIRED`；本批尚未向 Figma 绘制，没有 Native PASS 或已验收计时结果。最新一次 `continue` 请求（第三次，2026-10-08T15:33:17Z）在执行前被 automatic approval 的 usage/resource limit 阻断；这不是安全拒绝。无参考 Greenfield 暂停继续有效。本公开报告不包含用户截图、图标源文件或应用源码。
+
 <a id="current-main-font-payload-oct-7"></a>
 ## 当前 main：限定字体查询载荷（10 月 7 日）
 
