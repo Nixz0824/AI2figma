@@ -12,7 +12,20 @@ v0.4.10 · Default host mode needs no provider API key.
 
 AI2figma is a local runtime for Figma Desktop. It connects an AI host to Figma locally, checks each structured write before applying it, and records the result. The public repository contains product documentation and evaluation information; source code is private.
 
-## One measured native result
+## Current stage · Oct 8, 2026
+
+No-reference `workflow="greenfield"` development is paused after this stage closeout; the existing implementation and evidence are retained. Active work defaults to Existing edits and new pages built from an actual supplied reference. The code checkpoint remains private; this documentation update does not publish source or create a new feature version.
+
+| Checkpoint | Local verification | Native fixture status |
+| --- | --- | --- |
+| `08ef304` | Official plain `npm run verify`: 3,201 tests, 3,197 passed, 4 skipped, 0 failed, 454 suites; guard, TypeScript build, and plugin build passed. | Root returned `SCOPED_NATIVE_PASS`; the Host run remains `REVIEW_REQUIRED`, not complete. The fixture has no timing result. |
+
+This is local evidence, not a GitHub CI result. The passive-preload diagnostic ran tests only and is not equivalent to the full plain gate. The official plain run used no preload or `NODE_OPTIONS`. The formal version remains v0.4.10.
+
+## Historical v0.4.10 native timing
+
+<details>
+<summary>Four historical native-entry observations</summary>
 
 <p align="center">
   <img src="assets/readme/generation-time-en.svg" width="100%" alt="Four October 6 native observations: three ended in timeout or rework, and one reached independent quality acceptance in 12 minutes 40.816 seconds">
@@ -29,13 +42,21 @@ The v0.4.10 sample was a 1440×900 page with no image nodes. Its contemporaneous
 
 The first three observations end at their recorded terminal outcomes; the last ends after quality readiness and review. These are not an accepted old/new comparison. We report one accepted timing point, not a speedup or a median.
 
-## Three ways to use it
+</details>
+
+## Active workflows
 
 | Workflow | Starting point | Result |
 | --- | --- | --- |
 | Update a page | An existing Figma page and a requested change | A scoped edit with before/after evidence and rollback protection |
-| Create a page | A written brief | A native Figma page with resolved layout, text, tables, and charts |
 | Rebuild a reference | A local image or supplied Figma material | A measured plan that reconstructs supported regions as editable layers |
+
+<details>
+<summary>Legacy / paused no-reference Greenfield</summary>
+
+The legacy `workflow="greenfield"` path creates a page from a brief without a reference. Its development is paused; existing code and records are retained. New pages based on a real supplied reference remain active.
+
+</details>
 
 ## How the local runtime works
 
@@ -63,7 +84,7 @@ A run record connects the requested scope to its operations, final tree, review 
 
 The release tag includes the verified 4fea production source plus a documentation record. One non-blocking layout-balance suggestion remains. Independent review is not user sign-off. These checks describe this page and release pipeline; they do not claim pixel equivalence or quality across every design.
 
-Current main offers explicit Greenfield/Existing selection, scoped placement that keeps existing frames fixed, and mobile first-screen fit with 44 px buttons, guarded charts, and complete activity helpers. It also includes [primary-metric selection and full-tree readback](METRICS.md#current-main-metric-focus-oct-7).
+The `08ef304` checkpoint retains the no-reference Greenfield implementation as a legacy path; development is paused. Existing edits and reference-led new pages remain in scope. This does not claim every reference route is complete or optimized. See the [Oct 8 stage records](METRICS.md#stage-closeout-oct-8).
 
 The earlier bounded mobile/Existing review at `f4414ef` had a local verification result of 3,178 tests (3,177 passed, 1 skipped, 0 failed). Root gave limited fixture acceptance for mobile fit, scoped placement, and one Existing text edit; owned-root cleanup is verified. This is historical scoped evidence, not the current gate total; see the [detailed review](METRICS.md#current-main-mobile-existing-oct-7).
 
@@ -100,6 +121,9 @@ The timing example uses a bounded synthetic-data task. The page is a single revi
 ## More detail
 
 - [Metrics, historical runs, and evidence references](METRICS.md)
+- [Generation timing observation (Oct 8, 2026)](docs/GENERATION_TIMING_2026-10-08.md)
+- [Scoped native handoff (Oct 8, 2026)](docs/GREENFIELD_NATIVE_HANDOFF_2026-10-08.md)
+- [Greenfield pause and stage archive (Oct 8, 2026)](docs/GREENFIELD_PAUSE_2026-10-08.md)
 - [中文说明](README.zh-CN.md)
 - [Architecture overview (English)](ARCHITECTURE.md)
 - [System map (SVG)](assets/readme/architecture-en.svg)

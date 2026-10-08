@@ -1,6 +1,19 @@
 # AI2figma v0.4.10 指标与历史记录
 中文 | [English](METRICS.md)
 
+<a id="stage-closure-oct-8"></a>
+## 10 月 8 日阶段收尾与有参考方向
+
+无参考 `workflow="greenfield"` 开发在本阶段收尾后暂停；现有实现和证据保留。未来工作默认面向 Existing 编辑，以及基于用户真实参考的新页面。正式发布版本仍为 v0.4.10；本次文档快照不是新功能版本。
+
+源码检查点 `08ef30426465d041a7c760fcfa84fd6ed7e54755` 上，官方 plain 本地 `npm run verify` 通过 3,201 项测试：3,197 通过、4 跳过、0 失败，共 454 个套件。Guard、TypeScript build 和 plugin build 均通过；该运行未使用 preload 或 `NODE_OPTIONS`。4 个 skip 为 3 个已批准的 R06 local T12 fixture，以及 1 个因未设置 `FDR_REAL_MODEL` 的 provider-gated 测试。另一次 passive-preload 诊断只运行了测试，不等同于完整本地 gate。
+
+范围内原生 fixture 获得 `SCOPED_NATIVE_PASS`，但对应 Host 运行仍为 `REVIEW_REQUIRED`，且没有提交 Host visual review；这不是完整 Host 工作流，也没有 08ef304 的计时结果。另一项 19:08.377 测量属于冻结源码 `f285dc0`，未达到此前使用的 15 分钟效率目标；它不是受控对照，也不能作为 `08ef304` 的计时结论。
+
+- [生成计时观测（10 月 8 日）](docs/GENERATION_TIMING_2026-10-08.md)
+- [范围内原生交接（10 月 8 日）](docs/GREENFIELD_NATIVE_HANDOFF_2026-10-08.md)
+- [Greenfield 暂停与阶段归档（10 月 8 日）](docs/GREENFIELD_PAUSE_2026-10-08.md)
+
 <a id="current-main-font-payload-oct-7"></a>
 ## 当前 main：限定字体查询载荷（10 月 7 日）
 

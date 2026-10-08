@@ -12,7 +12,20 @@ v0.4.10 · 默认由 AI 宿主负责推理，无需 provider API key。
 
 AI2figma 是面向 Figma Desktop 的本地运行时。它在本机连接 AI 宿主与 Figma，对每次结构化写入先校验，再记录结果。公开仓库提供产品文档和评估信息；源码保持私有。
 
-## 一次已验收的原生页面
+## 当前阶段 · 2026-10-08
+
+无参考 `workflow="greenfield"` 开发在本阶段收尾后暂停；现有实现与证据保留。未来工作默认面向 Existing 编辑和基于用户真实参考的新页面。源码检查点保持私有；本次文档更新不发布源码，也不创建新功能版本。
+
+| 检查点 | 本地验证 | 原生 fixture 状态 |
+| --- | --- | --- |
+| `08ef304` | 官方 plain `npm run verify`：3,201 项测试、3,197 通过、4 跳过、0 失败，共 454 个套件；guard、TypeScript build 和 plugin build 均通过。 | Root 给出 `SCOPED_NATIVE_PASS`；对应 Host 运行仍为 `REVIEW_REQUIRED`，尚未完成。该 fixture 没有计时结果。 |
+
+这是本地证据，不是 GitHub CI 结果。passive-preload 诊断只运行了测试，不等同全量 plain gate。官方 plain run 未使用 preload 或 `NODE_OPTIONS`。正式版本仍是 v0.4.10。
+
+## v0.4.10 历史原生计时
+
+<details>
+<summary>四次历史原生入口观测</summary>
 
 <p align="center">
   <img src="assets/readme/generation-time-zh.svg" width="100%" alt="10 月 6 日的四次原生样例：三次超时或返工，一次在 12 分 40.816 秒后通过独立质量验收">
@@ -29,13 +42,21 @@ v0.4.10 样例是 1440×900 页面，没有图片节点。当时的读回返回 
 
 前三次的终点是各自记录的终态；最后一次则计至质量就绪并完成审查。这些数据不构成已验收的旧版与新版性能对照。我们只报告一个已验收的计时点，不计算提速比例或中位数。
 
-## 三种工作流
+</details>
+
+## 当前工作流
 
 | 工作流 | 输入 | 输出 |
 | --- | --- | --- |
 | 修改页面 | 已有 Figma 页面与改动要求 | 有明确范围的修改、前后证据和回滚保护 |
-| 从需求建页 | 文字需求 | 由原生图层、文字、表格和图表构成的 Figma 页面 |
 | 按参考重建 | 本地图片或用户提供的 Figma 材料 | 测量后的计划，并将支持的区域重建为可编辑图层 |
+
+<details>
+<summary>Legacy / Paused：无参考 Greenfield</summary>
+
+Legacy `workflow="greenfield"` 在没有参考时根据 brief 创建页面。该路径暂停开发；现有代码和记录保留。基于用户真实参考的新页面仍在范围内。
+
+</details>
 
 ## 本地运行时如何工作
 
@@ -63,7 +84,7 @@ AI 智能体提出改动，本地运行时校验结构化操作，再通过 Figm
 
 正式标签包含已验证的 4fea 生产源码和一份文档记录。页面仍有一项非阻塞的视觉平衡建议；独立复核不等同用户签收。这些结果仅描述本页和本次发布流水线，不代表像素等价，也不保证所有设计都能通过相同检查。
 
-当前 main 支持显式选择 Greenfield/Existing、限定新画框的放置范围以保护已有画框，并保障移动端首屏适配：44 px 按钮、受保护的图表布局和完整活动 helper。它还包含[主指标选择与完整树读回](METRICS.zh-CN.md#current-main-metric-focus-oct-7)。
+`08ef304` 检查点保留了无参考 Greenfield 实现作为 legacy 路径；其开发已暂停。Existing 编辑和有真实参考的新页面仍在范围内；这不代表所有参考路线均已完成或优化。详见[10 月 8 日阶段记录](METRICS.zh-CN.md#stage-closure-oct-8)。
 
 此前有界移动端/Existing 复核使用 `f4414ef`，当时本地验证通过 3,178 项（3,177 通过、1 跳过、0 失败）。Root 对单个 fixture 的移动端适配、scoped-placement 和一处 Existing 文字修改给出有限验收；owned-root 清理已核验。这是历史范围内的证据，不是当前门禁总数；详见[复核报告](METRICS.zh-CN.md#current-main-mobile-existing-oct-7)。
 
@@ -100,6 +121,9 @@ AI 智能体提出改动，本地运行时校验结构化操作，再通过 Figm
 ## 更多信息
 
 - [指标、历史样例与证据索引](METRICS.zh-CN.md)
+- [生成计时观测（2026-10-08）](docs/GENERATION_TIMING_2026-10-08.md)
+- [范围内原生交接（2026-10-08）](docs/GREENFIELD_NATIVE_HANDOFF_2026-10-08.md)
+- [Greenfield 暂停与阶段归档（2026-10-08）](docs/GREENFIELD_PAUSE_2026-10-08.md)
 - [English README](README.md)
 - [架构总览（英文）](ARCHITECTURE.md)
 - [系统图 SVG](assets/readme/architecture-zh.svg)

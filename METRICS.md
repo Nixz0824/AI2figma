@@ -1,6 +1,19 @@
 # METRICS — AI2figma v0.4.10 — generic native content and layout correctness
 English | [简体中文](METRICS.zh-CN.md)
 
+<a id="stage-closure-oct-8"></a>
+## Stage closure and reference-first scope (Oct 8, 2026)
+
+No-reference `workflow="greenfield"` development is paused after this stage closeout; its existing implementation and evidence are retained. Default future work to Existing edits and new pages built from an actual supplied reference. The formal release version remains v0.4.10; this documentation snapshot is not a new feature release.
+
+At source checkpoint `08ef30426465d041a7c760fcfa84fd6ed7e54755`, the official plain local `npm run verify` passed 3,201 tests: 3,197 passed, 4 skipped, 0 failed, 454 suites. Guard, TypeScript build, and plugin build passed; the run used no preload or `NODE_OPTIONS`. The four skips are three approved R06 local T12 fixtures and one provider-gated test because `FDR_REAL_MODEL` was unset. A separate passive-preload diagnostic ran tests only; it is not equivalent to this full local gate.
+
+The scoped native fixture received `SCOPED_NATIVE_PASS`, while its Host run remained `REVIEW_REQUIRED` and did not submit a Host visual review. It is not a completed Host workflow and has no timing result. The separate 19:08.377 timing measurement belongs to frozen source `f285dc0`, exceeded the previously used 15-minute efficiency target, and is not a controlled comparison or timing claim for `08ef304`.
+
+- [Generation timing observation (Oct 8)](docs/GENERATION_TIMING_2026-10-08.md)
+- [Scoped native handoff (Oct 8)](docs/GREENFIELD_NATIVE_HANDOFF_2026-10-08.md)
+- [Greenfield pause and stage archive (Oct 8)](docs/GREENFIELD_PAUSE_2026-10-08.md)
+
 <a id="current-main-font-payload-oct-7"></a>
 ## Current main: scoped font-query payload (Oct 7)
 
