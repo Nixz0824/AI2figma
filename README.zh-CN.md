@@ -19,7 +19,7 @@ AI2figma 是面向 Figma Desktop 的本地运行时。它在本机连接 AI 宿�
 | 检查点 | 本地验证 | 原生 fixture 状态 |
 | --- | --- | --- |
 | `08ef304` | 官方 plain `npm run verify`：3,201 项测试、3,197 通过、4 跳过、0 失败，共 454 个套件；guard、TypeScript build 和 plugin build 均通过。 | Root 给出 `SCOPED_NATIVE_PASS`；对应 Host 运行仍为 `REVIEW_REQUIRED`，尚未完成。该 fixture 没有计时结果。 |
-| 首批有参考优化 · `8eb298a` | 2026-10-08 官方 plain 本地 `npm run verify`：3,222 项测试、3,218 通过、4 跳过、0 失败，共 456 个套件；耗时 404,787.1937 ms。 | 原生状态仍为 `DECOMPOSITION_REQUIRED`；没有在 Figma 绘制，没有 Native PASS 或新计时。 |
+| 首批有参考优化 · 测试检查点 `0b3fccd`（生产源码仍为 `8eb298a`） | 2026-10-09 官方 plain 本地 `npm run verify`：3,222 项测试、3,218 通过、4 跳过、0 失败，共 456 个套件。 | 原生状态仍为 `DECOMPOSITION_REQUIRED`；没有在 Figma 绘制，没有 Native PASS 或新计时。 |
 
 以上均为本地验证记录，不是 GitHub CI 结果。passive-preload 诊断只运行了测试，不等同全量 plain gate。官方 plain run 均未使用 preload 或 `NODE_OPTIONS`。正式版本仍是 v0.4.10；这是 main 分支维护批次，不是新版本发布。
 

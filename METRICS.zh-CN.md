@@ -17,7 +17,15 @@
 <a id="first-reference-batch-oct-8"></a>
 ## 首批有参考优化（10 月 8 日）
 
-这是 main 分支维护批次，聚焦真实参考输入，不改变正式 v0.4.10 版本。集成源码 HEAD `8eb298a5bc7e517d277f0da280225439c6e1b0a2` 于 2026-10-08 通过官方 plain 本地 `npm run verify`：3,222 项测试、3,218 通过、4 跳过、0 失败，共 456 个套件；耗时 404,787.1937 ms。这是本地验证结果，不是 GitHub CI。
+这是 main 分支维护批次，聚焦真实参考输入，不改变正式 v0.4.10 版本。生产源码仍为 HEAD `8eb298a5bc7e517d277f0da280225439c6e1b0a2`。最新源码/测试检查点 `0b3fccdb6ea0948ae204159c801b0580f6a848bf` 只修改了一项测试 fixture。本次元数据更正记录于 2026-10-09（Asia/Shanghai）；批次日期仍为 10 月 8 日。
+
+| 验证记录 | 源码身份 | 结果 |
+| --- | --- | --- |
+| 最新本地 plain 完整门禁 | tree `b56f09bcbc4f831be6cd79c21eac9fa83f99430f`；测试检查点 `0b3fccdb6ea0948ae204159c801b0580f6a848bf` | `npm run verify` 通过 3,222 项测试：3,218 通过、4 跳过、0 失败，共 456 个套件。Node test-runner 用时 390,863.402 ms。这不是应用生成时间，也不是整个命令的 wall time。 |
+| 私有镜像 exact verification | commit `17d502bb97a7feb111bfc0b7696c158f42a3fde2`；[成功的 CI run 37808800764](https://github.com/Nixz0824/AI2figma-source/actions/runs/37808800764)（私有仓库，可能需要访问权限） | 3,216 项测试：3,200 通过、16 跳过、0 失败，共 456 个套件。Node test-runner 用时 392,466.348923 ms。 |
+| 10 月 8 日首次本地完整门禁 | 生产 HEAD `8eb298a5bc7e517d277f0da280225439c6e1b0a2` | 3,222 项测试：3,218 通过、4 跳过、0 失败，共 456 个套件。历史 Node test-runner 用时 404,787.1937 ms；这不是应用生成时间，也不是整个命令的 wall time。 |
+
+此前私有镜像 CI run 37805692910 因 scrubbed 镜像中没有私有 T12 图片 fixture 而失败。检查点 `0b3fccd` 将这项测试依赖替换为中性的自包含 RGBA；生产源码没有变更。原图和此前的回执均保留。以上 test-runner 用时不是生成耗时。
 
 | 范围 | 有界结果 | 边界 |
 | --- | --- | --- |

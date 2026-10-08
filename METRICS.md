@@ -17,7 +17,15 @@ The scoped native fixture received `SCOPED_NATIVE_PASS`, while its Host run rema
 <a id="first-reference-batch-oct-8"></a>
 ## First reference-led optimization batch (Oct 8)
 
-This main-branch maintenance batch focuses source work on actual references; it does not change the formal v0.4.10 release. The integrated source at HEAD `8eb298a5bc7e517d277f0da280225439c6e1b0a2` passed the official plain local `npm run verify` on 2026-10-08: 3,222 tests, 3,218 passed, 4 skipped, 0 failed across 456 suites; elapsed time was 404,787.1937 ms. This is a local result, not remote GitHub CI.
+This main-branch maintenance batch focuses source work on actual references; it does not change the formal v0.4.10 release. The production source remains at HEAD `8eb298a5bc7e517d277f0da280225439c6e1b0a2`. The latest source/test checkpoint, `0b3fccdb6ea0948ae204159c801b0580f6a848bf`, changes one test fixture only. This metadata correction was recorded on 2026-10-09 (Asia/Shanghai); the batch date remains Oct 8.
+
+| Verification record | Source identity | Result |
+| --- | --- | --- |
+| Latest local plain full gate | Tree `b56f09bcbc4f831be6cd79c21eac9fa83f99430f`; test checkpoint `0b3fccdb6ea0948ae204159c801b0580f6a848bf` | `npm run verify` passed 3,222 tests: 3,218 passed, 4 skipped, 0 failed, 456 suites. Node test-runner duration: 390,863.402 ms. This is not application generation time or total command wall time. |
+| Private mirror exact verification | Commit `17d502bb97a7feb111bfc0b7696c158f42a3fde2`; [successful CI run 37808800764](https://github.com/Nixz0824/AI2figma-source/actions/runs/37808800764) (private repository; access may be required) | 3,216 tests: 3,200 passed, 16 skipped, 0 failed, 456 suites. Node test-runner duration: 392,466.348923 ms. |
+| Initial Oct 8 local full gate | Production HEAD `8eb298a5bc7e517d277f0da280225439c6e1b0a2` | 3,222 tests: 3,218 passed, 4 skipped, 0 failed, 456 suites. Historical Node test-runner duration: 404,787.1937 ms; not application generation time or total command wall time. |
+
+The earlier mirror CI run 37805692910 failed because the scrubbed mirror did not contain its private T12 image fixture. Checkpoint `0b3fccd` replaces that test dependency with neutral self-contained RGBA; no production source files changed. The original image and earlier receipt remain preserved. The test-runner durations above are not generation timings.
 
 | Area | Scoped result | Boundary |
 | --- | --- | --- |
