@@ -19,7 +19,7 @@ No-reference `workflow="greenfield"` development is paused after this stage clos
 | Checkpoint | Local verification | Native fixture status |
 | --- | --- | --- |
 | `08ef304` | Official plain `npm run verify`: 3,201 tests, 3,197 passed, 4 skipped, 0 failed, 454 suites; guard, TypeScript build, and plugin build passed. | Root returned `SCOPED_NATIVE_PASS`; the Host run remains `REVIEW_REQUIRED`, not complete. The fixture has no timing result. |
-| First reference-led batch · `8eb298a5bc7e517d277f0da280225439c6e1b0a2` | Official plain local `npm run verify` (2026-10-08): 3,222 tests, 3,218 passed, 4 skipped, 0 failed, 456 suites; 404,787.1937 ms. | Native remains `DECOMPOSITION_REQUIRED`; no Figma drawing, Native PASS, or new timing is claimed. |
+| First reference-led batch · `8eb298a` | Official plain local `npm run verify` (2026-10-08): 3,222 tests, 3,218 passed, 4 skipped, 0 failed, 456 suites; 404,787.1937 ms. | Native remains `DECOMPOSITION_REQUIRED`; no Figma drawing, Native PASS, or new timing is claimed. |
 
 These are local verification records, not GitHub CI results. The passive-preload diagnostic ran tests only and is not equivalent to the full plain gate. The official plain runs used no preload or `NODE_OPTIONS`. The formal version remains v0.4.10; this is a main-branch maintenance batch, not a new release.
 
