@@ -31,6 +31,10 @@ AI2figma 是面向 Figma Desktop 的本地运行时。它在本机连接 AI 宿�
 
 详见[范围内批次说明](METRICS.zh-CN.md#first-reference-batch-oct-8)。
 
+## 当前源码检查点 · 2026-10-10
+
+源码测量版本 2.4.0 通过离线来源像素检查测量了全部 24 个绑定窗口。这只是来源像素证据，不是 live Figma calibration、Native 验收或端到端计时结果。已发布产品版本仍为 v0.4.10。详见[指标](METRICS.zh-CN.md#source-text-measurement-2026-10-10)与[日期源码报告](REFERENCE_TEXT_MEASUREMENT_2026-10-10.md)。
+
 ## v0.4.10 历史原生计时
 
 <details>

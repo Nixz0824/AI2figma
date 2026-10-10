@@ -1,6 +1,21 @@
 # AI2figma v0.4.10 指标与历史记录
 中文 | [English](METRICS.md)
 
+<a id="source-text-measurement-2026-10-10"></a>
+## 源文字测量 v2.4.0（2026-10-10）
+
+记录在案的本地 release gate 为 `npm run verify`；运行使用经批准的 elevated execution，并将 workspace-local `TEMP`、`TMP`、`TMPDIR` 指向回执所示位置（2026-10-09T17:13:58.680Z）。产品版本仍为 v0.4.10；未记录新产品 tag。这不是 GitHub CI 结果。
+
+| 证据 | 当前状态 |
+|---|---|
+| 本地 release gate | 3,267 项通过、0 失败、4 跳过（共 3,271 项测试；459 个套件）。 |
+| 离线来源窗口 | 24/24 测得，失败 0。source-only 测量阶段：probe 调用 0、artifact 写入 0、probe image 读取 0；JSON 诊断报告另行保存。 |
+| v2.4 live verification | 待验证；尚无已接受的 Native 结果。 |
+| 最终画布 | 待复核；尚无已接受的最终画布。 |
+| 端到端计时 | 尚无 v2.4 记录。 |
+
+`textEvidence.sourceRect` 分配来源像素；语义 bounds 继续定义 line box 和目标布局。共享边界只量化一次，相邻窗口保持分离，像素冲突 fail closed。只有测量 ink 窗口、实际填充和 painted ancestor 一致时，root TEXT 像素才会归属；空白余量仍是表面像素。[日期报告](REFERENCE_TEXT_MEASUREMENT_2026-10-10.md)记录小数窗口与 watcher 细节。本次不作提速或 A/B 结论。
+
 <a id="stage-closure-oct-8"></a>
 ## 10 月 8 日阶段收尾与有参考方向
 

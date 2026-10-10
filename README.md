@@ -31,6 +31,10 @@ The reference CLI entry is `fdr host start "<request>" --references-file <json>`
 
 See the [scoped batch details](METRICS.md#first-reference-batch-oct-8).
 
+## Current source checkpoint · Oct 10, 2026
+
+Source measurement 2.4.0 measured all 24 bound text windows in an offline source-pixel check. This is source-pixel evidence only; it is not a live Figma calibration, Native acceptance, or an end-to-end timing result. The published product version remains v0.4.10. See [metrics](METRICS.md#source-text-measurement-2026-10-10) and the [dated source report](REFERENCE_TEXT_MEASUREMENT_2026-10-10.md).
+
 ## Historical v0.4.10 native timing
 
 <details>
@@ -93,7 +97,7 @@ A run record connects the requested scope to its operations, final tree, review 
 
 The release tag includes the verified 4fea production source plus a documentation record. One non-blocking layout-balance suggestion remains. Independent review is not user sign-off. These checks describe this page and release pipeline; they do not claim pixel equivalence or quality across every design.
 
-The `08ef304` checkpoint retains the no-reference Greenfield implementation as a legacy path; development is paused. Existing edits and reference-led new pages remain in scope. This does not claim every reference route is complete or optimized. See the [Oct 8 stage records](METRICS.md#stage-closeout-oct-8).
+The `08ef304` checkpoint retains the no-reference Greenfield implementation as a legacy path; development is paused. Existing edits and reference-led new pages remain in scope. This does not claim every reference route is complete or optimized. See the [Oct 8 stage records](METRICS.md#stage-closure-oct-8).
 
 The earlier bounded mobile/Existing review at `f4414ef` had a local verification result of 3,178 tests (3,177 passed, 1 skipped, 0 failed). Root gave limited fixture acceptance for mobile fit, scoped placement, and one Existing text edit; owned-root cleanup is verified. This is historical scoped evidence, not the current gate total; see the [detailed review](METRICS.md#current-main-mobile-existing-oct-7).
 

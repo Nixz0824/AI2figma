@@ -1,6 +1,21 @@
 # METRICS — AI2figma v0.4.10 — generic native content and layout correctness
 English | [简体中文](METRICS.zh-CN.md)
 
+<a id="source-text-measurement-2026-10-10"></a>
+## Source text measurement 2.4.0 (Oct 10, 2026)
+
+The recorded local release gate was `npm run verify`; it ran with approved elevated execution and workspace-local `TEMP`, `TMP`, and `TMPDIR` at the time recorded in the receipt (2026-10-09T17:13:58.680Z). The product version remains v0.4.10; no new product tag is recorded. This is not a GitHub CI result.
+
+| Evidence | Current state |
+|---|---|
+| Local release gate | 3,267 passed, 0 failed, 4 skipped (3,271 tests; 459 suites). |
+| Offline source windows | 24/24 measured, 0 failed. During the source-only measurement phase: 0 probe calls, 0 artifact writes, 0 probe-image reads; the JSON diagnostic report was saved separately. |
+| Live v2.4 verification | Pending; no accepted Native result is recorded. |
+| Final canvas | Pending review; no accepted final canvas is recorded. |
+| End-to-end timing | None recorded for v2.4. |
+
+`textEvidence.sourceRect` allocates source pixels; semantic bounds continue to define line boxes and target layout. Shared edges are rounded once, adjacent windows remain disjoint, and real pixel conflicts fail closed. Root TEXT pixels are attributed only when the measured ink window, actual paint, and painted ancestor agree; blank margins remain surface pixels. The [dated report](REFERENCE_TEXT_MEASUREMENT_2026-10-10.md) has the fractional-window and watcher details. No speedup or A/B claim is made.
+
 <a id="stage-closure-oct-8"></a>
 ## Stage closure and reference-first scope (Oct 8, 2026)
 
