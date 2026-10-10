@@ -1,6 +1,25 @@
 # METRICS — AI2figma v0.4.10 — generic native content and layout correctness
 English | [简体中文](METRICS.zh-CN.md)
 
+<a id="reference-qa-coordinate-integrity-2026-10-10"></a>
+## Reference QA and coordinate integrity (Oct 10, 2026)
+
+The combined source checkpoint is `8a3f6b653163e5f9fa21f95b7e6612b34fafe874`. It includes the baseline text-origin QA and exact AUTO-coordinate identity corrections. The full local gate passed on the same commit and tree before fast-forward to canonical; the post-fast-forward build also passed. The formal product remains v0.4.10; no new product tag is recorded.
+
+| Evidence | Current result | Boundary |
+|---|---|---|
+| Combined code verification | `npm run verify` exit 0; 3,274 tests, 3,270 passed, 4 skipped, 0 failed; 459 suites. Node test-runner duration: 392,952.6874 ms. | Same code commit/tree as `8a3f6b6`; duration is test-runner time only, not application or end-to-end time. Post-fast-forward canonical build exited 0. This is not GitHub CI. |
+| Comparable text baseline | Matching, explicit typography on non-empty single-line HUG text uses the shared declared y origin; incomplete/different evidence and potentially wrapping text retain the existing box-center check. | Baseline drift QA only. |
+| AUTO coordinate identity | Exact forward check: `origin + local === expected`; non-AUTO keeps strict reverse identity. | No tolerance was added; the 0.5 px physical write gate is unchanged. |
+| Prior Reference diagnostic | 12 flows were AUTO; icon write-side page bounds passed the 0.5 px physical gate. The receipt's maximum arithmetic reconstruction delta was `2.48689957516035065e-14 px`; separate Figma position evidence reports a maximum deviation of about `0.00017518 px`. | The arithmetic delta is not a measured Figma position error. Strict protocol round-trip artifact validation rejected coordinate identity; this run remains historical `RECONCILIATION_REQUIRED` evidence. |
+| Fresh Native outcome | Technical visual review `REVIEWED`; state `CORRECTION_REQUIRED`; 14/14 vector checks `VECTOR_VERIFIED`; external-raster 8/8 PASS. | Not formal acceptance. |
+| Live text-construction parity | 23/24 rows passed; one cardholder-text row failed due to ambiguous ink ownership and color families. | Separate live construction check; the offline v2.4 source-measurement record remains separate. |
+| Strict fidelity | `fidelityV2` 0/8 PASS, 8/8 FAIL; 18 root TEXT glyphs `NOT_COMPARABLE`. | All 8 failures stem from non-comparable text-ink evidence (38 ancestor occurrences across 18 unique texts), not a pixel-threshold miss; `strictComplete=false`. |
+| Open correction | One cap operation conflicts with the source style/role token; 7 regions remain unhandled. | Unapproved and not applied; current status remains `CORRECTION_REQUIRED`. |
+| Partial timing | Construction 3.427 s; asset-call stage 5.668 s; Host SDK active-call sum 92.365 s; observed checkpoint interval 36 min 10.345 s. | The interval includes planning, review, waits, and the correction pause. These are partial measurements, not accepted total-generation timing; no before/after or speedup claim. |
+
+An observed source/ink rectangle describes painted source evidence, not target text layout size. In the Oct 10 review, 19 single-line TEXT elements inside flow parents were semantically HUG but both dimensions were owned by `MEASURED_OBSERVATION`, making their effective sizing FIXED and causing wraps. `AUTO_LAYOUT` ownership compiled the intended `WIDTH_AND_HEIGHT` sizing as HUG. Review effective sizing against its owner and check parent-flow capacity before calibration or writes. This is not a rule that every TEXT must be HUG; fixed-width and multiline text remain valid when intentional. The source-measurement record remains separate and unchanged. See the [dated report](REFERENCE_QA_COORDINATE_INTEGRITY_2026-10-10.md).
+
 <a id="source-text-measurement-2026-10-10"></a>
 ## Source text measurement 2.4.0 (Oct 10, 2026)
 

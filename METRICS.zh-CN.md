@@ -1,6 +1,25 @@
 # AI2figma v0.4.10 指标与历史记录
 中文 | [English](METRICS.md)
 
+<a id="reference-qa-coordinate-integrity-2026-10-10"></a>
+## Reference QA 与坐标完整性（2026-10-10）
+
+组合源码检查点为 `8a3f6b653163e5f9fa21f95b7e6612b34fafe874`，包含基线文字原点 QA 与 AUTO 坐标精确身份修复。同一提交和 tree 在 fast-forward 到 canonical 前通过本地完整 gate；fast-forward 后的 canonical build 也通过。正式产品仍为 v0.4.10，未创建新产品 tag。
+
+| 证据 | 当前结果 | 边界 |
+|---|---|---|
+| 组合源码验证 | `npm run verify` exit 0；3,274 项测试、3,270 通过、4 跳过、0 失败，共 459 个套件。Node test-runner 用时：392,952.6874 ms。 | 与 `8a3f6b6` 为同一提交和 tree；该时间仅为测试运行器耗时，不是应用或端到端时间。fast-forward 后的 canonical build 退出码为 0。这不是 GitHub CI。 |
+| 可比较文字基线 | 对排版属性显式相同的非空单行 HUG 文字比较声明的共享 y 原点；证据缺失/不同或文字可能换行时仍使用原有框中心检查。 | 仅涉及 baseline drift QA。 |
+| AUTO 坐标身份 | 精确正向检查：`origin + local === expected`；非 AUTO 保留严格反向恒等式检查。 | 不新增容差；0.5 px 实际写入门禁不变。 |
+| 此前 Reference 诊断 | 12 个 flow 均为 AUTO；图标写入侧的 page bounds 通过 0.5 px 实物门禁。回执最大算术重构差为 `2.48689957516035065e-14 px`；另一份 Figma 位置证据报告最大偏差约 `0.00017518 px`。 | 算术差不等于测得的 Figma 位置误差。protocol strict round-trip artifact 校验曾误拒坐标身份；该运行是历史 `RECONCILIATION_REQUIRED` 证据。 |
+| 新 Native 结果 | 技术画面复核为 `REVIEWED`；状态 `CORRECTION_REQUIRED`；vector 检查 14/14 `VECTOR_VERIFIED`；external-raster 8/8 通过。 | 不构成正式验收。 |
+| Live text-construction parity | 23/24 行通过；cardholder-text 有 1 行因 ink ownership 和 color family 不明确而失败。 | 这是独立的 live construction 检查；离线 v2.4 源码测量记录仍单独保留。 |
+| 严格保真 | `fidelityV2` 0/8 PASS、8/8 FAIL；18 个 root TEXT glyph 为 `NOT_COMPARABLE`。 | 8 项失败均源自不可比较的 text-ink 证据（38 次 ancestor occurrence、18 个唯一文字），不是像素阈值未达标；`strictComplete=false`。 |
+| 未批准的修正 | 一项 cap 操作与 source style/role token 冲突；7 个区域仍未处理。 | 未批准、未执行；当前状态仍为 `CORRECTION_REQUIRED`。 |
+| 部分耗时 | Construction 3.427 秒；asset-call 阶段 5.668 秒；Host SDK active-call 累计 92.365 秒；观测区间 36 分 10.345 秒。 | 区间包含规划、复核、等待和 correction 暂停。这些是部分测量，不是已接受的总生成耗时；不作前后或提速结论。 |
+
+观测到的 source/ink 矩形描述来源中绘制的证据，不是目标文字布局尺寸。10 月 10 日复核中，19 个位于 flow 父容器内的单行 TEXT 在语义上为 HUG，但宽、高两个方向均由 `MEASURED_OBSERVATION` 持有，使 effective sizing 变为 FIXED 并导致换行。`AUTO_LAYOUT` owner 才会将预期的 `WIDTH_AND_HEIGHT` 按 HUG 编译。校准或写入前，应核对 effective sizing 与 owner，并检查父级 flow 容量。这不代表所有 TEXT 都必须 HUG；设计意图明确时固定宽度和多行文字仍然合理。源码测量记录保持独立且不受影响。详见[日期报告](REFERENCE_QA_COORDINATE_INTEGRITY_2026-10-10.md)。
+
 <a id="source-text-measurement-2026-10-10"></a>
 ## 源文字测量 v2.4.0（2026-10-10）
 

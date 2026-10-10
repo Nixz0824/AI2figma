@@ -19,7 +19,7 @@ No-reference `workflow="greenfield"` development is paused after this stage clos
 | Checkpoint | Local verification | Native fixture status |
 | --- | --- | --- |
 | `08ef304` | Official plain `npm run verify`: 3,201 tests, 3,197 passed, 4 skipped, 0 failed, 454 suites; guard, TypeScript build, and plugin build passed. | Root returned `SCOPED_NATIVE_PASS`; the Host run remains `REVIEW_REQUIRED`, not complete. The fixture has no timing result. |
-| First reference-led batch · test checkpoint `0b3fccd` (production source remains `8eb298a`) | Official plain local `npm run verify` (2026-10-09): 3,222 tests, 3,218 passed, 4 skipped, 0 failed, 456 suites. | Native remains `DECOMPOSITION_REQUIRED`; no Figma drawing, Native PASS, or new timing is claimed. |
+| First reference-led batch · test checkpoint `0b3fccd` (production source remains `8eb298a`) | Official plain local `npm run verify` (2026-10-09): 3,222 tests, 3,218 passed, 4 skipped, 0 failed, 456 suites. | At that recorded checkpoint, Native was `DECOMPOSITION_REQUIRED`; no Figma drawing, Native PASS, or new timing was claimed. |
 
 These are local verification records, not GitHub CI results. The passive-preload diagnostic ran tests only and is not equivalent to the full plain gate. The official plain runs used no preload or `NODE_OPTIONS`. The formal version remains v0.4.10; this is a main-branch maintenance batch, not a new release.
 
@@ -31,9 +31,11 @@ The reference CLI entry is `fdr host start "<request>" --references-file <json>`
 
 See the [scoped batch details](METRICS.md#first-reference-batch-oct-8).
 
-## Current source checkpoint · Oct 10, 2026
+## Oct 10 source checkpoint · Native review remains open
 
-Source measurement 2.4.0 measured all 24 bound text windows in an offline source-pixel check. This is source-pixel evidence only; it is not a live Figma calibration, Native acceptance, or an end-to-end timing result. The published product version remains v0.4.10. See [metrics](METRICS.md#source-text-measurement-2026-10-10) and the [dated source report](REFERENCE_TEXT_MEASUREMENT_2026-10-10.md).
+Private source checkpoint `8a3f6b6` passed the local `npm run verify`: 3,274 tests, 3,270 passed, 4 skipped, 0 failed, 459 suites. The combined checkpoint includes the baseline text QA and exact AUTO-coordinate identity corrections; this is a local result, not GitHub CI.
+
+The earlier `RECONCILIATION_REQUIRED` diagnostic remains historical. The post-fix run received a technical visual review, but strict fidelity remains unresolved and one proposed correction is unapproved. This is not final acceptance or an end-to-end timing result. The product remains v0.4.10, with no new product tag. See the [QA and coordinate-integrity metrics](METRICS.md#reference-qa-coordinate-integrity-2026-10-10) and [dated report](REFERENCE_QA_COORDINATE_INTEGRITY_2026-10-10.md). The source measurement 2.4.0 record is separate and unchanged.
 
 ## Historical v0.4.10 native timing
 

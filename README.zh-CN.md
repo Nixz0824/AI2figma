@@ -19,7 +19,7 @@ AI2figma 是面向 Figma Desktop 的本地运行时。它在本机连接 AI 宿�
 | 检查点 | 本地验证 | 原生 fixture 状态 |
 | --- | --- | --- |
 | `08ef304` | 官方 plain `npm run verify`：3,201 项测试、3,197 通过、4 跳过、0 失败，共 454 个套件；guard、TypeScript build 和 plugin build 均通过。 | Root 给出 `SCOPED_NATIVE_PASS`；对应 Host 运行仍为 `REVIEW_REQUIRED`，尚未完成。该 fixture 没有计时结果。 |
-| 首批有参考优化 · 测试检查点 `0b3fccd`（生产源码仍为 `8eb298a`） | 2026-10-09 官方 plain 本地 `npm run verify`：3,222 项测试、3,218 通过、4 跳过、0 失败，共 456 个套件。 | 原生状态仍为 `DECOMPOSITION_REQUIRED`；没有在 Figma 绘制，没有 Native PASS 或新计时。 |
+| 首批有参考优化 · 测试检查点 `0b3fccd`（生产源码仍为 `8eb298a`） | 2026-10-09 官方 plain 本地 `npm run verify`：3,222 项测试、3,218 通过、4 跳过、0 失败，共 456 个套件。 | 该检查点记录的原生状态为 `DECOMPOSITION_REQUIRED`；没有在 Figma 绘制，没有 Native PASS 或新计时。 |
 
 以上均为本地验证记录，不是 GitHub CI 结果。passive-preload 诊断只运行了测试，不等同全量 plain gate。官方 plain run 均未使用 preload 或 `NODE_OPTIONS`。正式版本仍是 v0.4.10；这是 main 分支维护批次，不是新版本发布。
 
@@ -31,9 +31,11 @@ AI2figma 是面向 Figma Desktop 的本地运行时。它在本机连接 AI 宿�
 
 详见[范围内批次说明](METRICS.zh-CN.md#first-reference-batch-oct-8)。
 
-## 当前源码检查点 · 2026-10-10
+## 10 月 10 日源码检查点 · Native 复核仍开放
 
-源码测量版本 2.4.0 通过离线来源像素检查测量了全部 24 个绑定窗口。这只是来源像素证据，不是 live Figma calibration、Native 验收或端到端计时结果。已发布产品版本仍为 v0.4.10。详见[指标](METRICS.zh-CN.md#source-text-measurement-2026-10-10)与[日期源码报告](REFERENCE_TEXT_MEASUREMENT_2026-10-10.md)。
+私有源码检查点 `8a3f6b6` 通过本地 `npm run verify`：3,274 项测试、3,270 通过、4 跳过、0 失败，共 459 个套件。该检查点合并了基线文字 QA 与 AUTO 坐标精确身份修复；这是本地结果，不是 GitHub CI。
+
+此前的 `RECONCILIATION_REQUIRED` 诊断作为历史记录保留。修复后的运行已完成技术画面复核，但 strict fidelity 仍未解决，且有一项建议修正尚未批准。这不构成最终验收或端到端计时。产品仍为 v0.4.10，未创建新产品 tag。详见[QA 与坐标完整性指标](METRICS.zh-CN.md#reference-qa-coordinate-integrity-2026-10-10)与[日期报告](REFERENCE_QA_COORDINATE_INTEGRITY_2026-10-10.md)；源码测量 v2.4.0 记录保持独立且不变。
 
 ## v0.4.10 历史原生计时
 
