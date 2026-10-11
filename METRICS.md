@@ -1,6 +1,21 @@
 # METRICS — AI2figma v0.4.10 — generic native content and layout correctness
 English | [简体中文](METRICS.zh-CN.md)
 
+<a id="reference-role-authority-reissue-2026-10-11"></a>
+## Reference role-authority reissue (Oct 11, 2026)
+
+The latest local source checkpoint is `ab7bc57` (`ab7bc578b5b74a215aa9e83817f06f6a17531379`). Its plain `npm run verify` passed 3,296 tests across 465 suites: 3,292 passed, 4 skipped, 0 failed. This is a local result; it is not a GitHub CI result or product release.
+
+| Evidence | Result | Boundary |
+|---|---|---|
+| Readback repair | Settled icon identity is matched to fresh root-local bounds. Approved Auto Layout flow may reflow when the fresh tree and subsequent typed read agree. | Static/unknown owners, changed parent or size, a changed paint, capture drift, nonempty variable bindings, and an AUTO-to-ABSOLUTE change remain refusals. |
+| Capability reissue | Approved `ROLE_TOKEN` fills are preserved; the reissue finished with zero operations, zero Figma writes, and no correction round consumed. | The one-shot capability moved from 1.2 to 1.3; earlier refused attempts remain historical records. |
+| User review | Original capture `2ba5…` is `HUMAN_ACCEPTED` after 20/20 eligibility checks. | `strictV2Pass=false`; this is not strict `COMPLETE`. Text ink is incomparable and the earlier V2 ledger lacks asset-node ink evidence for 14 unique icons/marks. |
+| Later canvas edit | At the user's request, one typed edit changed the pale board's four corner radii from 0 to 54.656. | It has a separate capture and receipt; it did not rewrite the accepted capture. |
+| Timing evidence | No successful total-generation before/after timing is recorded. | Do not infer speedup or an A/B result from the local test gate. |
+
+The product remains v0.4.10, with no new tag. See the [Oct 11 role-authority report](docs/REFERENCE_ROLE_AUTHORITY_REISSUE_2026-10-11.md) for the bounded history and evidence limits. The Oct 10 coordinate-integrity and source-measurement records remain separate.
+
 <a id="reference-qa-coordinate-integrity-2026-10-10"></a>
 ## Reference QA and coordinate integrity (Oct 10, 2026)
 

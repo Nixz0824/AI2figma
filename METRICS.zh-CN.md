@@ -1,6 +1,21 @@
 # AI2figma v0.4.10 指标与历史记录
 中文 | [English](METRICS.md)
 
+<a id="reference-role-authority-reissue-2026-10-11"></a>
+## Reference role-authority reissue（2026-10-11）
+
+最新本地源码检查点为 `ab7bc57`（`ab7bc578b5b74a215aa9e83817f06f6a17531379`）。plain `npm run verify` 通过 465 个套件、3,296 项测试：3,292 通过、4 跳过、0 失败。这是本地结果，不是 GitHub CI，也不是产品发布。
+
+| 证据 | 结果 | 边界 |
+|---|---|---|
+| Readback 修复 | settled icon identity 与 fresh root-local bounds 匹配；当 fresh tree 与后续 typed read 一致时，已批准的 Auto Layout flow 可发生 reflow。 | STATIC/unknown owner、parent 或 size 变化、paint 变化、capture 漂移、非空 variable binding，以及 AUTO→ABSOLUTE 变化仍会拒绝。 |
+| Capability reissue | 保留已批准的 `ROLE_TOKEN` 填色；reissue 结束时 operations 为 0、Figma 写入为 0，且未消耗 correction round。 | 一次性 capability 从 1.2 更新到 1.3；此前被拒绝的尝试仍作为历史记录保留。 |
+| 用户复核 | 原 capture `2ba5…` 在 20/20 eligibility checks 通过后记录为 `HUMAN_ACCEPTED`。 | `strictV2Pass=false`，不等于 strict `COMPLETE`。文字 ink 不可比较，旧 V2 ledger 也缺少 14 个唯一图标/标记的 asset-node ink 证据。 |
+| 后续画布修改 | 按用户要求，一次 typed edit 将浅色画板四角圆角从 0 改为 54.656。 | 使用独立的新 capture 与 receipt，没有改写已验收的 capture。 |
+| 计时证据 | 未记录成功的总生成前后对照计时。 | 不应从本地测试门禁推断提速或 A/B 结果。 |
+
+正式产品仍为 v0.4.10，没有新 tag。完整的有界历史与证据边界见[10 月 11 日 role-authority 报告](docs/REFERENCE_ROLE_AUTHORITY_REISSUE_2026-10-11.md)。10 月 10 日坐标完整性与源码测量记录仍为独立历史记录。
+
 <a id="reference-qa-coordinate-integrity-2026-10-10"></a>
 ## Reference QA 与坐标完整性（2026-10-10）
 

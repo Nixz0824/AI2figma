@@ -12,12 +12,13 @@ v0.4.10 · Default host mode needs no provider API key.
 
 AI2figma is a local runtime for Figma Desktop. It connects an AI host to Figma locally, checks each structured write before applying it, and records the result. The public repository contains product documentation and evaluation information; source code is private.
 
-## Current stage · Oct 8, 2026
+## Current stage and recent closeout · Oct 11, 2026
 
 No-reference `workflow="greenfield"` development is paused after this stage closeout; the existing implementation and evidence are retained. Active work defaults to Existing edits and new pages built from an actual supplied reference. The code checkpoint remains private; this documentation update does not publish source or create a new feature version.
 
 | Checkpoint | Local verification | Native fixture status |
 | --- | --- | --- |
+| Oct 11 role-authority closeout · `ab7bc57` | `npm run verify`: 3,296 tests, 3,292 passed, 4 skipped, 0 failed, 465 suites. | Original capture `2ba5…` is `HUMAN_ACCEPTED`; strict V2 remains unresolved and the reissue made 0 Figma writes. |
 | `08ef304` | Official plain `npm run verify`: 3,201 tests, 3,197 passed, 4 skipped, 0 failed, 454 suites; guard, TypeScript build, and plugin build passed. | Root returned `SCOPED_NATIVE_PASS`; the Host run remains `REVIEW_REQUIRED`, not complete. The fixture has no timing result. |
 | First reference-led batch · test checkpoint `0b3fccd` (production source remains `8eb298a`) | Official plain local `npm run verify` (2026-10-09): 3,222 tests, 3,218 passed, 4 skipped, 0 failed, 456 suites. | At that recorded checkpoint, Native was `DECOMPOSITION_REQUIRED`; no Figma drawing, Native PASS, or new timing was claimed. |
 
@@ -31,11 +32,11 @@ The reference CLI entry is `fdr host start "<request>" --references-file <json>`
 
 See the [scoped batch details](METRICS.md#first-reference-batch-oct-8).
 
-## Oct 10 source checkpoint · Native review remains open
+## Oct 11 role-authority closeout · reviewed snapshot accepted
 
-Private source checkpoint `8a3f6b6` passed the local `npm run verify`: 3,274 tests, 3,270 passed, 4 skipped, 0 failed, 459 suites. The combined checkpoint includes the baseline text QA and exact AUTO-coordinate identity corrections; this is a local result, not GitHub CI.
+Latest local source checkpoint `ab7bc57` passed `npm run verify`: 3,296 tests, 3,292 passed, 4 skipped, 0 failed, 465 suites. This is local verification, not GitHub CI. The original reviewed capture (`2ba5…`) is `HUMAN_ACCEPTED`; the reissue made no Figma writes. This acceptance is not strict `COMPLETE`: V2 remains failed on incomparable text ink and 14 asset-node ink gaps, and no total-generation before/after timing is recorded.
 
-The earlier `RECONCILIATION_REQUIRED` diagnostic remains historical. The post-fix run received a technical visual review, but strict fidelity remains unresolved and one proposed correction is unapproved. This is not final acceptance or an end-to-end timing result. The product remains v0.4.10, with no new product tag. See the [QA and coordinate-integrity metrics](METRICS.md#reference-qa-coordinate-integrity-2026-10-10) and [dated report](REFERENCE_QA_COORDINATE_INTEGRITY_2026-10-10.md). The source measurement 2.4.0 record is separate and unchanged.
+After that acceptance, the user separately requested matching the pale board's four corners to the black cards. One typed radius edit changed 0 to 54.656 and produced a separate capture and receipt; it did not rewrite the accepted capture. The product remains v0.4.10 with no new tag. See the [Oct 11 role-authority report](docs/REFERENCE_ROLE_AUTHORITY_REISSUE_2026-10-11.md) and [metrics](METRICS.md#reference-role-authority-reissue-2026-10-11). The Oct 10 coordinate-integrity and v2.4 source-measurement records remain separate historical evidence.
 
 ## Historical v0.4.10 native timing
 
@@ -135,7 +136,9 @@ The timing example uses a bounded synthetic-data task. The page is a single revi
 
 ## More detail
 
+- [Documentation index](docs/DOCUMENTATION_INDEX.md)
 - [Metrics, historical runs, and evidence references](METRICS.md)
+- [Reference role-authority reissue (Oct 11, 2026)](docs/REFERENCE_ROLE_AUTHORITY_REISSUE_2026-10-11.md)
 - [Generation timing observation (Oct 8, 2026)](docs/GENERATION_TIMING_2026-10-08.md)
 - [Scoped native handoff (Oct 8, 2026)](docs/GREENFIELD_NATIVE_HANDOFF_2026-10-08.md)
 - [Greenfield pause and stage archive (Oct 8, 2026)](docs/GREENFIELD_PAUSE_2026-10-08.md)

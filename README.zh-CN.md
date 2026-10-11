@@ -12,12 +12,13 @@ v0.4.10 · 默认由 AI 宿主负责推理，无需 provider API key。
 
 AI2figma 是面向 Figma Desktop 的本地运行时。它在本机连接 AI 宿主与 Figma，对每次结构化写入先校验，再记录结果。公开仓库提供产品文档和评估信息；源码保持私有。
 
-## 当前阶段 · 2026-10-08
+## 当前阶段与近期收尾 · 2026-10-11
 
 无参考 `workflow="greenfield"` 开发在本阶段收尾后暂停；现有实现与证据保留。未来工作默认面向 Existing 编辑和基于用户真实参考的新页面。源码检查点保持私有；本次文档更新不发布源码，也不创建新功能版本。
 
 | 检查点 | 本地验证 | 原生 fixture 状态 |
 | --- | --- | --- |
+| 10 月 11 日 role-authority 收尾 · `ab7bc57` | `npm run verify`：3,296 项测试、3,292 通过、4 跳过、0 失败，共 465 个套件。 | 原 capture `2ba5…` 为 `HUMAN_ACCEPTED`；strict V2 仍未解决，reissue 阶段 Figma 写入为 0。 |
 | `08ef304` | 官方 plain `npm run verify`：3,201 项测试、3,197 通过、4 跳过、0 失败，共 454 个套件；guard、TypeScript build 和 plugin build 均通过。 | Root 给出 `SCOPED_NATIVE_PASS`；对应 Host 运行仍为 `REVIEW_REQUIRED`，尚未完成。该 fixture 没有计时结果。 |
 | 首批有参考优化 · 测试检查点 `0b3fccd`（生产源码仍为 `8eb298a`） | 2026-10-09 官方 plain 本地 `npm run verify`：3,222 项测试、3,218 通过、4 跳过、0 失败，共 456 个套件。 | 该检查点记录的原生状态为 `DECOMPOSITION_REQUIRED`；没有在 Figma 绘制，没有 Native PASS 或新计时。 |
 
@@ -31,11 +32,11 @@ AI2figma 是面向 Figma Desktop 的本地运行时。它在本机连接 AI 宿�
 
 详见[范围内批次说明](METRICS.zh-CN.md#first-reference-batch-oct-8)。
 
-## 10 月 10 日源码检查点 · Native 复核仍开放
+## 10 月 11 日 role-authority 收尾 · 复核快照已签收
 
-私有源码检查点 `8a3f6b6` 通过本地 `npm run verify`：3,274 项测试、3,270 通过、4 跳过、0 失败，共 459 个套件。该检查点合并了基线文字 QA 与 AUTO 坐标精确身份修复；这是本地结果，不是 GitHub CI。
+最新本地源码检查点 `ab7bc57` 通过 `npm run verify`：3,296 项测试、3,292 通过、4 跳过、0 失败，共 465 个套件。这是本地验证，不是 GitHub CI。原复核 capture（`2ba5…`）已获 `HUMAN_ACCEPTED`；reissue 阶段没有 Figma 写入。该验收不等于 strict `COMPLETE`：V2 仍因文字 ink 不可比较和 14 个 asset-node ink 证据缺口而失败，也没有记录总生成的前后计时。
 
-此前的 `RECONCILIATION_REQUIRED` 诊断作为历史记录保留。修复后的运行已完成技术画面复核，但 strict fidelity 仍未解决，且有一项建议修正尚未批准。这不构成最终验收或端到端计时。产品仍为 v0.4.10，未创建新产品 tag。详见[QA 与坐标完整性指标](METRICS.zh-CN.md#reference-qa-coordinate-integrity-2026-10-10)与[日期报告](REFERENCE_QA_COORDINATE_INTEGRITY_2026-10-10.md)；源码测量 v2.4.0 记录保持独立且不变。
+验收后，用户另行要求将浅色画板四角与黑色卡片圆角调成一致。一次 typed radius edit 将数值从 0 改为 54.656，并生成独立 capture 与 receipt；没有改写已验收的 capture。产品仍为 v0.4.10，没有新 tag。详见[10 月 11 日 role-authority 报告](docs/REFERENCE_ROLE_AUTHORITY_REISSUE_2026-10-11.md)与[详细指标](METRICS.zh-CN.md#reference-role-authority-reissue-2026-10-11)。10 月 10 日坐标完整性和 v2.4 源码测量记录继续作为独立历史证据保留。
 
 ## v0.4.10 历史原生计时
 
@@ -135,7 +136,9 @@ AI 智能体提出改动，本地运行时校验结构化操作，再通过 Figm
 
 ## 更多信息
 
+- [文档索引](docs/DOCUMENTATION_INDEX.md)
 - [指标、历史样例与证据索引](METRICS.zh-CN.md)
+- [Reference role-authority reissue（2026-10-11）](docs/REFERENCE_ROLE_AUTHORITY_REISSUE_2026-10-11.md)
 - [生成计时观测（2026-10-08）](docs/GENERATION_TIMING_2026-10-08.md)
 - [范围内原生交接（2026-10-08）](docs/GREENFIELD_NATIVE_HANDOFF_2026-10-08.md)
 - [Greenfield 暂停与阶段归档（2026-10-08）](docs/GREENFIELD_PAUSE_2026-10-08.md)
