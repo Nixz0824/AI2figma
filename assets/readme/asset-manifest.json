@@ -134,8 +134,8 @@
       "type": "svg",
       "language": "en",
       "width": 1200.0,
-      "height": 720.0,
-      "sha256": "9783e112f7492440ac9b0cad243da49502214211f3235f48fb89e2ac0b7e7c41",
+      "height": 760.0,
+      "sha256": "3fd76b92387378d0e8897ff139ebeb211b9f52eb81d2384c9a68c61ae86d615b",
       "outputMode": "deterministic"
     },
     {
@@ -143,8 +143,8 @@
       "type": "svg",
       "language": "zh-CN",
       "width": 1200.0,
-      "height": 720.0,
-      "sha256": "d9a5728a94ed350a9784774d592d4777b7271c4185f4cd76da995a6d55bd3c14",
+      "height": 760.0,
+      "sha256": "6f76e425ffc227477185fbd464538998cf4092136f0198d98c06c1473710b130",
       "outputMode": "deterministic"
     }
   ]

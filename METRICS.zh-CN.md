@@ -1,6 +1,32 @@
 # AI2figma v0.4.10 指标与历史记录
 中文 | [English](METRICS.md)
 
+<a id="当前项目概况"></a>
+## 当前项目概况（2026-10-21）
+
+启用中的 Reference 与 Existing 范围，按固定权重估计为 **72.5/100（约 73%）**：Reference 75（权重 40%）、Existing 75（20%）、Runtime 90（20%）、整轮效率 40（10%）、发布与验收 55（10%）。这是有证据边界的主观工程估计，不是统计完成率；代码体量、提交、测试和文档数量不增加该分数。
+
+| 近期观测 | 记录时长或结果 | 边界 |
+|---|---:|---|
+| Reference 适配 · 10 月 20 日 | 准备意图到画布收口 **6 小时 10 分 37.315 秒**；task wall start 到收口 **6 小时 5 分 44.085 秒**。 | 一次真实整轮观测，包含规划、复核、修正与等待；不是平均值或提速对照。 |
+| 正常 Reference 入口 · 10 月 18 日 | 约 **43 分 13 秒**到正式终态；约 **43 分 29 秒**到画布收口。 | 特定输入和入口，strict 可比性与人工验收仍分开。 |
+| Banking Existing 收尾 · 10 月 18 日 | 约 **1 小时 44 分 03 秒**到画布收口。 | 包含两次施工回滚和受限 Existing 完成，不证明 Reference 已完成。 |
+| Monotime Reference · 10 月 19 日 | 约 **5 小时 19 分 04 秒**到画布收口。 | 包含模型容量/额度等待；strict fidelity 与人工验收仍分别记录。 |
+| Packing 计划复用 · 10 月 17 日 | SDK 正式任务 **17 分 51 秒**；包含后续画布核对约 **2 小时 27 分 41 秒**。 | 是不同的时钟窗口，不能换算成任务间速度比。 |
+
+这些整轮观测的输入、入口、验收范围与等待各不相同。后续继续记录首次有用反馈、修正轮次、阻断年龄和收口时间；不要从少数样本推出平均值或普遍提速。下方 v0.4.10 原生计时属于另一组历史数据，不应与当前整轮时钟比较。
+
+| 验证快照 | 结果 | 边界 |
+|---|---|---|
+| canonical checkpoint `9fe65d1` · 10 月 21 日 | 本地 `npm run verify`：3,487 项测试、3,486 通过、1 项既有跳过、0 失败。focused preflight 10/10；Host shared caller 1/1。 | 真实输入预检本身的 Bridge/Figma/provider 调用均为 0；完整测试 suite 另含 fake Bridge 测试。这是本地源码验证，不是 GitHub CI 或 Figma 交付。 |
+| 10 月 20 日 Pokecut Reference 适配 | `ADAPTATION_COMPLETE`；只读坐标复核后报告 acceptance issues 为 0。 | strict V1：7 PASS / 1 `NOT_COMPARABLE_TARGET`；strict V2：0/7 PASS；人类验收：false。 |
+| 10 月 19 日 Monotime Reference 适配 | `ADAPTATION_COMPLETE`；已记录正式视觉评审。 | Source calibration 仍为 partial；strict V1：3/4 PASS；strict V2：0/4 PASS；人类验收：false。 |
+| 10 月 18 日 Packing 正常 Reference 入口 | `ADAPTATION_COMPLETE`；52 项目标检查和 7 条关系通过。 | 不等同 strict fidelity 或人类验收。 |
+| 10 月 18 日 Banking Home Existing 收尾 | Existing 路线：`COMPLETE`。 | 相关 Reference 路线仍为 `HUMAN_ACTION_REQUIRED`；不等同 Reference 完成。 |
+| 10 月 16 日 Commerce Existing 收尾 | 受限 Existing 资产补全与 KPI 间距：`COMPLETE`。 | strict Reference 与人类验收仍分别记录。 |
+
+正式产品仍为 **v0.4.10**，未创建新 tag。[当前公开路线图](ROADMAP.md)概述下一阶段证据门。详细技术计划和本地证据保留在私有开发工作区；本页面不包含用户截图、参考图、裁片或派生图。
+
 <a id="reference-role-authority-reissue-2026-10-11"></a>
 ## Reference role-authority reissue（2026-10-11）
 

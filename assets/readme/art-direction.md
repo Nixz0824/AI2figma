@@ -12,13 +12,13 @@ Audience: developers and AI-agent hosts working with native Figma designs. Claim
 ## Deterministic SVG diagrams
 
 - `architecture-{en,zh}.svg` shows Agent Host → MCP → typed local Bridge → Figma plugin → Figma document. The runtime records evidence; the Figma document edge is labeled as readback.
-- `workflow-{en,zh}.svg` uses horizontal process lanes for Existing, Greenfield and Reference, without nested cards.
+- `workflow-{en,zh}.svg` shows two active lanes: Existing edits and pages built from an actual reference. The no-reference Greenfield lane is explicitly marked legacy/paused; `reference_greenfield` remains active when a real source is supplied. The footer separates editable adaptation, strict fidelity, and human acceptance.
 - `generation-time-{en,zh}.svg` is a zero-based 0–20 minute horizontal bar chart with a marked 15-minute cap. The first three rows use actual terminal time; 4fea uses request-to-quality-ready and independent review acceptance. Over-cap times are not backdated.
 - The 4fea runtime-active value 4,837.979 ms is a separate ledger clock, not end-to-end generation latency. This is one accepted point; no speedup, median or trend is claimed.
 
 Chart principles: Cleveland & McGill's common zero-baseline length comparison; Cairo's truthful endpoint and cap disclosure; Tufte's data-ink restraint. The source receipt SHA-256 is `5e2fe92709d5522d56d7c8096ba94afe475d42a96f4575ee0c4c8f202b9b9453`; source rows and integrity states are preserved in the manifest.
 
-Long descriptions, full setup steps, limits, timing definitions and commands remain in README Markdown. No README file is modified by this asset branch.
+Long descriptions, full setup steps, limits, timing definitions and commands remain in README Markdown. The workflow SVGs are current-scope overviews; the existing concept PNGs, historical timing chart, font-payload chart, and their source receipts remain unchanged.
 
 ## Mode A PNG reproduction recipes
 

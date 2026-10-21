@@ -12,19 +12,27 @@ v0.4.10 · 默认由 AI 宿主负责推理，无需 provider API key。
 
 AI2figma 是面向 Figma Desktop 的本地运行时。它在本机连接 AI 宿主与 Figma，对每次结构化写入先校验，再记录结果。公开仓库提供产品文档和评估信息；源码保持私有。
 
-## 当前阶段与近期收尾 · 2026-10-11
+## 当前阶段与近期收尾 · 2026-10-21
 
-无参考 `workflow="greenfield"` 开发在本阶段收尾后暂停；现有实现与证据保留。未来工作默认面向 Existing 编辑和基于用户真实参考的新页面。源码检查点保持私有；本次文档更新不发布源码，也不创建新功能版本。
+无参考 `workflow="greenfield"` 开发继续暂停；现有实现与历史证据保留。当前工作面向 Existing 编辑和基于用户真实参考的新页面，包括 `reference_greenfield`。正式产品仍为 v0.4.10；本次是维护与文档更新，不是新功能发布。
 
-| 检查点 | 本地验证 | 原生 fixture 状态 |
+| 检查点 | 本地验证 | 当前结果 |
 | --- | --- | --- |
+| 10 月 21 日 Reference 共用预检 · canonical checkpoint `9fe65d1` | `npm run verify`：3,487 项测试、3,486 通过、1 项既有跳过、0 失败。 | 可证明的 source-backed 定位冲突会在施工前拒绝；已接受的控制计划仍为 `READY` / 0 issues。真实输入预检本身未调用 Bridge/Figma/provider。这是本地源码验证，不是 GitHub CI 或 Figma 交付。 |
+| 10 月 20 日 Pokecut Reference 适配收尾 | 对已接受 capture 做只读证据复核。 | `ADAPTATION_COMPLETE`；坐标解释修正后 acceptance issues 为 0。strict V1 为 7 PASS / 1 `NOT_COMPARABLE_TARGET`，V2 为 0/7 PASS，人类验收为 false。 |
+| 10 月 19 日 Monotime Reference 适配 | 原生结果与正式视觉评审。 | `ADAPTATION_COMPLETE`；source calibration 为 partial，strict V1 为 3/4 PASS、V2 为 0/4 PASS，人类验收为 false。 |
+| 10 月 18 日 Packing 正常 Reference 入口 | 既有本地 gate：3,462 项测试、3,461 通过、1 项既有跳过、0 失败。 | `ADAPTATION_COMPLETE`；52 项目标检查和 7 条关系通过。strict 可比性与人类验收仍分别记录。 |
+| 10 月 18 日 Banking Home Existing 收尾 | 受限 Existing 检查及最终读回。 | Existing 路线为 `COMPLETE`；其 Reference 路线仍为 `HUMAN_ACTION_REQUIRED`，不代表 Reference 完成。 |
+| 10 月 16 日 Commerce Existing 收尾 | 本地 `npm run verify`：3,402 项、3,401 通过、1 项既有跳过、0 失败。 | 受限 Existing 资产补全与 KPI 间距已 `COMPLETE`；strict Reference 与人类验收仍分别记录。 |
 | 10 月 11 日 role-authority 收尾 · `ab7bc57` | `npm run verify`：3,296 项测试、3,292 通过、4 跳过、0 失败，共 465 个套件。 | 原 capture `2ba5…` 为 `HUMAN_ACCEPTED`；strict V2 仍未解决，reissue 阶段 Figma 写入为 0。 |
 | `08ef304` | 官方 plain `npm run verify`：3,201 项测试、3,197 通过、4 跳过、0 失败，共 454 个套件；guard、TypeScript build 和 plugin build 均通过。 | Root 给出 `SCOPED_NATIVE_PASS`；对应 Host 运行仍为 `REVIEW_REQUIRED`，尚未完成。该 fixture 没有计时结果。 |
 | 首批有参考优化 · 测试检查点 `0b3fccd`（生产源码仍为 `8eb298a`） | 2026-10-09 官方 plain 本地 `npm run verify`：3,222 项测试、3,218 通过、4 跳过、0 失败，共 456 个套件。 | 该检查点记录的原生状态为 `DECOMPOSITION_REQUIRED`；没有在 Figma 绘制，没有 Native PASS 或新计时。 |
 
-以上均为本地验证记录，不是 GitHub CI 结果。passive-preload 诊断只运行了测试，不等同全量 plain gate。官方 plain run 均未使用 preload 或 `NODE_OPTIONS`。正式版本仍是 v0.4.10；这是 main 分支维护批次，不是新版本发布。
+当前固定权重估计为 **72.5/100（约 73%）**，覆盖 active Reference 与 Existing：Reference 75（40%）、Existing 75（20%）、Runtime 90（20%）、整轮效率 40（10%）、发布与验收 55（10%）。这是主观工程估计，不是统计完成率。近期一个 Reference 任务从准备意图到画布收口共 **6 小时 10 分 37.315 秒**，包含规划、复核、修正和等待；它是单次整轮观测，不是平均值或提速结论。详见[当前指标](METRICS.zh-CN.md#当前项目概况)与[产品路线图](ROADMAP.md#中文路线)。
 
-参考输入的 CLI 入口为 `fdr host start "<request>" --references-file <json>`。本批有三项有界改进：
+10 月 21 日 gate 是 canonical 本地验证，不是 GitHub CI。历史验证行保持其原有范围；passive-preload 诊断只运行了测试，不等同全量 plain gate。正式版本仍为 v0.4.10，没有新 release 或 tag。[私有源码镜像 main](https://github.com/Nixz0824/AI2figma-source/tree/main)经过脱敏，其提交身份与 canonical 历史不同。
+
+下方 CLI 说明与三项有界改进属于 10 月 8 日的历史 Reference 维护批次，与上方 10 月 21 日预检分开记录。参考输入的 CLI 入口为 `fdr host start "<request>" --references-file <json>`：
 
 - 在调用与查询相同的一个受控 Existing fixture 中，Bridge RPC 数从 9 次降至 6 次。这是调用数结果，不是端到端提速测量。
 - 密集文字行定位更稳；未匹配和多行文字保留原有几何。
@@ -81,11 +89,15 @@ Legacy `workflow="greenfield"` 在没有参考时根据 brief 创建页面。该
 </p>
 <p align="center"><em>本地工作流机制示意图，不是产品截图。</em></p>
 
+<p align="center"><img src="assets/readme/workflow-zh.svg" width="100%" alt="两条活跃工作流：Existing 编辑与基于真实参考的新页面；无参考 Greenfield 标记为已暂停的历史路径。"></p>
+
 AI 智能体提出改动，本地运行时校验结构化操作，再通过 Figma 插件应用改动，随后读回文档并记录证据。类型化操作、事务记录、锁、回滚支持和读回证据用于控制写入；状态未明时会关闭后续操作，不会自动重试。
 
 运行时负责校验和文档操作；AI 宿主负责规划。默认由 AI 宿主负责推理的运行方式无需 provider API key；可选 provider 模式需另行配置。模型不会在 Figma 内执行任意 JavaScript。
 
-当前源码 main 的标准 stdio MCP Server 会在首次调用需要 Runtime 的工具时启动或复用本地 Bridge。MCP 初始化、工具发现和静态工作流指南不会启动它。在 Figma Desktop 中，仍需按正常 Development 插件流程导入并运行插件；Bridge 健康不代表插件已连接。宿主不会打开插件或切换文件，退出时只关闭本进程启动的 Bridge。
+当前源码 main 的 stdio MCP Server 会在首次调用需要 Runtime 的工具时启动或复用 `127.0.0.1:17321` 上的本地 Bridge。MCP 初始化、工具发现和静态工作流指南不会启动它。在 Figma Desktop 中，仍需按正常 Development 插件流程导入并运行插件；Bridge 健康不代表插件已连接。宿主不能替用户启动插件或打开任意 Figma 文件。插件连接到选定文档后，显式 Reference start 可以在该文件内准备专用空白页；Existing 修改使用用户提供的页面或选区。
+
+package 支持 Node 20.11 或更高版本；原生 TypeScript 源码命令建议使用 Node 24。运行编译版 MCP launcher 前执行 `npm run build`，它会在同一进程中加载 `packages/mcp-server/dist/bin.js`。执行文档操作需要 Figma Desktop 和已连接的 Development 插件。
 
 每次运行记录会把请求范围、执行操作、最终图层树、审查状态和完整性哈希关联起来。记录中的事务支持回滚；写入状态不确定时会读回 Figma 状态并关闭后续操作，而非静默重试。
 
@@ -136,6 +148,7 @@ AI 智能体提出改动，本地运行时校验结构化操作，再通过 Figm
 
 ## 更多信息
 
+- [产品方向与路线图（2026-10-21）](ROADMAP.md#中文路线)
 - [文档索引](docs/DOCUMENTATION_INDEX.md)
 - [指标、历史样例与证据索引](METRICS.zh-CN.md)
 - [Reference role-authority reissue（2026-10-11）](docs/REFERENCE_ROLE_AUTHORITY_REISSUE_2026-10-11.md)

@@ -1,6 +1,32 @@
 # METRICS — AI2figma v0.4.10 — generic native content and layout correctness
 English | [简体中文](METRICS.zh-CN.md)
 
+<a id="current-project-snapshot-oct-21"></a>
+## Current project snapshot (Oct 21, 2026)
+
+The current fixed-weight estimate is **72.5/100 (about 73%)** across active Reference and Existing work: Reference 75 × 40%, Existing 75 × 20%, Runtime 90 × 20%, whole-task efficiency 40 × 10%, and release/acceptance 55 × 10%. It is a subjective, evidence-scoped engineering estimate, not a statistical completion rate. Code size, commits, test count, and document count do not increase it.
+
+| Recent observation | Recorded duration or result | Boundary |
+|---|---:|---|
+| Reference adaptation · Oct 20 | **6 h 10 m 37.315 s** from preparation intent to canvas closeout; **6 h 5 m 44.085 s** from task wall start. | One real full-cycle observation including planning, review, correction, and waiting. It is not an average or a speedup comparison. |
+| Normal Reference entry · Oct 18 | About **43 m 13 s** to its formal terminal state; **43 m 29 s** to canvas closeout. | Specific input and entry path; strict comparability and human acceptance remain separate. |
+| Banking Existing closeout · Oct 18 | About **1 h 44 m 03 s** to canvas closeout. | Includes two construction rollbacks and a scoped Existing completion; it does not establish Reference completion. |
+| Monotime Reference · Oct 19 | About **5 h 19 m 04 s** to canvas closeout. | Includes model capacity/quota waiting; strict fidelity and human acceptance remain separate. |
+| Packing reuse task · Oct 17 | **17 m 51 s** for the SDK task; about **2 h 27 m 41 s** including later canvas review. | These are different clock windows and cannot be converted into a task-to-task speed ratio. |
+
+These full-cycle observations vary in input, route, acceptance scope, and waiting. Keep first useful feedback, correction rounds, blocker age, and closeout time in the record; do not derive an average or general speed claim from them. The earlier v0.4.10 native timing figure below is a separate historical series and must not be compared with current end-to-end clocks.
+
+| Verification snapshot | Result | Boundary |
+|---|---|---|
+| Canonical checkpoint `9fe65d1` · Oct 21 | Local `npm run verify`: 3,487 tests, 3,486 passed, 1 existing skip, 0 failed. Focused preflight: 10/10; shared Host caller: 1/1. | The real-input preflight itself made zero Bridge/Figma/provider calls. The full test suite separately includes fake Bridge tests. This is local source verification, not GitHub CI or Figma delivery. |
+| Oct 20 Pokecut Reference adaptation | `ADAPTATION_COMPLETE`; after read-only coordinate revalidation, reported acceptance issues were 0. | Strict V1: 7 PASS / 1 `NOT_COMPARABLE_TARGET`; strict V2: 0/7 PASS; human acceptance: false. |
+| Oct 19 Monotime Reference adaptation | `ADAPTATION_COMPLETE`; formal visual review was recorded. | Source calibration remains partial; strict V1: 3/4 PASS; strict V2: 0/4 PASS; human acceptance: false. |
+| Oct 18 Packing normal Reference entry | `ADAPTATION_COMPLETE`; 52 target checks and 7 relations passed. | This does not imply strict fidelity or human acceptance. |
+| Oct 18 Banking Home Existing closeout | Existing route: `COMPLETE`. | Its separate Reference route remains `HUMAN_ACTION_REQUIRED`; this is not Reference completion. |
+| Oct 16 Commerce Existing closeout | Scoped Existing asset completion and KPI spacing: `COMPLETE`. | Strict Reference fidelity and human acceptance remain separate. |
+
+The formal product remains **v0.4.10**; no new tag was created. The [current public roadmap](ROADMAP.md) summarizes the next evidence gates. The detailed technical plan and local evidence remain in the private development workspace; this public page includes no user screenshot, reference image, crop, or derived image.
+
 <a id="reference-role-authority-reissue-2026-10-11"></a>
 ## Reference role-authority reissue (Oct 11, 2026)
 

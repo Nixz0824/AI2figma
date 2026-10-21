@@ -12,19 +12,27 @@ v0.4.10 · Default host mode needs no provider API key.
 
 AI2figma is a local runtime for Figma Desktop. It connects an AI host to Figma locally, checks each structured write before applying it, and records the result. The public repository contains product documentation and evaluation information; source code is private.
 
-## Current stage and recent closeout · Oct 11, 2026
+## Current stage and recent closeout · Oct 21, 2026
 
-No-reference `workflow="greenfield"` development is paused after this stage closeout; the existing implementation and evidence are retained. Active work defaults to Existing edits and new pages built from an actual supplied reference. The code checkpoint remains private; this documentation update does not publish source or create a new feature version.
+No-reference `workflow="greenfield"` development remains paused; its implementation and historical evidence are retained. Active work focuses on Existing edits and pages built from an actual supplied reference, including `reference_greenfield`. The product remains v0.4.10; this maintenance and documentation update is not a new feature release.
 
 | Checkpoint | Local verification | Native fixture status |
 | --- | --- | --- |
+| Oct 21 shared Reference preflight · canonical checkpoint `9fe65d1` | `npm run verify`: 3,487 tests, 3,486 passed, 1 existing skip, 0 failed. | A proven source-backed placement conflict is rejected before construction; the accepted control plan remains `READY` with zero issues. The real-input preflight itself made zero Bridge/Figma/provider calls. This is local source verification, not GitHub CI or a Figma delivery. |
+| Oct 20 Pokecut Reference adaptation | Read-only evidence revalidation on the accepted capture. | `ADAPTATION_COMPLETE`; acceptance issues 0 after correcting coordinate interpretation. Strict V1 is 7 PASS / 1 `NOT_COMPARABLE_TARGET`, V2 is 0/7 PASS, and human acceptance remains false. |
+| Oct 19 Monotime Reference adaptation | Native result and formal visual review. | `ADAPTATION_COMPLETE`; source calibration is partial, strict V1 is 3/4 PASS, V2 is 0/4 PASS, and human acceptance is false. |
+| Oct 18 Packing normal Reference entry | Prior local source gate: 3,462 tests, 3,461 passed, 1 existing skip, 0 failed. | `ADAPTATION_COMPLETE`; 52 target checks and 7 relations passed. Strict comparability and human acceptance remain separate. |
+| Oct 18 Banking Home Existing closeout | Scoped Existing inspection and final readback. | Existing route is `COMPLETE`; its separate Reference route remains `HUMAN_ACTION_REQUIRED`, so this is not Reference completion. |
+| Oct 16 Commerce Existing closeout | Local `npm run verify`: 3,402 tests, 3,401 passed, 1 existing skip, 0 failed. | Scoped Existing asset completion and KPI spacing are `COMPLETE`; strict Reference fidelity and human acceptance remain separate. |
 | Oct 11 role-authority closeout · `ab7bc57` | `npm run verify`: 3,296 tests, 3,292 passed, 4 skipped, 0 failed, 465 suites. | Original capture `2ba5…` is `HUMAN_ACCEPTED`; strict V2 remains unresolved and the reissue made 0 Figma writes. |
 | `08ef304` | Official plain `npm run verify`: 3,201 tests, 3,197 passed, 4 skipped, 0 failed, 454 suites; guard, TypeScript build, and plugin build passed. | Root returned `SCOPED_NATIVE_PASS`; the Host run remains `REVIEW_REQUIRED`, not complete. The fixture has no timing result. |
 | First reference-led batch · test checkpoint `0b3fccd` (production source remains `8eb298a`) | Official plain local `npm run verify` (2026-10-09): 3,222 tests, 3,218 passed, 4 skipped, 0 failed, 456 suites. | At that recorded checkpoint, Native was `DECOMPOSITION_REQUIRED`; no Figma drawing, Native PASS, or new timing was claimed. |
 
-These are local verification records, not GitHub CI results. The passive-preload diagnostic ran tests only and is not equivalent to the full plain gate. The official plain runs used no preload or `NODE_OPTIONS`. The formal version remains v0.4.10; this is a main-branch maintenance batch, not a new release.
+The current fixed-weight estimate is **72.5/100 (about 73%)** across active Reference and Existing scope: Reference 75 (40%), Existing 75 (20%), Runtime 90 (20%), whole-task efficiency 40 (10%), and release/acceptance 55 (10%). It is a subjective evidence-based estimate, not a statistical completion rate. One recent Reference task took **6 h 10 m 37.315 s** from preparation intent to canvas closeout, including planning, review, correction, and waiting; this is one full-cycle observation, not a benchmark average or speedup claim. See the [current metrics](METRICS.md#current-project-snapshot-oct-21) and [roadmap](ROADMAP.md).
 
-The reference CLI entry is `fdr host start "<request>" --references-file <json>`. This batch makes three scoped changes:
+The Oct 21 gate is local canonical verification, not GitHub CI. Historical local verification rows retain their original scopes; the passive-preload diagnostic ran tests only and is not equivalent to the full plain gate. The formal version remains v0.4.10, with no new release or tag. The [private source mirror main](https://github.com/Nixz0824/AI2figma-source/tree/main) is a scrubbed snapshot with a different commit identity from canonical history.
+
+The following CLI note and three scoped changes describe the historical Oct 8 reference-maintenance batch; they are separate from the Oct 21 preflight above. The reference CLI entry is `fdr host start "<request>" --references-file <json>`:
 
 - On one controlled Existing fixture with the same call and query, Bridge RPCs fell from 9 to 6. This is a call-count result, not an end-to-end speed measurement.
 - Dense-text row placement is more reliable; unmatched or multiline text keeps its original geometry.
@@ -81,11 +89,15 @@ The legacy `workflow="greenfield"` path creates a page from a brief without a re
 </p>
 <p align="center"><em>Conceptual illustration of the workflow, not a product screenshot.</em></p>
 
+<p align="center"><img src="assets/readme/workflow-en.svg" width="100%" alt="Two active workflows: Existing edits and reference-led pages; no-reference Greenfield is shown as paused legacy."></p>
+
 An agent proposes a change. The local runtime checks the structured operations, applies them through the Figma plugin, then reads the document back and records evidence. Typed operations, transaction tracking, locks, rollback support, and readback evidence help control writes; unresolved outcomes fail closed instead of being retried automatically.
 
 The runtime owns validation and document operations; the AI host owns planning. The default mode uses the AI host for reasoning and needs no provider API key; optional provider modes are configured separately. No model runs arbitrary JavaScript inside Figma.
 
-On current source main, the standard stdio MCP server starts or reuses the local Bridge when the first runtime-backed tool is called. MCP initialization, tool discovery, and static workflow guides do not start it. In Figma Desktop, import and run the plugin through the normal Development plugin flow; Bridge health does not mean the plugin is connected. The host does not open the plugin or switch files, and it closes only the Bridge instance it created.
+On current source main, the stdio MCP server starts or reuses the local Bridge at `127.0.0.1:17321` when the first runtime-backed tool is called. MCP initialization, tool discovery, and static workflow guides do not start it. In Figma Desktop, import and run the plugin through the normal Development plugin flow; Bridge health does not mean the plugin is connected. The host cannot launch the plugin or open an arbitrary Figma file. Once the plugin is connected to the chosen document, an explicit Reference start can prepare a dedicated blank page within that file; Existing edits use the supplied page or selection.
+
+The package supports Node 20.11 or newer; Node 24 is recommended for native TypeScript source commands. Run `npm run build` before using the compiled MCP launcher; it loads `packages/mcp-server/dist/bin.js` in the same process. Figma Desktop and a connected development plugin are required for document operations.
 
 A run record connects the requested scope to its operations, final tree, review state, and integrity hashes. Recorded transactions include rollback support; uncertain writes are checked against Figma state and fail closed instead of being retried silently.
 
@@ -136,6 +148,7 @@ The timing example uses a bounded synthetic-data task. The page is a single revi
 
 ## More detail
 
+- [Product direction and roadmap (Oct 21, 2026)](ROADMAP.md)
 - [Documentation index](docs/DOCUMENTATION_INDEX.md)
 - [Metrics, historical runs, and evidence references](METRICS.md)
 - [Reference role-authority reissue (Oct 11, 2026)](docs/REFERENCE_ROLE_AUTHORITY_REISSUE_2026-10-11.md)

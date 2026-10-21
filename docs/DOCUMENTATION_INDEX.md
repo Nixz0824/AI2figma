@@ -7,6 +7,7 @@ This showcase contains public documentation only. Use the current README and met
 ## Current entry points / 当前入口
 
 - [English README](../README.md) · [简体中文 README](../README.zh-CN.md)
+- [Product direction and roadmap (Oct 21, 2026)](../ROADMAP.md) · [产品方向与路线图](../ROADMAP.md#中文路线)
 - [English metrics](../METRICS.md) · [中文指标](../METRICS.zh-CN.md)
 - [Architecture overview](../ARCHITECTURE.md) · [License](../LICENSE)
 - [Documentation retention policy](DOCUMENT_RETENTION.md)
